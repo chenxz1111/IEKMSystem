@@ -1,0 +1,15 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.yalantis.taurus" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="26"
+6-->D:\Android\IEKMSystem\library\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="30" />
+7-->D:\Android\IEKMSystem\library\src\main\AndroidManifest.xml
+8
+9    <application android:allowBackup="true" />
+9-->D:\Android\IEKMSystem\library\src\main\AndroidManifest.xml:4:5-47
+9-->D:\Android\IEKMSystem\library\src\main\AndroidManifest.xml:4:18-44
+10
+11</manifest>

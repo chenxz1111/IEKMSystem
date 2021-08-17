@@ -1,0 +1,6 @@
+com.yalantis.taurus
+color sky_background
+drawable airplane
+drawable clouds_center
+drawable clouds_left
+drawable clouds_right

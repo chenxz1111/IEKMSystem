@@ -1,0 +1,5 @@
+int color sky_background 0x0
+int drawable airplane 0x0
+int drawable clouds_center 0x0
+int drawable clouds_left 0x0
+int drawable clouds_right 0x0
