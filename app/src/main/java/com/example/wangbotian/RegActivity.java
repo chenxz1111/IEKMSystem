@@ -2,62 +2,56 @@ package com.example.wangbotian;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.content.*;
-import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.hjq.xtoast.XToast;
 
-import java.util.*;
+public class RegActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class LogActivity extends AppCompatActivity implements View.OnClickListener {
-
-    Button logButton, regButton;
-    TextInputEditText usernameText, passwordText;
-    TextInputLayout usernameLay, passwordLay;
+    Button regButton;
+    TextInputEditText usernameText, passwordText, checkText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
-
-        logButton = findViewById(R.id.log_button);
-        logButton.setOnClickListener(this);
+        setContentView(R.layout.activity_reg);
 
         regButton = findViewById(R.id.reg_button);
         regButton.setOnClickListener(this);
 
         usernameText = findViewById(R.id.username_text);
         passwordText = findViewById(R.id.password_text);
-
-        usernameLay = findViewById(R.id.username_layout);
-        passwordLay = findViewById(R.id.password_layout);
+        checkText = findViewById(R.id.check_text);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.log_button:
-                if (usernameText.getText().toString().equals("admin")) {
+            case R.id.reg_button:
+                if (!usernameText.getText().toString().equals("") && passwordText.getText().toString().equals(checkText.getText().toString())) {
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
-                            .setText(android.R.id.message, "登录成功")
+                            .setText(android.R.id.message, "注册成功")
                             .show();
-                    intent.setClass(LogActivity.this, MainActivity.class);
+                    intent.setClass(RegActivity.this, LogActivity.class);
                     this.startActivity(intent);
+                }
+                else if (usernameText.getText().toString().equals("")){
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "用户名不合法")
+                            .show();
                 }
                 else {
                     new XToast<>(this)
@@ -65,17 +59,11 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "登录失败")
+                            .setText(android.R.id.message, "密码不一致")
                             .show();
                 }
-                break;
-            case R.id.reg_button:
-                Intent intent = new Intent();
-                intent.setClass(LogActivity.this, RegActivity.class);
-                this.startActivity(intent);
                 break;
         }
 
     }
-
 }
