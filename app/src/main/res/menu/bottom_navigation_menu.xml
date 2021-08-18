@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="@string/bottom_navigation_itme1"/>
+    <item
+        android:id="@+id/explore"
+        android:enabled="true"
+        android:icon="@drawable/explore"
+        android:title="@string/bottom_navigation_itme2"/>
+    <item
+        android:id="@+id/collections"
+        android:enabled="true"
+        android:icon="@drawable/collections"
+        android:title="@string/bottom_navigation_itme3"/>
+    <item
+        android:id="@+id/school"
+        android:enabled="true"
+        android:icon="@drawable/school"
+        android:title="@string/bottom_navigation_itme4"/>
+    <item
+        android:id="@+id/account"
+        android:enabled="true"
+        android:icon="@drawable/account"
+        android:title="@string/bottom_navigation_itme5"/>
+</menu>

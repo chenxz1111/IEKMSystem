@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">IEKM System</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_explore">Explore</string>
-    <string name="menu_collections">Collections</string>
-    <string name="menu_school">School</string>
-    <string name="menu_account">Account</string>
-
+    <string name="bottom_navigation_itme1">Home</string>
+    <string name="bottom_navigation_itme2">Explore</string>
+    <string name="bottom_navigation_itme3">Collections</string>
+    <string name="bottom_navigation_itme4">School</string>
+    <string name="bottom_navigation_itme5">Account</string>
 </resources>
