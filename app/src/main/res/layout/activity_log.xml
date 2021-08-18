@@ -10,13 +10,76 @@
         android:id="@+id/log_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="453dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="230dp"
-        android:text="Login"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="240dp"
+        android:backgroundTint="@color/sky_blue"
+        android:text="登录"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        style="@style/InputBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/log_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <EditText
+            android:id="@+id/user_txv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            style="@style/EditTextStyle"
+            android:hint="账号"
+            android:maxLength="50"
+            android:textSize="16sp"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        style="@style/InputBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/log_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <EditText
+            android:id="@+id/password_txv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            style="@style/EditTextStyle"
+            android:hint="密码"
+            android:maxLength="50"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
