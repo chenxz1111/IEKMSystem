@@ -27,5 +27,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:navigation_menu="@menu/bottom_nav_five_items" />
+        app:navigation_menu="@menu/bottom_nav_change_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
