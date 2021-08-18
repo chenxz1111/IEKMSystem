@@ -13,15 +13,15 @@ import android.widget.Button;
 import android.content.*;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.hjq.xtoast.XToast;
 
 import java.util.*;
 
-public class LogActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+public class LogActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button logButton;
-    EditText userText;
-    EditText passwordText;
+    Button logButton, regButton;
+    TextInputEditText usernameText, passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,42 +31,44 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         logButton = findViewById(R.id.log_button);
         logButton.setOnClickListener(this);
 
-        userText = findViewById(R.id.user_txv);
-        userText.setFocusable(true);
-        userText.setFocusableInTouchMode(true);
+        regButton = findViewById(R.id.reg_button);
+        regButton.setOnClickListener(this);
 
-        passwordText = findViewById(R.id.password_txv);
-        passwordText.setFocusable(true);
-        passwordText.setFocusableInTouchMode(true);
+        usernameText = findViewById(R.id.username_text);
+        passwordText = findViewById(R.id.password_text);
 
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent();
-        new XToast<>(this)
-                .setDuration(1000)
-                .setView(R.layout.toast_hint)
-                .setAnimStyle(android.R.style.Animation_Activity)
-                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
-                .setText(android.R.id.message, "login successfully")
-                .show();
-        intent.setClass(LogActivity.this, MainActivity.class);
-        this.startActivity(intent);
+        switch (view.getId()) {
+            case R.id.log_button:
+                if (usernameText.getText().toString().equals("admin")) {
+                    Intent intent = new Intent();
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
+                            .setText(android.R.id.message, "登录成功")
+                            .show();
+                    intent.setClass(LogActivity.this, MainActivity.class);
+                    this.startActivity(intent);
+                }
+                else {
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "登录失败")
+                            .show();
+                }
+                break;
+            case R.id.reg_button:
+                break;
+        }
+
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-
-    }
 }

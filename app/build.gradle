@@ -31,14 +31,12 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.5.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    // 标题栏框架：https://github.com/getActivity/TitleBar
     implementation 'com.github.getActivity:TitleBar:8.6'
-    // 悬浮窗框架：https://github.com/getActivity/XToast
     implementation 'com.github.getActivity:XToast:8.1'
     implementation 'io.github.vejei.bottomnavigationbar:bottomnavigationbar:1.0.0-alpha'
 

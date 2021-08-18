@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import io.github.vejei.bottomnavigationbar.BottomNavigationBar;
 
-
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationBar bottomNavigationBar;
     @Override

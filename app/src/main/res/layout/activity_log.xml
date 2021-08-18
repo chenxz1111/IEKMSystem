@@ -14,72 +14,75 @@
         android:layout_marginTop="460dp"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="240dp"
-        android:backgroundTint="@color/sky_blue"
         android:text="登录"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
-        android:orientation="vertical"
-        style="@style/InputBoxStyle"
+    <Button
+        android:id="@+id/reg_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="240dp"
+        android:text="注册"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/sky_blue" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="200dp"
+        android:hint="用户名"
         app:layout_constraintBottom_toTopOf="@+id/log_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/user_txv"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            style="@style/EditTextStyle"
-            android:hint="账号"
-            android:maxLength="50"
-            android:textSize="16sp"
-        />
-    </LinearLayout>
+            android:singleLine="true" />
 
-    <LinearLayout
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_width="220dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        style="@style/InputBoxStyle"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="150dp"
+        android:hint="密码"
+        app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/log_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/password_txv"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            style="@style/EditTextStyle"
-            android:hint="密码"
-            android:maxLength="50"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
+            android:inputType="textPassword"
+            android:singleLine="true" />
 
-
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
