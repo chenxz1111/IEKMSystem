@@ -5,23 +5,18 @@
         android:icon="@drawable/home"
         android:title="@string/bottom_navigation_itme1"/>
     <item
-        android:id="@+id/explore"
+        android:id="@+id/search"
         android:enabled="true"
-        android:icon="@drawable/explore"
+        android:icon="@drawable/search"
         android:title="@string/bottom_navigation_itme2"/>
     <item
-        android:id="@+id/collections"
+        android:id="@+id/question"
         android:enabled="true"
-        android:icon="@drawable/collections"
+        android:icon="@drawable/question"
         android:title="@string/bottom_navigation_itme3"/>
-    <item
-        android:id="@+id/school"
-        android:enabled="true"
-        android:icon="@drawable/school"
-        android:title="@string/bottom_navigation_itme4"/>
     <item
         android:id="@+id/account"
         android:enabled="true"
         android:icon="@drawable/account"
-        android:title="@string/bottom_navigation_itme5"/>
+        android:title="@string/bottom_navigation_itme4"/>
 </menu>

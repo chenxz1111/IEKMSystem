@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">IEKM System</string>
 
-    <string name="bottom_navigation_itme1">Home</string>
-    <string name="bottom_navigation_itme2">Explore</string>
-    <string name="bottom_navigation_itme3">Collections</string>
-    <string name="bottom_navigation_itme4">School</string>
-    <string name="bottom_navigation_itme5">Account</string>
+    <string name="bottom_navigation_itme1">首页</string>
+    <string name="bottom_navigation_itme2">搜索</string>
+    <string name="bottom_navigation_itme3">问答</string>
+    <string name="bottom_navigation_itme4">我</string>
+
+    <string name="fab_content_desc">InputQuestions</string>
 </resources>

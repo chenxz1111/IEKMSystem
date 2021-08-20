@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import java.util.List;
-
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
 
@@ -19,22 +17,20 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new Tab1Fragment();
+                return new HomeFragment();
             case 1:
-                return new Tab2Fragment();
+                return new SearchFragment();
             case 2:
-                return new Tab3Fragment();
+                return new QuestionFragment();
             case 3:
-                return new Tab4Fragment();
-            case 4:
-                return new Tab5Fragment();
+                return new AccountFragment();
             default:
-                return new Tab1Fragment();
+                return new HomeFragment();
         }
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 }

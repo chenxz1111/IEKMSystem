@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
 
-        int menuItemId = bottomNavigationView.getMenu().getItem(2).getItemId();
+        int menuItemId = bottomNavigationView.getMenu().getItem(3).getItemId();
         BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(menuItemId);
         badge.setNumber(99);
 
@@ -52,15 +52,12 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
                         break;
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.explore).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.search).setChecked(true);
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.collections).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.question).setChecked(true);
                         break;
                     case 3:
-                        bottomNavigationView.getMenu().findItem(R.id.school).setChecked(true);
-                        break;
-                    case 4:
                         bottomNavigationView.getMenu().findItem(R.id.account).setChecked(true);
                         break;
                 }
@@ -79,17 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         viewPager.setCurrentItem(0);
                         break;
-                    case R.id.explore:
+                    case R.id.search:
                         viewPager.setCurrentItem(1);
                         break;
-                    case R.id.collections:
+                    case R.id.question:
                         viewPager.setCurrentItem(2);
                         break;
-                    case R.id.school:
-                        viewPager.setCurrentItem(3);
-                        break;
                     case R.id.account:
-                        viewPager.setCurrentItem(4);
+                        viewPager.setCurrentItem(3);
                         break;
                 }
                 return true;
