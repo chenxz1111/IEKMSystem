@@ -15,6 +15,7 @@
             android:name=".RegActivity"
             android:exported="true" />
         <activity
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:name=".MainActivity"
             android:exported="true" />
         <activity android:name=".LogActivity">

@@ -55,8 +55,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 if (!question.equals("")){
                     adapter.addToStart(new Message(question, 1), true);
                     sendText.setText("");
+                    adapter.addToStart(new Message(replyQuestion(question), 2), true);
                 }
-                adapter.addToStart(new Message(replyQuestion(question), 2), true);
+
         }
     }
 
