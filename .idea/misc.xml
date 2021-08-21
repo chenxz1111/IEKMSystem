@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.284375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2994791666666667" />
+        <entry key="app/src/main/res/drawable/account.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/border_input_box.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/btn_circle.xml" value="0.38055555555555554" />
         <entry key="app/src/main/res/drawable/collections.xml" value="0.2078125" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/drawable/explore.xml" value="0.2078125" />
         <entry key="app/src/main/res/drawable/home.xml" value="0.2078125" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2994791666666667" />
+        <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2828125" />
         <entry key="app/src/main/res/drawable/question.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/search.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_log.xml" value="0.165" />
@@ -19,7 +21,7 @@
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
-        <entry key="app/src/main/res/layout/fragment_question.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_question.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/fragment_tab1.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_tab2.xml" value="0.24947916666666667" />
@@ -29,6 +31,7 @@
         <entry key="app/src/main/res/layout/toast_hint.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/menu/bottom_nav_change_icon.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/menu/bottom_nav_five_items.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28923076923076924" />
       </map>
     </option>
