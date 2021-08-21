@@ -3,19 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2994791666666667" />
-        <entry key="app/src/main/res/drawable/border_input_box.xml" value="0.2994791666666667" />
-        <entry key="app/src/main/res/drawable/collections.xml" value="0.2078125" />
-        <entry key="app/src/main/res/drawable/dialog_toast_bg.xml" value="0.2994791666666667" />
-        <entry key="app/src/main/res/drawable/explore.xml" value="0.2078125" />
-        <entry key="app/src/main/res/drawable/home.xml" value="0.2078125" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2994791666666667" />
-        <entry key="app/src/main/res/layout/activity_log.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_log.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27267861823157963" />
-        <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
-        <entry key="app/src/main/res/layout/toast_hint.xml" value="0.19429347826086957" />
-        <entry key="app/src/main/res/menu/bottom_nav_change_icon.xml" value="0.19166666666666668" />
-        <entry key="app/src/main/res/menu/bottom_nav_five_items.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/activity_reg.xml" value="0.12952898550724637" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14334470989761092" />
+        <entry key="app/src/main/res/layout/fragment_question.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/toast_hint.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28923076923076924" />
       </map>
     </option>

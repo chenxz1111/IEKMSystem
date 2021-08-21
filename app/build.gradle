@@ -39,5 +39,7 @@ dependencies {
     implementation 'com.github.getActivity:TitleBar:8.6'
     implementation 'com.github.getActivity:XToast:8.1'
     implementation 'io.github.vejei.bottomnavigationbar:bottomnavigationbar:1.0.0-alpha'
-
+    implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
+    implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
+    implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
 }
