@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true" android:drawable="@drawable/ic_question_filled"/>
-    <item android:drawable="@drawable/ic_question_outlined"/>
+    <item android:drawable="@drawable/ic_help_outline"/>
 </selector>
