@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
     implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

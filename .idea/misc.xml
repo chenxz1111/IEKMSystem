@@ -9,7 +9,9 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14334470989761092" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/toast_hint.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28923076923076924" />
       </map>
     </option>
