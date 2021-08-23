@@ -69,13 +69,13 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     private String replyQuestion(String question){
         for (String course : courses){
             String result = OpenEducation.answerQuestion(course,question);
-            if (result.indexOf("此问题没有找到答案") < 0){
+            if (result.indexOf("此问题没有找到答案") <= 0 && result.indexOf("[]") <= 0){
                 int start = result.indexOf("value"), end = result.indexOf("code");
                 result = result.substring(start+8, end-5);
                 return result;
             }
         }
-        return notFound[(int)(Math.ceil(Math.random())%3)];
+        return notFound[(int)(Math.ceil(Math.random()*300)%3)];
     }
 
 }
