@@ -60,22 +60,27 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 if (!question.equals("")) {
                     adapter.addToStart(new Message(question, 1), true);
                     sendText.setText("");
-                    adapter.addToStart(new Message(replyQuestion(question), 2), true);
+                    replyQuestion(question);
                 }
 
         }
     }
 
-    private String replyQuestion(String question){
+    private void replyQuestion(String question){
         for (String course : courses){
             String result = OpenEducation.answerQuestion(course,question);
             if (result.indexOf("此问题没有找到答案") <= 0 && result.indexOf("[]") <= 0){
-                int start = result.indexOf("value"), end = result.indexOf("code");
-                result = result.substring(start+8, end-5);
-                return result;
+
+                int start = result.indexOf("value")+8, end;
+                if (result.indexOf("predicate") <= 0) end = result.indexOf("code")-5;
+                else end = result.indexOf("fs")-4;
+                result = result.substring(start, end);
+                adapter.addToStart(new Message(result, 2), true);
+                return;
             }
         }
-        return notFound[(int)(Math.ceil(Math.random()*300)%3)];
+        adapter.addToStart(new Message(notFound[(int)(Math.ceil(Math.random()*300)%3)], 2), true);
+        return ;
     }
 
 }
