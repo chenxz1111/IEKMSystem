@@ -47,7 +47,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.log_button:
-                if (usernameText.getText().toString().equals("admin")) {
+                if (!usernameText.getText().toString().equals("admin")) {
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)
