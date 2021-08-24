@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.github.getActivity:TitleBar:8.6'
     implementation 'com.github.getActivity:XToast:8.1'
     implementation 'io.github.vejei.bottomnavigationbar:bottomnavigationbar:1.0.0-alpha'
-    implementation 'com.github.stfalcon-studio:Chatkit:0.4.1'
+    //implementation 'com.github.stfalcon-studio:Chatkit:0.4.1'
     implementation 'cn.jiguang.imui:messagelist:0.8.0'
     implementation 'com.alibaba:fastjson:1.2.76'
 }
