@@ -16,6 +16,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public FragmentAdapter(FragmentManager fragmentManager, List<TabFragment>fragments, List<String>title, int behavior){
         super(fragmentManager, behavior);
         mFragmentList=fragments;
+
         mTitle=title;
 
     }
@@ -33,3 +34,17 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         return mTitle.get(position);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

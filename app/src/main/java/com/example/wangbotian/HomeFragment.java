@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -22,6 +24,9 @@ public class HomeFragment extends Fragment {
     private ViewPager pager;
     private FragmentAdapter fragmentAdapter;
     private List<TabFragment> fragmentList;
+    private LinearLayout ll_more_columns;
+    private ImageView button_more_columns;
+
     private TabLayout tabLayout;
     private List<String> mTitles;
     private String [] title={"语文","数学","英语","物理","化学","生物","历史","地理","政治"};

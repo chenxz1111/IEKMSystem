@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.284375" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2994791666666667" />
+        <entry key="app/src/main/res/drawable-v24/outline_reorder_24.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/drawable-xxhdpi/outline_add_24.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/drawable/account.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/border_input_box.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/btn_circle.xml" value="0.38055555555555554" />
@@ -23,6 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1644021739130435" />
+        <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/fragment_tab1.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_tab2.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_tab3.xml" value="0.24947916666666667" />
