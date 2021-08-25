@@ -3,7 +3,7 @@
 
     <string name="bottom_navigation_itme1">首页</string>
     <string name="bottom_navigation_itme2">搜索</string>
-    <string name="bottom_navigation_itme3">问答</string>
+    <string name="bottom_navigation_itme3">发现</string>
     <string name="bottom_navigation_itme4">我</string>
 
     <string name="fab_content_desc">InputQuestions</string>

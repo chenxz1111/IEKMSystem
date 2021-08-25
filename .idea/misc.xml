@@ -16,14 +16,16 @@
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2828125" />
         <entry key="app/src/main/res/drawable/question.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/search.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/stroke_color.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/layout/activity_log.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27267861823157963" />
         <entry key="app/src/main/res/layout/activity_question.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
-        <entry key="app/src/main/res/layout/fragment_question.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_question.xml" value="0.35891058100377143" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1644021739130435" />
+        <entry key="app/src/main/res/layout/fragment_tab.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/layout/fragment_tab1.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_tab2.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_tab3.xml" value="0.24947916666666667" />
