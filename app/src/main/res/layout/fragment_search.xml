@@ -7,11 +7,13 @@
     android:orientation="vertical"
     tools:context=".RegActivity">
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+    <com.animsh.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:hint="Search" />
-
+        android:layout_margin="8dp"
+        android:visibility="visible"
+        app:mt_navIconEnabled="false"
+        app:mt_placeholder="Hello!"
+        app:mt_placeholderColor="@color/colorAccent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

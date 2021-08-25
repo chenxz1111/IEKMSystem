@@ -1,6 +1,6 @@
 package com.example.wangbotian;
 
-import android.content.Intent;
+ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,7 +16,7 @@ import com.google.android.material.card.MaterialCardView;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener{
 
-    MaterialCardView card;
+    MaterialCardView card_question;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -27,16 +27,21 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_question, container, false);
-        card = v.findViewById(R.id.card_1);
-        card.setOnClickListener(this);
+        card_question = v.findViewById(R.id.card_question);
+        card_question.setOnClickListener(this);
         return v;
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent();
-        intent.setClass(this.getActivity(), QuestionActivity.class);
-        startActivity(intent);
+        switch (view.getId()) {
+            case R.id.card_question:
+                Intent intent = new Intent();
+                intent.setClass(this.getActivity(), QuestionActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
+
 
 }
