@@ -3,8 +3,11 @@ package com.example.wangbotian;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.*;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,16 +99,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SoftKeyBoardListener.setListener(this, new SoftKeyBoardListener.OnSoftKeyBoardChangeListener() {
-            @Override
-            public void keyBoardShow(int height) {
-            }
-
-            @Override
-            public void keyBoardHide(int height) {
-            }
-        });
     }
 
+    @Override
+    protected void onResume() {
+        int id = getIntent().getIntExtra("id", 0);
+        if (id == 2) {
+            Fragment fragment = new QuestionFragment();
+            FragmentManager manger = getSupportFragmentManager();
+            FragmentTransaction transaction = manger.beginTransaction();
+            transaction.replace(R.id.viewpager, fragment);
+            transaction.commit();
+            viewPager.setCurrentItem(2);
+        }
+        super.onResume();
+    }
 }
 

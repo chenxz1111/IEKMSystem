@@ -76,14 +76,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:background="@color/sky_blue"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/sky_blue"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/msg_list"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/back_to_explore"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/outline_arrow_back_white_48" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-30dp"
+            android:layout_gravity="center"
+            android:text="智能问答"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
 
     <!--    <com.stfalcon.chatkit.messages.MessagesList-->
     <!--        android:id="@+id/messages_List"-->

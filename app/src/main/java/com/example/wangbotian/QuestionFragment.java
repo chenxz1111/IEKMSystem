@@ -1,6 +1,6 @@
 package com.example.wangbotian;
 
-import android.content.Intent;
+ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,5 +42,6 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
 
 }

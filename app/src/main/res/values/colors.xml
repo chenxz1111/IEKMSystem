@@ -14,6 +14,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="pressedColor">#545454</color>
     <color name="normalColor">#8e8e8e</color>
-    <color name="yellow_bright">#FFC907</color>
+    <color name="yellow_bright">#FF8F07</color>
     <color name="bright_blue">#ED1BB1F4</color>
 </resources>

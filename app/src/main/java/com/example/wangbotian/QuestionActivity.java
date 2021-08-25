@@ -1,5 +1,6 @@
 package com.example.wangbotian;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +29,7 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
     MsgListAdapter adapter;
     Button sendButton;
     TextInputEditText sendText;
+    ImageView backExplore;
     final String[] courses = new String[] {"chinese", "english", "math", "physics", "chemistry", "biology", "geo", "politics"};
     final String[] notFound = new String[]{"暂时没有理解您的问题，麻烦您再详细描述一下",
             "很抱歉，暂时还不太理解您的问题，请您再详细描述一下", "这个问题我暂时还不太理解，麻烦再详细描述一下您的问题"};
@@ -39,6 +42,8 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
         sendButton = findViewById(R.id.send_button);
         sendButton.setOnClickListener(this);
         sendText = findViewById(R.id.send_text);
+        backExplore = findViewById(R.id.back_to_explore);
+        backExplore.setOnClickListener(this);
 
         messageList = findViewById(R.id.msg_list);
         MsgListAdapter.HoldersConfig holdersConfig = new MsgListAdapter.HoldersConfig();
@@ -57,7 +62,12 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
                     sendText.setText("");
                     replyQuestion(question);
                 }
-
+                break;
+            case R.id.back_to_explore:
+                Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
+                intent.putExtra("id",2);
+                startActivity(intent);
+                break;
         }
     }
 
