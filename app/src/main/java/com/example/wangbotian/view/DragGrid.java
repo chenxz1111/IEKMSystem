@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.wangbotian.Utils;
-import com.example.mjj.daytopnewschangetabs.adapter.DragAdapter;
+import com.example.wangbotian.adapter.DragAdapter;
 import com.example.wangbotian.R;
 
 /**

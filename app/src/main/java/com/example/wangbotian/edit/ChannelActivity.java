@@ -1,4 +1,4 @@
-package com.example.mjj.daytopnewschangetabs.edit;
+package com.example.wangbotian.edit;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,12 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wangbotian.AppApplication;
-import com.example.mjj.daytopnewschangetabs.MainActivity;
+import com.example.wangbotian.HomeFragment;
 import com.example.wangbotian.R;
 import com.example.wangbotian.adapter.DragAdapter;
 import com.example.wangbotian.adapter.OtherAdapter;
 import com.example.wangbotian.dao.ChannelItem;
 import com.example.wangbotian.dao.ChannelManage;
+import com.example.wangbotian.edit.GestureDetectorActivity;
 import com.example.wangbotian.view.DragGrid;
 import com.example.wangbotian.view.OtherGridView;
 
@@ -67,6 +68,7 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
      * 初始化数据
      */
     private void initData() {
+        System.out.println(AppApplication.getApp());
         userChannelList = ((ArrayList<ChannelItem>) ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).getUserChannel());
         otherChannelList = ((ArrayList<ChannelItem>) ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).getOtherChannel());
         userAdapter = new DragAdapter(this, userChannelList);
@@ -98,7 +100,7 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
         switch (parent.getId()) {
             case R.id.userGridView:
                 //position为 0 的不进行任何操作
-                if (position != 0) {
+                if (true) {
                     final ImageView moveImageView = getView(view);
                     if (moveImageView != null) {
                         TextView newTextView = (TextView) view.findViewById(R.id.text_item);
@@ -268,8 +270,8 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
     public void onBackPressed() {
         saveChannel();
         if (userAdapter.isListChanged()) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            setResult(MainActivity.CHANNELRESULT, intent);
+            Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+            setResult(HomeFragment.CHANNELRESULT, intent);
             finish();
         } else {
             super.onBackPressed();

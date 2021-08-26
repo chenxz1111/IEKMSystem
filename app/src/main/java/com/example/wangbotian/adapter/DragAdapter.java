@@ -90,9 +90,9 @@ public class DragAdapter extends BaseAdapter {
         ChannelItem channel = getItem(position);
         item_text.setText(channel.getName());
 //        if ((position == 0) || (position == 1)) {
-        if (position == 0) {
-            item_text.setEnabled(false);
-        }
+//        if (position == 0) {
+//            item_text.setEnabled(false);
+//        }
         if (isChanged && (position == holdPosition) && !isItemShow) {
             item_text.setText("");
             item_text.setSelected(true);

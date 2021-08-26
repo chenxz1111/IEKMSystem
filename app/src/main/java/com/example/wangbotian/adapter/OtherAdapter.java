@@ -1,4 +1,4 @@
-package com.example.mjj.daytopnewschangetabs.adapter;
+package com.example.wangbotian.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,6 +1,7 @@
 package com.example.wangbotian;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.example.wangbotian.db.SQLHelper;
 
@@ -8,11 +9,13 @@ public class AppApplication extends Application {
 
     private static AppApplication mAppApplication;
     private SQLHelper sqlHelper;
+//    private static Context mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mAppApplication = this;
+//        mContext = getApplicationContext();
     }
 
     /**

@@ -31,7 +31,7 @@
                     android:id="@+id/my_category_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="添加分类"
+                    android:text="编辑学科"
                     android:textSize="15sp" />
 
                 <TextView
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12.0dip"
-                    android:text="单击增删频道，长按拖拽排序"
+                    android:text="单击增删学科，长按拖拽排序"
                     android:textSize="11.0sp" />
             </LinearLayout>
 
@@ -81,7 +81,7 @@
                 android:layout_marginLeft="10.0dip"
                 android:textSize="14sp" />
 
-            <com.example.wangbotian.view.DragGrid
+            <com.example.wangbotian.view.OtherGridView
                 android:id="@+id/otherGridView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
