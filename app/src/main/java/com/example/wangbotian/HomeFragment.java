@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.content.Intent;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -37,6 +38,15 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         pager=view.findViewById(R.id.page);
         tabLayout=view.findViewById(R.id.tab_layout);
+        button_more_columns = (ImageView) view.findViewById(R.id.button_more_columns);
+
+        button_more_columns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent_channel = new Intent(getActivity(), )
+            }
+        });
+
         return view;
     }
 

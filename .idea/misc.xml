@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/account.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/border_input_box.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/btn_circle.xml" value="0.38055555555555554" />
+        <entry key="app/src/main/res/drawable/channel.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/drawable/collections.xml" value="0.2078125" />
         <entry key="app/src/main/res/drawable/dialog_toast_bg.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/explore.xml" value="0.2078125" />
@@ -22,6 +23,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27267861823157963" />
         <entry key="app/src/main/res/layout/activity_question.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
+        <entry key="app/src/main/res/layout/channel.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/channel_item.xml" value="0.17798913043478262" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.35891058100377143" />
