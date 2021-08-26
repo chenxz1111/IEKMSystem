@@ -1,5 +1,6 @@
 package com.example.wangbotian;
 
+ import android.content.Entity;
  import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,12 +35,16 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.card_question:
-                Intent intent = new Intent();
                 intent.setClass(this.getActivity(), QuestionActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.card_5: //----------- JUST FOR TEST -------------
+                intent.setClass(this.getActivity(), EntityActivity.class);
+                intent.putExtra("id", "李白");
+                startActivity(intent);
         }
     }
 

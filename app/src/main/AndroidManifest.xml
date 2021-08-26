@@ -15,6 +15,9 @@
         android:theme="@style/Theme.IEKMSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EntityActivity"
+            android:exported="true" />
+        <activity
             android:name=".QuestionActivity"
             android:exported="true" />
         <activity
@@ -34,4 +37,10 @@
             android:name=".SearchActivity"
             android:exported="true" />
     </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
+        </intent>
+    </queries>
 </manifest>

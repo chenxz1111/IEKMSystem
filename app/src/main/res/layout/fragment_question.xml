@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="600dp"
         android:checkable="true"
@@ -29,11 +29,22 @@
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:srcCompat="@drawable/outline_question_answer_white_48"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
+            android:layout_marginTop="-10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智能问答"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             />
 
     </com.google.android.material.card.MaterialCardView>
@@ -60,11 +71,22 @@
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:srcCompat="@drawable/outline_drive_file_rename_outline_white_48"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
+            android:layout_marginTop="-10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专项测试"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             />
 
 
@@ -92,11 +114,22 @@
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:srcCompat="@drawable/outline_subject_white_36"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
+            android:layout_marginTop="-10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="知识梳理"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             />
 
     </com.google.android.material.card.MaterialCardView>
@@ -123,11 +156,22 @@
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/outline_receipt_long_white_48"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:srcCompat="@drawable/outline_description_white_48"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
+            android:layout_marginTop="-10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="试题推荐"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             />
 
     </com.google.android.material.card.MaterialCardView>
@@ -139,7 +183,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="600dp"
+        android:layout_marginBottom="20dp"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
