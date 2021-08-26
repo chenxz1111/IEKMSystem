@@ -63,18 +63,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
+        fragmentList = new ArrayList<>();
+        mTitles = new ArrayList<>();
         setChangelView();
     }
 
     private void setChangelView(){
         userChannelList = ((ArrayList<ChannelItem>) ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).getUserChannel());
         int count = userChannelList.size();
-        fragmentList=new ArrayList<>();
-        mTitles=new ArrayList<>();
+        fragmentList.clear();
+        mTitles.clear();
         for(int i = 0; i < count; i++){
-            System.out.println(userChannelList.get(i).getName());
             mTitles.add(userChannelList.get(i).getName());
-            fragmentList.add(new TabFragment(userChannelList.get(i).getName()));
+            fragmentList.add(new TabFragment(mTitles.get(i)));
+            System.out.println(mTitles.get(i));
         }
         fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pager.setAdapter(fragmentAdapter);
