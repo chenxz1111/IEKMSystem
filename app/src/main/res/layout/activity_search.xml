@@ -27,7 +27,15 @@
         app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mt_navIconEnabled="false"
+        app:mt_navIconEnabled="true"
         app:mt_placeholder=""
         app:mt_placeholderColor="@color/colorAccent" />
+
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        android:layout_marginTop="12dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
