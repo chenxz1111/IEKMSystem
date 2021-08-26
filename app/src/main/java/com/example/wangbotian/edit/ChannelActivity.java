@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.wangbotian.AppApplication;
 import com.example.wangbotian.HomeFragment;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
  * Created by Mjj on 2016/11/18.
  */
 
-public class ChannelActivity extends GestureDetectorActivity implements AdapterView.OnItemClickListener {
+public class ChannelActivity extends GestureDetectorActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     /**
      * 用户栏目
@@ -50,6 +51,8 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
     private OtherGridView otherGridView; // GridView
     OtherAdapter otherAdapter; // 适配器
     ArrayList<ChannelItem> otherChannelList = new ArrayList<ChannelItem>(); // 数据源
+
+    Button button;
 
     /**
      * 是否在移动，由于是动画结束后才进行的数据更替，设置这个限制为了避免操作太频繁造成的数据错乱。
@@ -86,6 +89,8 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
     private void initView() {
         userGridView = (DragGrid) findViewById(R.id.userGridView);
         otherGridView = (OtherGridView) findViewById(R.id.otherGridView);
+        button = findViewById(R.id.containedButton);
+        button.setOnClickListener(this);
     }
 
     /**
@@ -264,6 +269,15 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
         ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).deleteAllChannel();
         ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).saveUserChannel(userAdapter.getChannnelLst());
         ChannelManage.getManage(AppApplication.getApp().getSQLHelper()).saveOtherChannel(otherAdapter.getChannnelLst());
+    }
+
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.containedButton:
+                this.onBackPressed();
+                break;
+        }
     }
 
     @Override

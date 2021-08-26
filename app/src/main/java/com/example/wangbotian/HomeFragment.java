@@ -63,18 +63,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-
-//        fragmentList=new ArrayList<>();
-//        mTitles=new ArrayList<>();
-//
-//        for(int i=0;i<title.length;i++){
-//            mTitles.add(title[i]);
-//            fragmentList.add(new TabFragment(title[i]));
-//        }
-//
-//        fragmentAdapter=new FragmentAdapter(getActivity().getSupportFragmentManager(),fragmentList,mTitles, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-//        pager.setAdapter(fragmentAdapter);
-//        tabLayout.setupWithViewPager(pager);//与ViewPage建立关系
         setChangelView();
     }
 

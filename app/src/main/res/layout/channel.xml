@@ -47,8 +47,8 @@
                 android:id="@+id/seperate_line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/colorAccent" />
 
             <com.example.wangbotian.view.DragGrid
@@ -69,16 +69,16 @@
                 android:id="@+id/seperate_line2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/more_category_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14.0dip"
                 android:layout_marginLeft="10.0dip"
+                android:layout_marginBottom="14.0dip"
                 android:textSize="14sp" />
 
             <com.example.wangbotian.view.OtherGridView
@@ -101,5 +101,18 @@
         android:id="@+id/category_layout"
         layout="@layout/channel_item"
         android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:layout_marginTop="280dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/containedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+        />
+    </LinearLayout>
 
 </RelativeLayout>
