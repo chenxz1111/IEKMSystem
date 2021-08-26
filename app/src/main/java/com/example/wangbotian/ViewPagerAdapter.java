@@ -19,10 +19,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new SearchFragment();
-            case 2:
                 return new QuestionFragment();
-            case 3:
+            case 2:
                 return new AccountFragment();
             default:
                 return new HomeFragment();
@@ -31,6 +29,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

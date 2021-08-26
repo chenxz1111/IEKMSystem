@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.angmarch.views.NiceSpinner;
+
 import java.util.*;
 
 
@@ -26,12 +28,16 @@ public class HomeFragment extends Fragment {
     private List<String> mTitles;
     private String [] title={"语文","数学","英语","物理","化学","生物","历史","地理","政治"};
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         pager=view.findViewById(R.id.page);
         tabLayout=view.findViewById(R.id.tab_layout);
+
+
         return view;
     }
 

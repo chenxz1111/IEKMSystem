@@ -11,8 +11,10 @@ import android.content.Intent;
 import android.os.*;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +37,20 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        toolbar = findViewById(R.id.topAppBar);
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         //bottomNavigationView.setVisibility(View.GONE);
 
-        int menuItemId = bottomNavigationView.getMenu().getItem(3).getItemId();
+        int menuItemId = bottomNavigationView.getMenu().getItem(2).getItemId();
         BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(menuItemId);
         badge.setNumber(99);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), ViewPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(3);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -61,12 +65,9 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
                         break;
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.search).setChecked(true);
-                        break;
-                    case 2:
                         bottomNavigationView.getMenu().findItem(R.id.question).setChecked(true);
                         break;
-                    case 3:
+                    case 2:
                         bottomNavigationView.getMenu().findItem(R.id.account).setChecked(true);
                         break;
                 }
@@ -85,20 +86,24 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         viewPager.setCurrentItem(0);
                         break;
-                    case R.id.search:
+                    case R.id.question:
                         viewPager.setCurrentItem(1);
                         break;
-                    case R.id.question:
-                        viewPager.setCurrentItem(2);
-                        break;
                     case R.id.account:
-                        viewPager.setCurrentItem(3);
+                        viewPager.setCurrentItem(2);
                         break;
                 }
                 return true;
             }
         });
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, SearchActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
     }
 
     @Override
