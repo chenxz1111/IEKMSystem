@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
         toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("首页");
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
@@ -63,12 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
+                        toolbar.setTitle("首页");
                         break;
                     case 1:
                         bottomNavigationView.getMenu().findItem(R.id.question).setChecked(true);
+                        toolbar.setTitle("发现");
                         break;
                     case 2:
                         bottomNavigationView.getMenu().findItem(R.id.account).setChecked(true);
+                        toolbar.setTitle("我");
                         break;
                 }
             }
@@ -85,12 +89,15 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                         viewPager.setCurrentItem(0);
+                        toolbar.setTitle("首页");
                         break;
                     case R.id.question:
                         viewPager.setCurrentItem(1);
+                        toolbar.setTitle("发现");
                         break;
                     case R.id.account:
                         viewPager.setCurrentItem(2);
+                        toolbar.setTitle("我");
                         break;
                 }
                 return true;

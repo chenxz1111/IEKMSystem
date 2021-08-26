@@ -4,11 +4,6 @@
         android:enabled="true"
         android:icon="@drawable/home"
         android:title="@string/bottom_navigation_itme1"/>
-<!--    <item-->
-<!--        android:id="@+id/search"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/search"-->
-<!--        android:title="@string/bottom_navigation_itme2"/>-->
 
     <item
         android:id="@+id/question"
