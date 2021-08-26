@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
-            app:navigationIcon="@drawable/ic_search_filled"
+            app:navigationIcon="@drawable/baseline_search_white_24"
             app:titleCentered="true"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             />
