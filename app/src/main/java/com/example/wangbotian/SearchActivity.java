@@ -1,6 +1,7 @@
 package com.example.wangbotian;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,9 +25,12 @@ import com.hjq.xtoast.XToast;
 import org.angmarch.views.NiceSpinner;
 import org.angmarch.views.OnSpinnerItemSelectedListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
@@ -34,6 +38,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
     MaterialSearchBar searchBar;
     String subject;
     protected ListView listView;
+    private final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,10 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         this.subject = subjects.get(0);
         searchBar.setOnSearchActionListener(this);
         listView = findViewById(R.id.list_view);
+        try {
+            searchBar.setLastSuggestions(getHistory());
+        } catch (Exception e) {}
+
     }
 
     @Override
@@ -56,6 +65,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
             Intent intent = new Intent();
             intent.setClass(SearchActivity.this, MainActivity.class);
             this.startActivity(intent);
+            this.finish();
         }
     }
 
@@ -68,7 +78,8 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
             }
         });
         String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
-        Log.d("info", result);
+        Log.d("course", convertC2E(subject));
+        Log.d("data_ret", result);
         JSONObject resultJson = JSON.parseObject(result);
         JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
         String[] labels = new String[dataArray.size()];
@@ -83,7 +94,25 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
         this.listView.setAdapter(arrayAdapter);
         this.listView.setClickable(true);
-        searchBar.showSuggestionsList();
+
+    }
+
+    private List<String> getHistory() {
+        SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Set<String> searchHistory = history.getStringSet("history", null);
+        List<String> historyList = new ArrayList<>(searchHistory);
+        return  historyList;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //save last queries to disk
+        SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = history.edit();
+        Set<String> searchHistory = new HashSet<>(searchBar.getLastSuggestions());
+        editor.putStringSet("history", searchHistory);
+        editor.commit();
     }
 
     @Override

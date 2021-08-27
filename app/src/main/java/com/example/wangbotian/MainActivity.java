@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SearchActivity.class);
                         MainActivity.this.startActivity(intent);
+                        MainActivity.this.finish();
                         break;
                 }
                 return true;
