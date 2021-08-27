@@ -6,36 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-    <org.angmarch.views.NiceSpinner
-        android:id="@+id/nice_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchBar"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.animsh.materialsearchbar.MaterialSearchBar
         android:id="@+id/searchBar"
-        android:layout_width="294dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="0dp"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/nice_spinner"
         app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:mt_navIconEnabled="true"
+        app:mt_navIconEnabled="false"
         app:mt_placeholder=""
         app:mt_placeholderColor="@color/colorAccent" />
 
+
+        <org.angmarch.views.NiceSpinner
+            android:id="@+id/nice_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchBar"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        app:layout_constraintTop_toBottomOf="@id/nice_spinner"
         android:layout_marginTop="12dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

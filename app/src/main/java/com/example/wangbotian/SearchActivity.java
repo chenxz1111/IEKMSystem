@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,6 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
     private NiceSpinner spinner;
     MaterialSearchBar searchBar;
-    TextView textView;
     String subject;
     protected ListView listView;
 
@@ -55,7 +55,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         if(enabled == false) {
             Intent intent = new Intent();
             intent.setClass(SearchActivity.this, MainActivity.class);
-            SearchActivity.this.startActivity(intent);
+            this.startActivity(intent);
         }
     }
 
@@ -83,7 +83,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
         this.listView.setAdapter(arrayAdapter);
         this.listView.setClickable(true);
-
+        searchBar.showSuggestionsList();
     }
 
     @Override
@@ -129,4 +129,5 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         }
         return course;
     }
+
 }

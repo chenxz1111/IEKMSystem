@@ -106,9 +106,20 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SearchActivity.class);
-                MainActivity.this.startActivity(intent);
+
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.search_on_topbar:
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, SearchActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        break;
+                }
+                return true;
             }
         });
     }
