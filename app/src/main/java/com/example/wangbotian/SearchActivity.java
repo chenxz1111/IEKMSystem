@@ -83,7 +83,6 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
         this.listView.setAdapter(arrayAdapter);
         this.listView.setClickable(true);
-
     }
 
     @Override
