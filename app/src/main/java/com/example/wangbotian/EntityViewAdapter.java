@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class EntityViewAdapter extends FragmentStatePagerAdapter {
 
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+    public EntityViewAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
@@ -17,19 +17,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new HomeFragment();
-            case 1:
-                return new QuestionFragment();
-            case 2:
-                return new AccountFragment();
-            case 3:
                 return new EntityPropertyFragment();
-            case 4:
+            case 1:
                 return new EntityRelationFragment();
-            case 5:
+            case 2:
                 return new EntityExamFragment();
             default:
-                return new HomeFragment();
+                return new EntityPropertyFragment();
         }
     }
 

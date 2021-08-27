@@ -7,4 +7,6 @@
     <string name="bottom_navigation_itme4">我</string>
 
     <string name="fab_content_desc">InputQuestions</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

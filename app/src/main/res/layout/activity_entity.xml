@@ -6,4 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".EntityActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/sky_blue"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/entity_detail_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/outline_arrow_back_white_48" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-30dp"
+            android:layout_gravity="center"
+            android:text="实体详情"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/entity_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:text="实体名称"
+        android:textColor="@color/pressedColor"
+        android:textSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/entity_tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/entity_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="实体属性"
+            android:icon="@drawable/outline_format_list_bulleted_black_18"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/entity_relation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关联实体"
+            android:icon="@drawable/outline_attach_file_black_18"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/entity_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="相关试题"
+            android:icon="@drawable/outline_edit_black_18"
+            />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/entity_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entity_tab"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
