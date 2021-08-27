@@ -65,7 +65,7 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.back_to_explore:
                 Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
-                intent.putExtra("id",2);
+                intent.putExtra("id",1);
                 startActivity(intent);
                 break;
         }
@@ -85,6 +85,14 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
         }
         adapter.addToStart(new Message(notFound[(int)(Math.floor(Math.random()*3))], 2), true);
         return ;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
+        intent.putExtra("id",1);
+        startActivity(intent);
+        super.onBackPressed();
     }
 
 }
