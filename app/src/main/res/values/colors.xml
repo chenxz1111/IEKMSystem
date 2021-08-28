@@ -13,8 +13,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="pressedColor">#545454</color>
-    <color name="normalColor">#8e8e8e</color>
+    <color name="normalColor">#CAC6C6</color>
     <color name="yellow_bright">#FF8F07</color>
     <color name="bright_blue">#ED1BB1F4</color>
     <color name="green">#37C366</color>
+    <color name="light_green">#92D398</color>
+    <color name="light_red">#DFA3A3</color>
+    <color name="light_sky_blue">#FDC9F1F1</color>
 </resources>
