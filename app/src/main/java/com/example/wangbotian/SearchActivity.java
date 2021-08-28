@@ -53,10 +53,17 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         this.subject = subjects.get(0);
         searchBar.setOnSearchActionListener(this);
         listView = findViewById(R.id.list_view);
+        searchBar.setMaxSuggestionCount(1000);
         try {
             searchBar.setLastSuggestions(getHistory());
         } catch (Exception e) {}
 
+        spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
+            @Override
+            public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
+                subject = (String)parent.getItemAtPosition(position);
+            }
+        });
     }
 
     @Override
@@ -77,34 +84,35 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 subject = (String)parent.getItemAtPosition(position);
             }
         });
+
         String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
         Log.d("course", convertC2E(subject));
         Log.d("data_ret", result);
         JSONObject resultJson = JSON.parseObject(result);
         JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
         String[] labels = new String[dataArray.size()];
-        EntityItem[] items = new EntityItem[dataArray.size()];
+        String[] categories = new String[dataArray.size()];
         for(int i = 0; i < dataArray.size(); i++) {
             JSONObject dataJson = dataArray.getJSONObject(i);
-            result = dataJson.getString("label");
-            labels[i] = result;
-            String kind = dataJson.getString("category");
-            items[i] = new EntityItem(result, kind);
+            labels[i] = dataJson.getString("label");
+            categories[i] = dataJson.getString("category");
         }
-//        ArrayAdapter<String> arrayAdapter =
-//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
-//        this.listView.setAdapter(arrayAdapter);
-        ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(items));
-        EntityListAdapter adapter = new EntityListAdapter(this, items_list);
-        this.listView.setDivider(null);
-        this.listView.setAdapter(adapter);
-        this.listView.setClickable(true);
+
+        Intent intent = new Intent();
+        intent.setClass(SearchActivity.this, SearchResult.class);
+        intent.putExtra("search_num", ""+dataArray.size());
+        intent.putExtra("search_labels", labels);
+        intent.putExtra("search_categories", categories);
+        this.startActivity(intent);
+        this.finish();
+
     }
 
     private List<String> getHistory() {
         SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         Set<String> searchHistory = history.getStringSet("history", null);
         List<String> historyList = new ArrayList<>(searchHistory);
+        Log.d("history_num", ""+historyList.size());
         return  historyList;
     }
 

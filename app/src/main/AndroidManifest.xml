@@ -40,12 +40,10 @@
         <activity
             android:name=".SearchActivity"
             android:exported="true" />
+        <activity
+            android:name=".SearchResult"
+            android:exported="true" />
     </application>
 
-    <queries>
-        <intent>
-            <action android:name="android.speech.RecognitionService"/>
-        </intent>
-    </queries>
     <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 </manifest>
