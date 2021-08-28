@@ -83,16 +83,21 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         JSONObject resultJson = JSON.parseObject(result);
         JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
         String[] labels = new String[dataArray.size()];
+        EntityItem[] items = new EntityItem[dataArray.size()];
         for(int i = 0; i < dataArray.size(); i++) {
             JSONObject dataJson = dataArray.getJSONObject(i);
             result = dataJson.getString("label");
             labels[i] = result;
             String kind = dataJson.getString("category");
-
+            items[i] = new EntityItem(result, kind);
         }
-        ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
-        this.listView.setAdapter(arrayAdapter);
+//        ArrayAdapter<String> arrayAdapter =
+//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
+//        this.listView.setAdapter(arrayAdapter);
+        ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(items));
+        EntityListAdapter adapter = new EntityListAdapter(this, items_list);
+        this.listView.setDivider(null);
+        this.listView.setAdapter(adapter);
         this.listView.setClickable(true);
     }
 
