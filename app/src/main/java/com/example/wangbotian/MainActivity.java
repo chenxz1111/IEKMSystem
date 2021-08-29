@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
     private MaterialToolbar toolbar;
+    int fragmentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        //bottomNavigationView.setVisibility(View.GONE);
 
         int menuItemId = bottomNavigationView.getMenu().getItem(2).getItemId();
         BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(menuItemId);
@@ -65,14 +65,17 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
                         toolbar.setTitle("首页");
+                        fragmentId = 0;
                         break;
                     case 1:
                         bottomNavigationView.getMenu().findItem(R.id.question).setChecked(true);
                         toolbar.setTitle("发现");
+                        fragmentId = 1;
                         break;
                     case 2:
                         bottomNavigationView.getMenu().findItem(R.id.account).setChecked(true);
                         toolbar.setTitle("我");
+                        fragmentId = 2;
                         break;
                 }
             }
@@ -90,14 +93,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         viewPager.setCurrentItem(0);
                         toolbar.setTitle("首页");
+                        fragmentId = 0;
                         break;
                     case R.id.question:
                         viewPager.setCurrentItem(1);
                         toolbar.setTitle("发现");
+                        fragmentId = 1;
                         break;
                     case R.id.account:
                         viewPager.setCurrentItem(2);
                         toolbar.setTitle("我");
+                        fragmentId = 2;
                         break;
                 }
                 return true;
@@ -116,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.search_on_topbar:
                         Intent intent = new Intent();
                         intent.setClass(MainActivity.this, SearchActivity.class);
+                        intent.putExtra("fragment_id", fragmentId);
                         MainActivity.this.startActivity(intent);
                         MainActivity.this.finish();
                         break;
@@ -137,6 +144,24 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(1);
         }
         super.onResume();
+    }
+
+    public static String convertI2C(int id) {
+        String title = "";
+        switch (id) {
+            case 0:
+                title = "首页";
+                break;
+            case 1:
+                title = "发现";
+                break;
+            case 2:
+                title = "我";
+                break;
+            default:
+                break;
+        }
+        return title;
     }
 }
 

@@ -36,4 +36,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+    <Button
+        android:id="@+id/textButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="清空历史"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/nice_spinner"
+        app:layout_constraintStart_toEndOf="@id/searchBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
