@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class EntityActivity extends AppCompatActivity implements View.OnClickListener{
 
     JSONObject entityData;
+    JSONArray entityProperty;
+    JSONArray entityRelation;
     JSONObject entityExam;
     private EntityViewAdapter viewPagerAdapter;
     private TabLayout tabLayout;
@@ -98,6 +100,8 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
         String course = getIntent().getStringExtra("course");
         JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
         entityData = result.getJSONObject("data");
+        entityRelation = entityData.getJSONArray("content");
+        entityProperty = entityData.getJSONArray("property");
         entityName.setText(entityData.getString("label"));
         entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
         super.onResume();
