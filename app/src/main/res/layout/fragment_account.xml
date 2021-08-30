@@ -12,12 +12,13 @@
         android:layout_marginTop="76dp"
         android:orientation="horizontal">
 
-        <com.shehuan.niv.NiceImageView
+        <com.github.xiaofeidev.round.RoundImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:src="@drawable/profile_example"
-            app:is_circle="true" />
+            app:rd_radius="circle"
+            />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -68,7 +69,7 @@
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
             android:orientation="horizontal"
-            android:id="@+id/account_save">
+            android:id="@+id/account_favorite">
 
             <ImageView
                 android:layout_width="35dp"
@@ -150,7 +151,7 @@
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/account_wrong">
+            android:id="@+id/account_mistakes">
 
             <ImageView
                 android:layout_width="35dp"

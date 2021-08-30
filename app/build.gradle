@@ -47,4 +47,5 @@ dependencies {
     implementation 'com.github.animsh:MaterialSearchBar:1.0.0'
     implementation 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6'
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
+    implementation 'com.github.xiaofeidev:round:1.1.1'
 }
