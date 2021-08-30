@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,12 +16,13 @@ import com.hjq.xtoast.XToast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SearchResult extends AppCompatActivity implements View.OnClickListener {
+public class SearchResult extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     ListView listView;
     Button backToSearch;
     TextView textView;
     String course;
     String searchKey;
+    ArrayList<EntityItem> items_list;
 
 
     @Override
@@ -44,7 +46,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         for(int i = 0; i < searchNum; i++) {
             items[i] = new EntityItem(labels[i], categories[i]);
         }
-        ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(items));
+        items_list = new ArrayList<EntityItem>(Arrays.asList(items));
         EntityListAdapter adapter = new EntityListAdapter(this, items_list);
         this.listView.setDivider(null);
         this.listView.setAdapter(adapter);
@@ -64,5 +66,18 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View view, int position, long id){
+        String result_label = items_list.get(position).getLabel();
+        Intent intent = new Intent();
+        intent.setClass(SearchResult.this, EntityActivity.class);
+        intent.putExtra("label", result_label);
+        intent.putExtra("course", course);
+        intent.putExtra("search_key", searchKey);
+        this.startActivity(intent);
+        this.finish();
+        // 返回的时候也要传回来searchKey来恢复本页面的结果
     }
 }
