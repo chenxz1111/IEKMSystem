@@ -31,21 +31,20 @@
         <ImageView
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:srcCompat="@drawable/outline_question_answer_white_48"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
             android:layout_marginTop="-10dp"
-            />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/outline_question_answer_white_48" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="智能问答"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            />
+            android:text="智能问答"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
 

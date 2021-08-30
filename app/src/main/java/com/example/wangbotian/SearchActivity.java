@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -29,17 +28,20 @@ import org.angmarch.views.OnSpinnerItemSelectedListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 
-public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, AdapterView.OnItemClickListener {
+public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, View.OnClickListener {
     private NiceSpinner spinner;
     MaterialSearchBar searchBar;
     String subject;
     protected ListView listView;
     private final String PREFS_NAME = "MyPrefsFile";
+    Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +56,27 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         this.subject = subjects.get(0);
         searchBar.setOnSearchActionListener(this);
         listView = findViewById(R.id.list_view);
-        listView.setOnItemClickListener(this);
+        searchBar.setMaxSuggestionCount(1000);
+        button = findViewById(R.id.textButton);
+        button.setOnClickListener(this);
         try {
             searchBar.setLastSuggestions(getHistory());
         } catch (Exception e) {}
 
+        try {
+            Intent intent = getIntent();
+            subject = intent.getStringExtra("search_course");
+            String searchKey = intent.getStringExtra("search_key");
+            spinner.setSelectedIndex(subjects.indexOf(subject));
+            searchBar.setText(searchKey);
+
+        } catch (Exception e) {}
+        spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
+            @Override
+            public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
+                subject = (String)parent.getItemAtPosition(position);
+            }
+        });
     }
 
     @Override
@@ -79,35 +97,39 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 subject = (String)parent.getItemAtPosition(position);
             }
         });
+
         String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
         Log.d("course", convertC2E(subject));
         Log.d("data_ret", result);
         JSONObject resultJson = JSON.parseObject(result);
         JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
         String[] labels = new String[dataArray.size()];
-        EntityItem[] items = new EntityItem[dataArray.size()];
+        String[] categories = new String[dataArray.size()];
         for(int i = 0; i < dataArray.size(); i++) {
             JSONObject dataJson = dataArray.getJSONObject(i);
-            result = dataJson.getString("label");
-            labels[i] = result;
-            String kind = dataJson.getString("category");
-            items[i] = new EntityItem(result, kind);
+            labels[i] = dataJson.getString("label");
+            categories[i] = dataJson.getString("category");
         }
-//        ArrayAdapter<String> arrayAdapter =
-//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,labels);
-//        this.listView.setAdapter(arrayAdapter);
-        ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(items));
-        EntityListAdapter adapter = new EntityListAdapter(this, items_list);
-        this.listView.setDivider(null);
-        this.listView.setAdapter(adapter);
-        this.listView.setClickable(true);
+
+        Intent intent = new Intent();
+        intent.setClass(SearchActivity.this, SearchResult.class);
+        intent.putExtra("search_num", ""+dataArray.size());
+        intent.putExtra("search_labels", labels);
+        intent.putExtra("search_categories", categories);
+        intent.putExtra("search_key", searchKey.toString());
+        intent.putExtra("search_course", subject);
+
+        this.startActivity(intent);
+        this.finish();
+
     }
 
     private List<String> getHistory() {
         SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         Set<String> searchHistory = history.getStringSet("history", null);
         List<String> historyList = new ArrayList<>(searchHistory);
-        return historyList;
+        Log.d("history_num", ""+historyList.size());
+        return  historyList;
     }
 
     @Override
@@ -116,7 +138,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         //save last queries to disk
         SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = history.edit();
-        Set<String> searchHistory = new HashSet<>(searchBar.getLastSuggestions());
+        Set<String> searchHistory = new LinkedHashSet<>(searchBar.getLastSuggestions());
         editor.putStringSet("history", searchHistory);
         editor.commit();
     }
@@ -129,12 +151,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> arg0, View view, int position, long id){
-
-    }
-
-    public String convertC2E(String subject) {
+    public static String convertC2E(String subject) {
         String course = "";
         switch (subject) {
             case "语文":
@@ -170,4 +187,13 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         return course;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.textButton:
+                searchBar.clearSuggestions();
+                break;
+        }
+
+    }
 }

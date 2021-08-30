@@ -74,6 +74,10 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
     private void replyQuestion(String question){
         for (String course : courses){
             String result = OpenEducation.answerQuestion(course,question);
+            if (result.indexOf("\"data\":null") > 0) {
+                adapter.addToStart(new Message("网络不给力，请稍后再试", 2), true);
+                return ;
+            }
             if (result.indexOf("此问题没有找到答案") <= 0 && result.indexOf("[]") <= 0){
                 JSONObject resultJson = JSON.parseObject(result);
                 JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));

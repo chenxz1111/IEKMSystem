@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
         android:text="实体名称"
         android:textColor="@color/pressedColor"
@@ -53,7 +53,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/entity_tab"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="30dp"
         android:layout_marginTop="140dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -62,24 +62,21 @@
             android:id="@+id/entity_property"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="实体属性"
-            android:icon="@drawable/outline_format_list_bulleted_black_18"
+            android:text="实 体 属 性"
             />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/entity_relation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关联实体"
-            android:icon="@drawable/outline_attach_file_black_18"
+            android:text="关 联 实 体"
             />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/entity_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="相关试题"
-            android:icon="@drawable/outline_edit_black_18"
+            android:text="相 关 试 题"
             />
 
     </com.google.android.material.tabs.TabLayout>

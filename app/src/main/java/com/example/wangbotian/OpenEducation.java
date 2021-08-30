@@ -79,14 +79,15 @@ public class OpenEducation {
                 result += line;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            return "404";
         }
         finally{
             try{
                 if(out != null){
                     out.close();
                 }
-                if(in!=null){
+                if(in != null){
                     in.close();
                 }
             }
@@ -139,6 +140,15 @@ public class OpenEducation {
         else {
             resetId();
             result = OpenEducation.sendPost("http://open.edukg.cn/opedukg/api/typeOpen/open/linkInstance", "context="+context+"&course="+course+"&id="+id);
+            return result;
+        }
+    }
+    public static String entityExam(String uriName){
+        String result = OpenEducation.sendGet("http://open.edukg.cn/opedukg/api/typeOpen/open/questionListByUriName", "uriName="+uriName+"&id="+id);
+        if (idCheck(result)) return result;
+        else {
+            resetId();
+            result = OpenEducation.sendGet("http://open.edukg.cn/opedukg/api/typeOpen/open/questionListByUriName", "uriName="+uriName+"&id="+id);
             return result;
         }
     }
