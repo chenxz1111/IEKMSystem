@@ -97,30 +97,39 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
                 subject = (String)parent.getItemAtPosition(position);
             }
         });
+        try{
+            String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
+            Log.d("course", convertC2E(subject));
+            Log.d("data_ret", result);
+            JSONObject resultJson = JSON.parseObject(result);
+            JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
+            String[] labels = new String[dataArray.size()];
+            String[] categories = new String[dataArray.size()];
+            for(int i = 0; i < dataArray.size(); i++) {
+                JSONObject dataJson = dataArray.getJSONObject(i);
+                labels[i] = dataJson.getString("label");
+                categories[i] = dataJson.getString("category");
+            }
 
-        String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
-        Log.d("course", convertC2E(subject));
-        Log.d("data_ret", result);
-        JSONObject resultJson = JSON.parseObject(result);
-        JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
-        String[] labels = new String[dataArray.size()];
-        String[] categories = new String[dataArray.size()];
-        for(int i = 0; i < dataArray.size(); i++) {
-            JSONObject dataJson = dataArray.getJSONObject(i);
-            labels[i] = dataJson.getString("label");
-            categories[i] = dataJson.getString("category");
+            Intent intent = new Intent();
+            intent.setClass(SearchActivity.this, SearchResult.class);
+            intent.putExtra("search_num", ""+dataArray.size());
+            intent.putExtra("search_labels", labels);
+            intent.putExtra("search_categories", categories);
+            intent.putExtra("search_key", searchKey.toString());
+            intent.putExtra("search_course", subject);
+
+            this.startActivity(intent);
+            this.finish();
+        } catch (Exception e) {
+            new XToast<>(this)
+                    .setDuration(1000)
+                    .setView(R.layout.toast_hint)
+                    .setAnimStyle(android.R.style.Animation_Activity)
+                    .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                    .setText(android.R.id.message, "无网络或接口失效")
+                    .show();
         }
-
-        Intent intent = new Intent();
-        intent.setClass(SearchActivity.this, SearchResult.class);
-        intent.putExtra("search_num", ""+dataArray.size());
-        intent.putExtra("search_labels", labels);
-        intent.putExtra("search_categories", categories);
-        intent.putExtra("search_key", searchKey.toString());
-        intent.putExtra("search_course", subject);
-
-        this.startActivity(intent);
-        this.finish();
 
     }
 

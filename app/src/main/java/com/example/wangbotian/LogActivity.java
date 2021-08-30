@@ -16,6 +16,13 @@ import android.widget.EditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hjq.xtoast.XToast;
+import com.javier.filterview.FilterView;
+import com.javier.filterview.OnFilterViewResultListener;
+import com.javier.filterview.single.OnSingleOptionListener;
+import com.javier.filterview.single.SingleOption;
+import com.javier.filterview.single.SingleSection;
+
+import org.json.JSONArray;
 
 import java.util.*;
 
@@ -41,6 +48,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         usernameLay = findViewById(R.id.username_layout);
         passwordLay = findViewById(R.id.password_layout);
+
     }
 
     @Override

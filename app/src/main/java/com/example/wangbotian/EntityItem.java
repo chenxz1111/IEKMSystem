@@ -1,6 +1,6 @@
 package com.example.wangbotian;
 
-public class EntityItem{
+public class EntityItem implements Comparable<EntityItem> {
     public String label;
     public String category;
 
@@ -23,5 +23,10 @@ public class EntityItem{
 
     public void setCategory(String category){
         this.category = category;
+    }
+
+    @Override
+    public int compareTo(EntityItem e) {
+        return label.compareTo(e.getLabel());
     }
 }
