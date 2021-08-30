@@ -1,6 +1,8 @@
 package com.example.wangbotian;
 
-public class EntityItem implements Comparable<EntityItem> {
+import java.io.Serializable;
+
+public class EntityItem implements Serializable {
     public String label;
     public String category;
 
@@ -23,10 +25,5 @@ public class EntityItem implements Comparable<EntityItem> {
 
     public void setCategory(String category){
         this.category = category;
-    }
-
-    @Override
-    public int compareTo(EntityItem e) {
-        return label.compareTo(e.getLabel());
     }
 }
