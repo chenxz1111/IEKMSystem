@@ -5,7 +5,9 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.284375" />
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.22239583333333332" />
+        <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_search.xml" value="0.4" />
         <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/fragment_search.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/search_result.xml" value="0.4" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/account.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/border_input_box.xml" value="0.2994791666666667" />
@@ -17,6 +19,12 @@
         <entry key="app/src/main/res/drawable/home.xml" value="0.2078125" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.2828125" />
+        <entry key="app/src/main/res/drawable/outline_assignment_24.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/outline_bookmark_border_24.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/outline_bookmarks_24.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/outline_chevron_right_24.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/outline_history_24.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/outline_perm_identity_24.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/question.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/search.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/stroke_color.xml" value="0.24479166666666666" />
@@ -28,6 +36,7 @@
         <entry key="app/src/main/res/layout/channel.xml" value="0.1" />
         <entry key="app/src/main/res/layout/channel_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/entity_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/exam_card.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.35891058100377143" />

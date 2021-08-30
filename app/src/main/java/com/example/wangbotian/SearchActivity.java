@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -33,7 +34,7 @@ import java.util.List;
 import java.util.Set;
 
 
-public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
+public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, AdapterView.OnItemClickListener {
     private NiceSpinner spinner;
     MaterialSearchBar searchBar;
     String subject;
@@ -53,6 +54,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         this.subject = subjects.get(0);
         searchBar.setOnSearchActionListener(this);
         listView = findViewById(R.id.list_view);
+        listView.setOnItemClickListener(this);
         try {
             searchBar.setLastSuggestions(getHistory());
         } catch (Exception e) {}
@@ -105,7 +107,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         Set<String> searchHistory = history.getStringSet("history", null);
         List<String> historyList = new ArrayList<>(searchHistory);
-        return  historyList;
+        return historyList;
     }
 
     @Override
@@ -125,6 +127,11 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
             case MaterialSearchBar.BUTTON_BACK:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View view, int position, long id){
+
     }
 
     public String convertC2E(String subject) {

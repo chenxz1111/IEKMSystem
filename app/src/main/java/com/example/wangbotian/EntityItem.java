@@ -1,6 +1,8 @@
 package com.example.wangbotian;
 
-public class EntityItem{
+import java.io.Serializable;
+
+public class EntityItem implements Serializable {
     public String label;
     public String category;
 
