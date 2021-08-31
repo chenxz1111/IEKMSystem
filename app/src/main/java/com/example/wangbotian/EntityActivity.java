@@ -5,6 +5,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.*;
 import com.google.android.material.tabs.TabLayout;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.openapi.IWBAPI;
+import com.sina.weibo.sdk.openapi.WBAPIFactory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +16,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 public class EntityActivity extends AppCompatActivity implements View.OnClickListener{
 
+    final String[] courses = new String[] {"chinese", "english", "math", "physics", "chemistry", "biology", "geo", "politics"};
     JSONObject entityData;
     JSONArray entityProperty;
     JSONArray entityRelation;
@@ -23,8 +28,7 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
     private TabLayout tabLayout;
     private ViewPager viewPager;
     TextView entityName;
-    ImageView entityBack;
-
+    ImageView entityBack, entityShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
         entityName = findViewById(R.id.entity_name);
         entityBack = findViewById(R.id.entity_detail_back);
         entityBack.setOnClickListener(this);
+        entityShare = findViewById(R.id.entity_share);
+        entityShare.setOnClickListener(this);
         tabLayout = findViewById(R.id.entity_tab);
         viewPager = findViewById(R.id.entity_viewpager);
         viewPagerAdapter = new EntityViewAdapter(getSupportFragmentManager(), EntityViewAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -96,8 +102,14 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onResume() {
-        String name = getIntent().getStringExtra("name");
-        String course = getIntent().getStringExtra("course");
+        String name = getIntent().getStringExtra("label");
+        String course = "chinese";
+        for (String cs : courses){
+            if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
+                course = cs;
+                break;
+            }
+        }
         JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
         entityData = result.getJSONObject("data");
         entityRelation = entityData.getJSONArray("content");
@@ -110,10 +122,15 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.entity_detail_back:
-                Intent intent = new Intent(EntityActivity.this, MainActivity.class);
+                intent = new Intent(EntityActivity.this, MainActivity.class);
                 intent.putExtra("id",1);
+                startActivity(intent);
+                break;
+            case R.id.entity_share:
+                intent = new Intent(EntityActivity.this, ShareActivity.class);
                 startActivity(intent);
                 break;
         }
