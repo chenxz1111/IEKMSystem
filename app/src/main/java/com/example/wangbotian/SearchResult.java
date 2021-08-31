@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,7 +52,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SearchResult extends AppCompatActivity implements View.OnClickListener {
+public class SearchResult extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     ListView listView;
     Button backToSearch;
     TextView textView;
@@ -65,6 +66,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     FilterView filterView;
     EntityItem[] items;
     EntityItem[] itemsDisplayed;
+    ArrayList<EntityItem> items_list;
 
 
     @Override
@@ -83,6 +85,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         backToSearch.setOnClickListener(this);
         textView = findViewById(R.id.txtnum);
         textView.setText("共 " + searchNum + " 条结果");
+        listView.setOnItemClickListener(this);
 
 
         items = new EntityItem[searchNum];
@@ -308,7 +311,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
 
             Log.i("length", ""+itmesTmp.size());
             itemsDisplayed = itmesTmp.toArray(new EntityItem[itmesTmp.size()]);
-            ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
+            items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
             EntityListAdapter adapter = new EntityListAdapter(this, items_list);
             this.listView.setDivider(null);
             this.listView.setAdapter(adapter);
@@ -356,5 +359,17 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View view, int position, long id){
+        String result_label = items_list.get(position).getLabel();
+        String course = items_list.get(position).getCategory();
+        Intent intent = new Intent();
+        intent.setClass(SearchResult.this, EntityActivity.class);
+        intent.putExtra("label", result_label);
+        intent.putExtra("course", course);
+        this.startActivity(intent);
+//        this.finish(); 试试不加finish？正常应该从实体详情点返回返回到实体列表
     }
 }
