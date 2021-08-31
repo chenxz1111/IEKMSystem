@@ -27,6 +27,22 @@
         android:textStyle="bold|italic"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@+id/textButton"
+        app:layout_constraintBottom_toTopOf="@+id/selectBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"/>
+
+    <TextView
+        android:id="@+id/selectBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/light_blue"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/txtnum"
         app:layout_constraintBottom_toTopOf="@+id/list_view"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
@@ -35,21 +51,30 @@
 
     <Button
         android:id="@+id/btShowFilterView"
-        android:text="结果排序及高级筛选"
+        android:text="结果排序及筛选"
         android:textColor="@color/light_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/list_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+    <Button
+        android:id="@+id/newBtn"
+        android:text="恢复默认"
+        android:textColor="@color/light_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btShowFilterView"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtnum"
+        app:layout_constraintTop_toBottomOf="@+id/newBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="24dp"/>

@@ -1,5 +1,7 @@
 package com.example.wangbotian;
 
+import static com.github.promeg.pinyinhelper.Pinyin.toPinyin;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -57,7 +59,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     Button backToSearch;
     TextView textView;
     String course;
-    String searchKey;
+    String searchKey = "";
     String[] labels;
     String[] categories;
     private Button btShowFilterView;
@@ -67,6 +69,8 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     EntityItem[] items;
     EntityItem[] itemsDisplayed;
     ArrayList<EntityItem> items_list;
+    TextView selectResult;
+    Button recover;
 
 
     @Override
@@ -84,14 +88,23 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         backToSearch = findViewById(R.id.textButton);
         backToSearch.setOnClickListener(this);
         textView = findViewById(R.id.txtnum);
-        textView.setText("共 " + searchNum + " 条结果");
+
+        selectResult = findViewById(R.id.selectBtn);
+        selectResult.setText("当前排序方式：默认");
         listView.setOnItemClickListener(this);
+        recover = findViewById(R.id.newBtn);
+        recover.setOnClickListener(this);
 
 
-        items = new EntityItem[searchNum];
+        ArrayList<EntityItem> tmp = new ArrayList<>();
         for(int i = 0; i < searchNum; i++) {
-            items[i] = new EntityItem(labels[i], categories[i]);
+            if(labels[i].indexOf(" ") < 0)
+                tmp.add(new EntityItem(labels[i], categories[i])) ;
         }
+        items = tmp.toArray(new EntityItem[tmp.size()]);
+        searchNum = tmp.size();
+        textView.setText("共 " + searchNum + " 条结果");
+
         itemsDisplayed = items;
 
         ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
@@ -112,6 +125,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
                 initSelected();
             }
         });
+
     }
     private void initSelected(){
 
@@ -231,6 +245,9 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     private void setSearchResult(JSONArray setting) {
         try {
             List<EntityItem> itmesTmp = new ArrayList<EntityItem>();
+            for(EntityItem e : items) {
+                itmesTmp.add(e);
+            }
 
             JSONObject cateChoose = setting.getJSONObject(2);
             if(cateChoose.isNull("value")) {
@@ -238,17 +255,17 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             } else {
                 String cateSelect = cateChoose.getString("value");
                 Log.i("cs", items.length+"");
-                for(int i = 0; i < items.length; i++) {
-                    if(cateSelect.contains(items[i].getCategory())) {
+                for(int i = itmesTmp.size() - 1; i >= 0; i--) {
+                    if(!cateSelect.contains(items[i].getCategory())) {
                         Log.i("gc", items[i].getCategory());
-                        itmesTmp.add(items[i]);
+                        itmesTmp.remove(i);
                     }
                 }
             }
 
             Boolean[] isSelect = new Boolean[itmesTmp.size()];
             for(int i = 0; i < isSelect.length; i++) {
-                isSelect[i] = false;
+                isSelect[i] = true;
             }
             JSONObject extraChoose = setting.getJSONObject(3);
             if(extraChoose.isNull("type")) {
@@ -256,22 +273,22 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             } else {
                 if(!extraChoose.isNull("1")) {
                     for(int i = 0; i < itmesTmp.size(); i++) {
-                        if(isContainChinese(itmesTmp.get(i).getLabel())) {
-                            isSelect[i] = true;
+                        if(!isContainChinese(itmesTmp.get(i).getLabel())) {
+                            isSelect[i] = false;
                         }
                     }
                 }
                 if(!extraChoose.isNull("2")) {
                     for(int i = 0; i < itmesTmp.size(); i++) {
-                        if(isContainEnglish(itmesTmp.get(i).getLabel())) {
-                            isSelect[i] = true;
+                        if(!isContainEnglish(itmesTmp.get(i).getLabel())) {
+                            isSelect[i] = false;
                         }
                     }
                 }
                 if(!extraChoose.isNull("3")) {
                     for(int i = 0; i < itmesTmp.size(); i++) {
-                        if(isContainNumber(itmesTmp.get(i).getLabel())) {
-                            isSelect[i] = true;
+                        if(!isContainNumber(itmesTmp.get(i).getLabel())) {
+                            isSelect[i] = false;
                         }
                     }
                 }
@@ -286,15 +303,25 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             Log.i("sm", sortMethod.toString());
             if(sortMethod.isNull("value")) {
                 Log.i("p", "pass");
+                selectResult.setText("当前排序方式：默认");
             } else {
                 String method;
+                EntityItem[] tmp = itmesTmp.toArray(new EntityItem[itmesTmp.size()]);
                 method = sortMethod.getString("value");
                 if(method == "名称长度") {
+                    selectResult.setText("当前排序方式：文本长度");
+                    sortByLength(tmp);
 
                 } else if(method == "相关度高") {
-
+                    selectResult.setText("当前排序方式：相关度高");
+                    sortByRelevance(tmp, searchKey);
                 } else if(method == "字典顺序") {
-
+                    selectResult.setText("当前排序方式：字典顺序");
+                    sortByOrder(tmp);
+                }
+                itmesTmp = new ArrayList<EntityItem>();
+                for(EntityItem e : tmp) {
+                    itmesTmp.add(e);
                 }
             }
 
@@ -304,11 +331,11 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             int value = valueMax - valueMin;
             Log.i("v", "" + value);
             if(itmesTmp.size() > value) {
-                for(int i = value; i < itmesTmp.size(); i++) {
+                for(int i = itmesTmp.size() - 1; i >= value; i--) {
                     itmesTmp.remove(i);
                 }
             }
-
+            textView.setText("共 " + itmesTmp.size() + " 条结果");
             Log.i("length", ""+itmesTmp.size());
             itemsDisplayed = itmesTmp.toArray(new EntityItem[itmesTmp.size()]);
             items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
@@ -357,6 +384,16 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(intent);
                 this.finish();
                 break;
+            case R.id.newBtn:
+                itemsDisplayed = items;
+                textView.setText("共 " + items.length + " 条结果");
+                selectResult.setText("当前排序方式：默认");
+                ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
+                EntityListAdapter adapter = new EntityListAdapter(this, items_list);
+                this.listView.setDivider(null);
+                this.listView.setAdapter(adapter);
+                this.listView.setClickable(true);
+                break;
         }
 
     }
@@ -371,5 +408,42 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("course", course);
         this.startActivity(intent);
 //        this.finish(); 试试不加finish？正常应该从实体详情点返回返回到实体列表
+    }
+
+    public static void sortByLength(EntityItem[] arrStr) {
+        EntityItem temp;
+        for (int i = 0; i < arrStr.length; i++) {
+            for (int j = arrStr.length - 1; j > i; j--) {
+                if (arrStr[i].getLabel().length() > arrStr[j].getLabel().length()) {
+                    temp = arrStr[i];
+                    arrStr[i] = arrStr[j];
+                    arrStr[j] = temp;
+                }
+            }
+        }
+    }
+    public static void sortByRelevance(EntityItem[] arrStr, String searchKey) {
+        EntityItem temp;
+        for (int i = 0; i < arrStr.length; i++) {
+            for (int j = arrStr.length - 1; j > i; j--) {
+                if (arrStr[i].getLabel().indexOf(searchKey) > arrStr[j].getLabel().indexOf(searchKey)) {
+                    temp = arrStr[i];
+                    arrStr[i] = arrStr[j];
+                    arrStr[j] = temp;
+                }
+            }
+        }
+    }
+    public static void sortByOrder(EntityItem[] arrStr) {
+        EntityItem temp;
+        for (int i = 0; i < arrStr.length; i++) {
+            for (int j = arrStr.length - 1; j > i; j--) {
+                if (toPinyin(arrStr[i].getLabel(), "").compareToIgnoreCase(toPinyin(arrStr[j].getLabel(), "")) > 0) {
+                    temp = arrStr[i];
+                    arrStr[i] = arrStr[j];
+                    arrStr[j] = temp;
+                }
+            }
+        }
     }
 }
