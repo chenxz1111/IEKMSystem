@@ -45,9 +45,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.card_5: //----------- JUST FOR TEST -------------
                 intent.setClass(this.getActivity(), EntityActivity.class);
-                intent.putExtra("name", "李白");
-                intent.putExtra("course", "chinese");
+                intent.putExtra("label", "李白");
                 startActivity(intent);
+                break;
         }
     }
 
