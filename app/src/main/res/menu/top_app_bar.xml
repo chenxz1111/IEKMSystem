@@ -9,5 +9,12 @@
         android:contentDescription=""
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/link_on_topbar"
+        android:icon="@drawable/outline_timeline_white_24"
+        android:title="实体链接"
+        android:contentDescription=""
+        app:showAsAction="always" />
+
 
 </menu>

@@ -51,6 +51,12 @@
         <activity
             android:name=".SearchResult"
             android:exported="true" />
+        <activity
+            android:name=".LinkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LinkResult"
+            android:exported="true" />
     </application>
 
     <uses-permission android:name="android.permission.VIBRATE"></uses-permission>

@@ -120,10 +120,17 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.search_on_topbar:
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, SearchActivity.class);
-                        intent.putExtra("fragment_id", fragmentId);
-                        MainActivity.this.startActivity(intent);
+                        Intent intent1 = new Intent();
+                        intent1.setClass(MainActivity.this, SearchActivity.class);
+                        intent1.putExtra("fragment_id", fragmentId);
+                        MainActivity.this.startActivity(intent1);
+                        MainActivity.this.finish();
+                        break;
+                    case R.id.link_on_topbar:
+                        Intent intent2 = new Intent();
+                        intent2.setClass(MainActivity.this, LinkActivity.class);
+                        intent2.putExtra("fragment_id", fragmentId);
+                        MainActivity.this.startActivity(intent2);
                         MainActivity.this.finish();
                         break;
                 }
