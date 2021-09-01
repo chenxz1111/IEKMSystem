@@ -1,64 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <com.github.xiaofeidev.round.RoundImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/profile_example"
-            app:rd_radius="circle" />
-
-        <com.google.android.material.card.MaterialCardView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardElevation="0dp">
+            android:layout_height="?attr/actionBarSize"
+            app:title="设置"
+            app:navigationIcon="@drawable/outline_arrow_back_24"
+            app:titleCentered="true"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/account_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="你的名字"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
-
-                <TextView
-                    android:id="@+id/account_motto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="你的格言"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="200dp">
+        android:layout_marginTop="90dp"
+        android:divider="?android:listDivider"
+        android:dividerPadding="8dp"
+        android:showDividers="middle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,22 +37,99 @@
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
             android:orientation="horizontal"
-            android:id="@+id/account_favorite">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/outline_bookmarks_black_48"
-                />
+            android:id="@+id/setting_profile">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="收藏"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="头像"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <com.github.xiaofeidev.round.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/profile_example"
+                    android:padding="5dp"
+                    app:rd_radius="circle"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="39dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    app:srcCompat="@drawable/outline_chevron_right_black_48" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:id="@+id/setting_username">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="用户名"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="你的名字"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="?android:attr/textColorSecondary"/>
+
+                <ImageView
+                    android:layout_width="39dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    app:srcCompat="@drawable/outline_chevron_right_black_48" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:id="@+id/setting_motto">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="个性签名"
                 android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <LinearLayout
@@ -104,67 +151,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/account_history">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/outline_history_black_48"
-                />
+            android:orientation="horizontal"
+            android:id="@+id/setting_password">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="浏览记录"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="right">
-
-                <ImageView
-                    android:layout_width="39dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="10dp"
-                    app:srcCompat="@drawable/outline_chevron_right_black_48" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/account_mistakes">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/outline_assignment_black_48"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="错题本"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="修改密码"
                 android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <LinearLayout
@@ -186,27 +185,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:clickable="true"
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/account_setting">
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/outline_perm_identity_black_48"
-                />
+            android:orientation="horizontal"
+            android:id="@+id/setting_aboutUs">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="设置"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
+                android:layout_marginLeft="10dp"
+                android:padding="15dp"
+                android:text="关于我们"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -223,6 +215,26 @@
             </LinearLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="488dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="#f7f7f7"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:padding="10dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="#ff0000"/>
 
     </LinearLayout>
 

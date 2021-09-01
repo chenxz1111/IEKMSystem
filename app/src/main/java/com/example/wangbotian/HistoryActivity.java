@@ -8,22 +8,21 @@ import android.view.View;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class FavoriteActivity extends AppCompatActivity implements View.OnClickListener {
+public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialToolbar top_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite);
-        top_bar =  findViewById(R.id.topAppBar);
+        setContentView(R.layout.activity_history);
+        top_bar =  findViewById(R.id.topAppBar1);
         top_bar.setNavigationOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(FavoriteActivity.this, MainActivity.class);
+        Intent intent = new Intent(HistoryActivity.this, MainActivity.class);
         intent.putExtra("id",2);
         startActivity(intent);
     }
-
 }

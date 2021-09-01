@@ -142,13 +142,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         int id = getIntent().getIntExtra("id", 0);
-        if (id == 1) {
+        if (id == 1 || id == 2) {
             Fragment fragment = new QuestionFragment();
             FragmentManager manger = getSupportFragmentManager();
             FragmentTransaction transaction = manger.beginTransaction();
             transaction.replace(R.id.viewpager, fragment);
             transaction.commit();
-            viewPager.setCurrentItem(1);
+            viewPager.setCurrentItem(id);
         }
         super.onResume();
     }

@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".AppApplication"
@@ -20,6 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IEKMSystem"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MistakesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true" />
         <activity
             android:name=".FavoriteActivity"
             android:exported="true" />
@@ -37,7 +47,7 @@
             android:exported="true" />
         <activity
             android:name=".edit.ChannelActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity android:name=".LogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,5 +69,4 @@
             android:exported="true" />
     </application>
 
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 </manifest>

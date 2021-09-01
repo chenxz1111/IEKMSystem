@@ -33,15 +33,30 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         mistakes = view.findViewById(R.id.account_mistakes);
         setting = view.findViewById(R.id.account_setting);
         favorite.setOnClickListener(this);
+        history.setOnClickListener(this);
+        mistakes.setOnClickListener(this);
+        setting.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.account_favorite:
-                Intent intent = new Intent();
                 intent.setClass(this.getActivity(), FavoriteActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.account_history:
+                intent.setClass(this.getActivity(), HistoryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.account_mistakes:
+                intent.setClass(this.getActivity(), MistakesActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.account_setting:
+                intent.setClass(this.getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
         }
