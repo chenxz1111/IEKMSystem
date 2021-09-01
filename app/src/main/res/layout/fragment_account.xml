@@ -17,8 +17,7 @@
             android:layout_height="80dp"
             android:layout_margin="10dp"
             android:src="@drawable/profile_example"
-            app:rd_radius="circle"
-            />
+            app:rd_radius="circle" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -28,26 +27,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/account_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:text="你的名字"
-                    />
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
                 <TextView
                     android:id="@+id/account_motto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
                     android:text="你的格言"
-                    />
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary" />
 
             </LinearLayout>
 
