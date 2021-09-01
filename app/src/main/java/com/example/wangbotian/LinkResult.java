@@ -51,7 +51,7 @@ public class LinkResult extends AppCompatActivity implements View.OnClickListene
         backToSearch.setOnClickListener(this);
 
         SpannableStringBuilder builder = new SpannableStringBuilder(searchKey);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#FAFA02"));
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("F330BEBE"));
         for(int i = 0; i < searchNum; i++) {
             items[i] = new EntityItem(labels[i], categories[i]);
             int startIndex = searchKey.indexOf(labels[i]);

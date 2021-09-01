@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
 
-        int menuItemId = bottomNavigationView.getMenu().getItem(2).getItemId();
-        BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(menuItemId);
-        badge.setNumber(99);
+//        int menuItemId = bottomNavigationView.getMenu().getItem(2).getItemId();
+//        BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(menuItemId);
+//        badge.setNumber(99);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), ViewPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 

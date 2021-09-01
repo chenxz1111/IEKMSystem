@@ -131,26 +131,26 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
 
         // String title, int titleColor, int icon, int borderWidth, int borderColor
         SingleSection singleSection = new SingleSection.Builder("排序", 1)
-                .setSectionNameColor(R.color.colorAccent)
-                .addOption(new SingleOption("名称长度", R.color.colorAccent,
-                        R.drawable.ic_explore_outlined, R.color.colorAccent,
-                        R.color.colorAccent, 2, R.color.colorAccent))
-                .addOption(new SingleOption("相关度高", R.color.colorAccent,
-                        R.drawable.ic_explore_outlined, R.color.colorAccent,
-                        R.color.colorAccent, 2, R.color.colorAccent))
-                .addOption(new SingleOption("字典顺序", R.color.colorAccent,
-                        R.drawable.ic_explore_outlined, R.color.colorAccent,
-                        R.color.colorAccent, 2, R.color.colorAccent))
+                .setSectionNameColor(R.color.sky_blue)
+                .addOption(new SingleOption("名称长度", R.color.sky_blue,
+                        R.drawable.outline_timeline_24, R.color.sky_blue,
+                        R.color.sky_blue, 2, R.color.sky_blue))
+                .addOption(new SingleOption("相关度高", R.color.sky_blue,
+                        R.drawable.baseline_link_white_48, R.color.sky_blue,
+                        R.color.sky_blue, 2, R.color.sky_blue))
+                .addOption(new SingleOption("字典顺序", R.color.sky_blue,
+                        R.drawable.outline_bookmarks_24, R.color.sky_blue,
+                        R.color.sky_blue, 2, R.color.sky_blue))
                 .build().setOnSingleOptionListener(new OnSingleOptionListener() {
                     @Override
                     public void onClick(SingleOption option) {
                     }
                 });
         SliderSection sliderSectionRange = new SliderSection.Builder("实体数量限制", SliderType.TYPE_RANGE, 2)
-                .setSectionNameColor(R.color.colorAccent)
-                .setSlider(new SliderOption(6, R.color.colorAccent,
-                        1, labels.length, R.color.colorGray,
-                        R.color.colorAccent,  R.color.colorAccent))
+                .setSectionNameColor(R.color.sky_blue)
+                .setSlider(new SliderOption(6, R.color.sky_blue,
+                        1, labels.length, R.color.pressedColor,
+                        R.color.sky_blue,  R.color.sky_blue))
                 .build();
 
         sliderSectionRange.setOnSliderValueChangeListener(new OnSliderValueChangeListener() {
@@ -162,11 +162,11 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         String[] data = cateAll;
 
         TagSection tagSection = new TagSection.Builder("按实体类别筛选", 3)
-                .setSectionNameColor(R.color.colorAccent)
-                .setSelectedColor(R.color.colorAccent)
+                .setSectionNameColor(R.color.sky_blue)
+                .setSelectedColor(R.color.sky_blue)
                 .setDeselectedColor(R.color.colorBackground)
                 .setSelectedFontColor(R.color.colorBackground)
-                .setDeselectedFontColor(R.color.colorAccent)
+                .setDeselectedFontColor(R.color.light_sky_blue)
                 .setGravity(TagGravity.LEFT)
                 .setMode(TagMode.MULTI)
                 .setLabels(data)
@@ -179,7 +179,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
 
 
 
-        final ExtraBoolean extraBoolean1 = new ExtraBoolean(1, "实体名包含中文", R.color.colorAccent, R.color.colorAccent);
+        final ExtraBoolean extraBoolean1 = new ExtraBoolean(1, "实体名包含中文", R.color.sky_blue, R.color.sky_blue);
         extraBoolean1.setOnBooleanCheckedChangeListener(new OnBooleanCheckedChangeListener() {
             @Override
             public void onChecked(boolean isChecked) {
@@ -188,7 +188,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        final ExtraBoolean extraBoolean2 = new ExtraBoolean(2, "实体名包含英文", R.color.colorAccent, R.color.colorAccent);
+        final ExtraBoolean extraBoolean2 = new ExtraBoolean(2, "实体名包含英文", R.color.sky_blue, R.color.sky_blue);
         extraBoolean2.setOnBooleanCheckedChangeListener(new OnBooleanCheckedChangeListener() {
             @Override
             public void onChecked(boolean isChecked) {
@@ -197,7 +197,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        final ExtraBoolean extraBoolean3 = new ExtraBoolean(3, "实体名包含数字", R.color.colorAccent, R.color.colorAccent);
+        final ExtraBoolean extraBoolean3 = new ExtraBoolean(3, "实体名包含数字", R.color.sky_blue, R.color.sky_blue);
         extraBoolean3.setOnBooleanCheckedChangeListener(new OnBooleanCheckedChangeListener() {
             @Override
             public void onChecked(boolean isChecked) {
@@ -209,7 +209,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
 
 
         ExtraSection extraSection = new ExtraSection.Builder("其他筛选条件", 4)
-                .setSectionNameColor(R.color.colorAccent)
+                .setSectionNameColor(R.color.sky_blue)
                 .addOption(extraBoolean1)
                 .addOption(extraBoolean2)
                 .addOption(extraBoolean3)
@@ -219,9 +219,9 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         filterView =  new FilterView.Builder(this)
                 .withTitle("确定")
                 .setToolbarVisible(true)
-                .withTitleColor(R.color.colorAccent)
-                .withDivisorColor(R.color.colorAccent)
-                .setCloseIconColor(R.color.colorAccent)
+                .withTitleColor(R.color.sky_blue)
+                .withDivisorColor(R.color.sky_blue)
+                .setCloseIconColor(R.color.sky_blue)
                 .addSection(singleSection)
                 .addSection(sliderSectionRange)
                 .addSection(tagSection)

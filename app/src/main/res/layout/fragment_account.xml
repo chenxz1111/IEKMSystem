@@ -70,8 +70,8 @@
             android:id="@+id/account_favorite">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/outline_bookmarks_black_48"
@@ -111,8 +111,8 @@
             android:id="@+id/account_history">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/outline_history_black_48"
@@ -152,8 +152,8 @@
             android:id="@+id/account_mistakes">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/outline_assignment_black_48"
@@ -193,8 +193,8 @@
             android:id="@+id/account_setting">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/outline_perm_identity_black_48"
