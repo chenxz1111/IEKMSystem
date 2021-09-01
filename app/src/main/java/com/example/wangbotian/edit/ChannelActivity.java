@@ -275,20 +275,25 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
     public void onClick(View view){
         switch (view.getId()){
             case R.id.containedButton:
-                this.onBackPressed();
-                break;
+                saveChannel();
+                Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+                setResult(HomeFragment.CHANNELRESULT, intent);
+                finish();
         }
     }
 
     @Override
     public void onBackPressed() {
         saveChannel();
-        if (userAdapter.isListChanged()) {
-            Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
-            setResult(HomeFragment.CHANNELRESULT, intent);
-            finish();
-        } else {
-            super.onBackPressed();
-        }
+//        if (userAdapter.isListChanged()) {
+//            Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+//            setResult(HomeFragment.CHANNELRESULT, intent);
+//            finish();
+//        } else {
+//            super.onBackPressed();
+//        }
+        Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+        setResult(HomeFragment.CHANNELRESULT, intent);
+        finish();
     }
 }
