@@ -9,10 +9,10 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/topAppBar1"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="收藏"
+            app:title="浏览记录"
             app:navigationIcon="@drawable/outline_arrow_back_24"
             app:titleCentered="true"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
