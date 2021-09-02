@@ -50,6 +50,8 @@ public class EntityListAdapter extends MyBaseAdapter<EntityItem> {
         viewHolder.tvCategory.setText(item.getCategory());
         if(item.isAccess()) {
             viewHolder.tCard.setCardBackgroundColor(0xFFCAD5D3);
+        } else {
+            viewHolder.tCard.setCardBackgroundColor(0xFDC9F1F1);
         }
         viewHolder.tCard.setOnClickListener(new View.OnClickListener() {
             @Override
