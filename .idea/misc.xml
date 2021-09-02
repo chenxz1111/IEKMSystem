@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/layout/entity_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/exam_card.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
+        <entry key="app/src/main/res/layout/fragment_entity_exam.xml" value="0.14513677811550152" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1644021739130435" />
