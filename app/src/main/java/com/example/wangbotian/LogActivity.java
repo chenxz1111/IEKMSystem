@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -35,6 +36,10 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         setContentView(R.layout.activity_log);
 
         logButton = findViewById(R.id.log_button);
@@ -56,6 +61,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()) {
             case R.id.log_button:
                 if (!usernameText.getText().toString().equals("admin")) {
+//                    System.out.println(OpenEducation.sendGet("http://192.168.3.192:8080/test", ""));
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)

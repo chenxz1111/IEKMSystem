@@ -25,7 +25,7 @@ public class OpenEducation {
     protected static boolean isChinese(char c) {
         return String.valueOf(c).matches("[\u4e00-\u9fa5]");
     }
-    private static String sendGet(String url, String param) {
+    public static String sendGet(String url, String param) {
         String result = "";
         BufferedReader in = null;
         try {

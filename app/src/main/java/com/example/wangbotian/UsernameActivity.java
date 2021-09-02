@@ -43,11 +43,7 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch(view.getId()) {
-            case R.id.topAppBar4:
-                intent = new Intent(UsernameActivity.this, SettingActivity.class);
-                startActivity(intent);
-                break;
-        }
+        intent = new Intent(UsernameActivity.this, SettingActivity.class);
+        startActivity(intent);
     }
 }
