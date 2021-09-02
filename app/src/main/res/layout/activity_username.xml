@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar4"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="更改名字"
+            app:navigationIcon="@drawable/outline_arrow_back_24"
+            app:titleCentered="true"
+            app:menu="@menu/baseline_done_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:id="@+id/change_username_text"
+            tools:text="placeholder text" />
+
+<!--        <View-->
+<!--            android:id="@+id/seperate_line"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@color/sky_blue" />-->
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

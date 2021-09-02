@@ -9,13 +9,28 @@ public class AppApplication extends Application {
 
     private static AppApplication mAppApplication;
     private SQLHelper sqlHelper;
-//    private static Context mContext;
+    private String username = "你的名字";
+    private String motto = "你的格言";
 
+    public String getUsername(){
+        return username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public String getMotto(){
+        return motto;
+    }
+
+    public void setMotto(){
+        this.motto = motto;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         mAppApplication = this;
-//        mContext = getApplicationContext();
     }
 
     /**
