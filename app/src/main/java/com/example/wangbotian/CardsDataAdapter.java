@@ -57,6 +57,8 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
         answerC.setText(examBody.substring(idC, idD));
         answerD.setText(examBody.substring(idD));
 
+        ansCardA.setCardBackgroundColor(0xFFDFA3A3);//---------DELETE
+        ansCardD.setCardBackgroundColor(0xFF92D398); //-----------DELETE
         CardView finalRightCard = rightCard;
         ansCardA.setOnClickListener(new View.OnClickListener() {
             @Override
