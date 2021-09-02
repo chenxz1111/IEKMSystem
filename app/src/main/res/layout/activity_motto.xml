@@ -11,10 +11,10 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar4"
+            android:id="@+id/topAppBar5"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="设置名字"
+            app:title="设置个性签名"
             app:navigationIcon="@drawable/outline_arrow_back_24"
             app:titleCentered="true"
             app:menu="@menu/baseline_done_24"
@@ -34,32 +34,18 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/change_username_text"
+            android:id="@+id/change_motto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:background="@null"
+            android:minLines="3"
+            android:gravity="top"
+            android:maxLength="30"
             tools:text="placeholder text" />
 
     </LinearLayout>
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/username_layout"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="128dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:hintEnabled="false">-->
-
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/username_text"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:singleLine="true" />-->
-
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 </RelativeLayout>

@@ -24,7 +24,7 @@ public class AppApplication extends Application {
         return motto;
     }
 
-    public void setMotto(){
+    public void setMotto(String motto){
         this.motto = motto;
     }
     @Override

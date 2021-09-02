@@ -19,6 +19,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     LinearLayout mistakes;
     LinearLayout setting;
     TextView name;
+    TextView motto;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -36,6 +37,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         setting = view.findViewById(R.id.account_setting);
         name = view.findViewById(R.id.account_name);
         name.setText(AppApplication.getApp().getUsername());
+        motto = view.findViewById(R.id.account_motto);
+        motto.setText(AppApplication.getApp().getMotto());
         favorite.setOnClickListener(this);
         history.setOnClickListener(this);
         mistakes.setOnClickListener(this);

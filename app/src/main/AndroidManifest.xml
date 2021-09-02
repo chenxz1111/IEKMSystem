@@ -22,6 +22,9 @@
         android:theme="@style/Theme.IEKMSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MottoActivity"
+            android:exported="true" />
+        <activity
             android:name=".UsernameActivity"
             android:exported="true" />
         <activity

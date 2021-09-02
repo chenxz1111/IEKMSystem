@@ -131,12 +131,14 @@
                 android:layout_marginLeft="10dp"
                 android:padding="15dp"
                 android:text="个性签名"
+                android:id="@+id/setting_motto_1"
                 android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="right">
+                android:gravity="right"
+                android:id="@+id/motto_layout">
 
                 <ImageView
                     android:layout_width="39dp"

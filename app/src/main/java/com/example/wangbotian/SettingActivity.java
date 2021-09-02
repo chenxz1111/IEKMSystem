@@ -15,6 +15,7 @@ public class SettingActivity extends AppCompatActivity {
     MaterialToolbar top_bar;
     LinearLayout user_name;
     TextView setting_name;
+    LinearLayout setting_motto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,14 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, UsernameActivity.class);
+                startActivity(intent);
+            }
+        });
+        setting_motto = findViewById(R.id.setting_motto);
+        setting_motto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, MottoActivity.class);
                 startActivity(intent);
             }
         });
