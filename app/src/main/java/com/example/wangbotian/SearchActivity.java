@@ -37,7 +37,7 @@ import java.util.Set;
 public class SearchActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, View.OnClickListener {
     private NiceSpinner spinner;
     MaterialSearchBar searchBar;
-    String subject;
+    String subject = "语文";
     protected ListView listView;
     private final String PREFS_NAME = "MyPrefsFile";
     Button button;
@@ -48,6 +48,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        subject = "语文";
         searchBar = findViewById(R.id.searchBar);
         searchBar.openSearch();
         spinner = findViewById(R.id.nice_spinner);
@@ -72,6 +73,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
             searchBar.setText(searchKey);
 
         } catch (Exception e) {}
+
         spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
             @Override
             public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
@@ -92,15 +94,13 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
 
     @Override
     public void onSearchConfirmed(CharSequence searchKey) {
-        spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
-            @Override
-            public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
-                subject = (String)parent.getItemAtPosition(position);
-            }
-        });
+
         try{
+            if(subject == null) {
+                subject = "语文";
+            }
             String result = OpenEducation.entitySearch(convertC2E(subject), searchKey.toString());
-            Log.d("course", convertC2E(subject));
+
             Log.d("data_ret", result);
             JSONObject resultJson = JSON.parseObject(result);
             JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));
@@ -124,6 +124,7 @@ public class SearchActivity extends AppCompatActivity implements MaterialSearchB
             this.startActivity(intent);
             this.finish();
         } catch (Exception e) {
+            Log.d("debug", e.toString());
             new XToast<>(this)
                     .setDuration(1000)
                     .setView(R.layout.toast_hint)

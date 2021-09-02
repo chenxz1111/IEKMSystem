@@ -10,11 +10,20 @@ import com.sina.weibo.sdk.openapi.IWBAPI;
 import com.sina.weibo.sdk.openapi.WBAPIFactory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class EntityActivity extends AppCompatActivity implements View.OnClickListener{
@@ -29,6 +38,7 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
     private ViewPager viewPager;
     TextView entityName;
     ImageView entityBack, entityShare;
+    private final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +108,9 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-    }
 
-    @Override
-    protected void onResume() {
         String name = getIntent().getStringExtra("label");
+        String category = getIntent().getStringExtra("category");
         String course = "chinese";
         for (String cs : courses){
             if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
@@ -110,14 +118,52 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             }
         }
-        JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
-        entityData = result.getJSONObject("data");
-        entityRelation = entityData.getJSONArray("content");
-        entityProperty = entityData.getJSONArray("property");
-        entityName.setText(entityData.getString("label"));
-        entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
-        super.onResume();
+        SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Set<String> listHistory = history.getStringSet("entity_list_history", null);
+        if(listHistory == null) {
+            listHistory = new HashSet<String>();
+        }
+
+        if(listHistory.contains(name + ";" + category)) {
+            Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+            for(String d: detailHistory) {
+                if(d.indexOf(name + ";" + category) == 0) {
+                    String s = d.substring(name.length() + category.length() + 1);
+                    entityData = JSONObject.parseObject(s);
+                    Log.i("detailInfo", entityData.toString());
+                    break;
+                }
+            }
+
+            entityRelation = entityData.getJSONArray("content");
+            entityProperty = entityData.getJSONArray("property");
+            entityName.setText(entityData.getString("label"));
+            entityExam = entityData.getJSONObject("exam");
+        } else {
+            JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
+            entityData = result.getJSONObject("data");
+            entityRelation = entityData.getJSONArray("content");
+            entityProperty = entityData.getJSONArray("property");
+            entityName.setText(entityData.getString("label"));
+            entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
+
+            JSONObject saveInPhone = entityData;
+            saveInPhone.put("exam", entityExam);
+            SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = entityHistory.edit();
+            Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+            if(detailHistory == null) {
+                detailHistory = new HashSet<>();
+            }
+            listHistory.add(name + ";" + category);
+            detailHistory.add(name + ";" + category + saveInPhone.toString());
+            editor.putStringSet("entity_list_history", listHistory);
+            editor.putStringSet("entity_detail_history", detailHistory);
+            Log.i("detail", saveInPhone.toString());
+            editor.commit();
+        }
     }
+
 
 
     @Override

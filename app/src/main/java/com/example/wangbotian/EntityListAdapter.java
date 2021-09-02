@@ -48,12 +48,16 @@ public class EntityListAdapter extends MyBaseAdapter<EntityItem> {
 
         viewHolder.tvLabel.setText(item.getLabel());
         viewHolder.tvCategory.setText(item.getCategory());
+        if(item.isAccess()) {
+            viewHolder.tCard.setCardBackgroundColor(0xFFCAD5D3);
+        }
         viewHolder.tCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(c, EntityActivity.class);
                 intent.putExtra("label", item.getLabel());
+                intent.putExtra("category", item.getCategory());
                 c.startActivity(intent);
             }
         });
