@@ -3,6 +3,7 @@ package com.example.wangbotian;
 import static com.github.promeg.pinyinhelper.Pinyin.toPinyin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -71,6 +72,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     ArrayList<EntityItem> items_list;
     TextView selectResult;
     Button recover;
+    private final String PREFS_NAME = "MyPrefsFile";
 
 
     @Override
@@ -95,17 +97,25 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
         recover = findViewById(R.id.newBtn);
         recover.setOnClickListener(this);
 
-
+        SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Set<String> listHistory = history.getStringSet("entity_list_history", null);
         ArrayList<EntityItem> tmp = new ArrayList<>();
         for(int i = 0; i < searchNum; i++) {
-            if(labels[i].indexOf(" ") < 0)
-                tmp.add(new EntityItem(labels[i], categories[i])) ;
+            if(labels[i].indexOf(" ") < 0) {
+                EntityItem oneItem = new EntityItem(labels[i], categories[i]);
+                if(listHistory != null && listHistory.contains(labels[i] + ";" + categories[i])) {
+                    oneItem.access();
+                }
+                tmp.add(oneItem);
+            }
+
         }
         items = tmp.toArray(new EntityItem[tmp.size()]);
         searchNum = tmp.size();
         textView.setText("共 " + searchNum + " 条结果");
 
         itemsDisplayed = items;
+
 
         ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
         EntityListAdapter adapter = new EntityListAdapter(this, items_list);
@@ -130,17 +140,26 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
     private void initSelected(){
 
         // String title, int titleColor, int icon, int borderWidth, int borderColor
+        SingleOption o1 = new SingleOption("名称长度", R.color.sky_blue,
+                R.drawable.outline_timeline_24, R.color.sky_blue,
+                R.color.sky_blue, 2, R.color.sky_blue);
+        SingleOption o2 = new SingleOption("相关度高", R.color.sky_blue,
+                R.drawable.baseline_link_white_48, R.color.sky_blue,
+                R.color.sky_blue, 2, R.color.sky_blue);
+        SingleOption o3 = new SingleOption("字典顺序", R.color.sky_blue,
+                R.drawable.outline_bookmarks_24, R.color.sky_blue,
+                R.color.sky_blue, 2, R.color.sky_blue);
+        o1.setDefaultColor(R.color.sky_blue);
+        o1.setSelectedIconColor(R.color.colorBackground);
+        o2.setDefaultColor(R.color.sky_blue);
+        o2.setSelectedIconColor(R.color.colorBackground);
+        o3.setDefaultColor(R.color.sky_blue);
+        o3.setSelectedIconColor(R.color.colorBackground);
         SingleSection singleSection = new SingleSection.Builder("排序", 1)
                 .setSectionNameColor(R.color.sky_blue)
-                .addOption(new SingleOption("名称长度", R.color.sky_blue,
-                        R.drawable.outline_timeline_24, R.color.sky_blue,
-                        R.color.sky_blue, 2, R.color.sky_blue))
-                .addOption(new SingleOption("相关度高", R.color.sky_blue,
-                        R.drawable.baseline_link_white_48, R.color.sky_blue,
-                        R.color.sky_blue, 2, R.color.sky_blue))
-                .addOption(new SingleOption("字典顺序", R.color.sky_blue,
-                        R.drawable.outline_bookmarks_24, R.color.sky_blue,
-                        R.color.sky_blue, 2, R.color.sky_blue))
+                .addOption(o1)
+                .addOption(o2)
+                .addOption(o3)
                 .build().setOnSingleOptionListener(new OnSingleOptionListener() {
                     @Override
                     public void onClick(SingleOption option) {
@@ -221,7 +240,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
                 .setToolbarVisible(true)
                 .withTitleColor(R.color.sky_blue)
                 .withDivisorColor(R.color.sky_blue)
-                .setCloseIconColor(R.color.sky_blue)
+                .setCloseIconColor(R.color.colorBackground)
                 .addSection(singleSection)
                 .addSection(sliderSectionRange)
                 .addSection(tagSection)
@@ -338,6 +357,7 @@ public class SearchResult extends AppCompatActivity implements View.OnClickListe
             textView.setText("共 " + itmesTmp.size() + " 条结果");
             Log.i("length", ""+itmesTmp.size());
             itemsDisplayed = itmesTmp.toArray(new EntityItem[itmesTmp.size()]);
+
             items_list = new ArrayList<EntityItem>(Arrays.asList(itemsDisplayed));
             EntityListAdapter adapter = new EntityListAdapter(this, items_list);
             this.listView.setDivider(null);

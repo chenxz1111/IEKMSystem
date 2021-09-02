@@ -59,6 +59,11 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
                 String question = sendText.getText().toString();
                 if (!question.equals("")) {
                     adapter.addToStart(new Message(question, 1), true);
+                    if (question.indexOf("在吗") >= 0 ) {
+                        adapter.addToStart(new Message("我在呢，欢迎你随时提问哦", 2), true);
+                        sendText.setText("");
+                        return ;
+                    }
                     sendText.setText("");
                     replyQuestion(question);
                 }
@@ -78,6 +83,7 @@ public class QuestionActivity  extends AppCompatActivity implements View.OnClick
                 adapter.addToStart(new Message("网络不给力，请稍后再试", 2), true);
                 return ;
             }
+
             if (result.indexOf("此问题没有找到答案") <= 0 && result.indexOf("[]") <= 0){
                 JSONObject resultJson = JSON.parseObject(result);
                 JSONArray dataArray = JSON.parseArray(resultJson.getString("data"));

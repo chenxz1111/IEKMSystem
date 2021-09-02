@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class EntityItem implements Serializable {
     public String label;
     public String category;
+    private Boolean hadAccess = false;
 
     public EntityItem(String label, String category){
         this.label = label;
@@ -26,4 +27,8 @@ public class EntityItem implements Serializable {
     public void setCategory(String category){
         this.category = category;
     }
+
+    public void access() { this.hadAccess = true;}
+
+    public Boolean isAccess() { return this.hadAccess;}
 }

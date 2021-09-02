@@ -82,32 +82,23 @@ public class LinkActivity extends AppCompatActivity implements MaterialSearchBar
 
     @Override
     public void onSearchConfirmed(CharSequence searchKey) {
-        spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
-            @Override
-            public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
-                subject = (String)parent.getItemAtPosition(position);
-            }
-        });
         try{
+            if(subject == null) {
+                subject = "语文";
+            }
             String result = OpenEducation.entityLink(convertC2E(subject), searchKey.toString());
             Log.d("course", convertC2E(subject));
-            //Log.d("data_ret", result);
+            Log.d("data_ret", result);
             JSONObject resultJson = JSON.parseObject(result);
             JSONObject dataJson = resultJson.getJSONObject("data");
             JSONArray dataArray = JSON.parseArray(dataJson.getString("results"));
             String[] labels = new String[dataArray.size()];
             String[] categories = new String[dataArray.size()];
-            int[] startIndex = new int[dataArray.size()];
-            int[] endIndex = new int[dataArray.size()];
             for(int i = 0; i < dataArray.size(); i++) {
                 JSONObject dJson = dataArray.getJSONObject(i);
                 labels[i] = dJson.getString("entity");
                 categories[i] = dJson.getString("entity_type");
-//                startIndex[i] = dataJson.getIntValue("start_index");
-//                endIndex[i] = dataJson.getIntValue("end_index");
-                Log.i(""+startIndex[i], ""+endIndex[i]);
             }
-
             Intent intent = new Intent();
             intent.setClass(LinkActivity.this, LinkResult.class);
             intent.putExtra("search_num", ""+dataArray.size());
@@ -115,12 +106,10 @@ public class LinkActivity extends AppCompatActivity implements MaterialSearchBar
             intent.putExtra("search_categories", categories);
             intent.putExtra("search_key", searchKey.toString());
             intent.putExtra("search_course", subject);
-            intent.putExtra("start_index", startIndex);
-            intent.putExtra("end_index", endIndex);
-
             this.startActivity(intent);
             this.finish();
         } catch (Exception e) {
+            Log.d("debug", e.toString());
             new XToast<>(this)
                     .setDuration(1000)
                     .setView(R.layout.toast_hint)

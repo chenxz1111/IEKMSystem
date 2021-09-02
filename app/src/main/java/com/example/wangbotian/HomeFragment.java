@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private String [] title={"语文","数学","英语","物理","化学","生物","历史","地理","政治"};
     private String[] labelList = {"李白", "杜甫", "白居易", "动词", "形容词", "名词", "光合作用", "食物链", "突触"};
     private String[] categoryList = {"人物", "人物", "人物", "实义动词", "形容词", "普通名词", "光反应和暗反应", "生态系统的结构", "通过神经系统的调节"};
+    String[] tmpList = {"《父与子》","《康熙字典》","《离骚》","《六国论》","《方山子传》","《锦瑟》","《屈原》"};
+    String[] tmpCate = {"课文","课文","作品","作品","作品","作品","作品"};
     private ArrayList<ArrayList<EntityItem>> entityList = new ArrayList<ArrayList<EntityItem>>();
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
     public final static int CHANNELREQUEST = 1; // 请求码
@@ -56,6 +58,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             entityList.get(0).add(new EntityItem(labelList[i], categoryList[i]));
             entityList.get(2).add(new EntityItem(labelList[i+3], categoryList[i+3]));
             entityList.get(5).add(new EntityItem(labelList[i+6], categoryList[i+6]));
+        }
+        for(int i = 0; i < tmpCate.length; i++) {
+            entityList.get(0).add(new EntityItem(tmpList[i], categoryList[i]));
         }
         return view;
     }

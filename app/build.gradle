@@ -5,7 +5,8 @@ plugins {
 android {
     compileSdkVersion 31
     buildToolsVersion '30.0.3'
-
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "com.example.wangbotian"
         minSdkVersion 26
@@ -51,5 +52,4 @@ dependencies {
     implementation 'com.github.xiaofeidev:round:1.1.1'
     implementation 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
     implementation 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3' // 可选，适用于Android的中国地区词
-
 }
