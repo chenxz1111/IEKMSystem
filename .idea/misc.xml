@@ -37,6 +37,7 @@
         <entry key="app/src/main/res/drawable/question.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/search.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/stroke_color.xml" value="0.24479166666666666" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/activity_entity.xml" value="0.18034447821681865" />
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/activity_favorite2.xml" value="0.20833333333333334" />
@@ -45,6 +46,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_mistakes.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/activity_motto.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/layout/activity_password.xml" value="0.17889492753623187" />
         <entry key="app/src/main/res/layout/activity_question.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.2140625" />

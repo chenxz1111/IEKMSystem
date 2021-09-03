@@ -37,9 +37,9 @@
             android:id="@+id/change_username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:padding="8dp"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:background="@null"
             tools:text="placeholder text" />
 
     </LinearLayout>

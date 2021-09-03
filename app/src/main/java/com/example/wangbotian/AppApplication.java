@@ -11,6 +11,7 @@ public class AppApplication extends Application {
     private SQLHelper sqlHelper;
     private String username = "你的名字";
     private String motto = "你的格言";
+    private String password = "123456";
 
     public String getUsername(){
         return username;
@@ -27,6 +28,13 @@ public class AppApplication extends Application {
     public void setMotto(String motto){
         this.motto = motto;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

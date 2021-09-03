@@ -192,7 +192,7 @@
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground"
             android:orientation="horizontal"
-            android:id="@+id/setting_aboutUs">
+            android:id="@+id/setting_about">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -16,6 +16,8 @@ public class SettingActivity extends AppCompatActivity {
     LinearLayout user_name;
     TextView setting_name;
     LinearLayout setting_motto;
+    LinearLayout setting_password;
+    LinearLayout setting_about;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,22 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, MottoActivity.class);
+                startActivity(intent);
+            }
+        });
+        setting_password = findViewById(R.id.setting_password);
+        setting_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, PasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        setting_about = findViewById(R.id.setting_about);
+        setting_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, AboutActivity.class);
                 startActivity(intent);
             }
         });

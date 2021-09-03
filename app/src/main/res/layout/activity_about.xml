@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".AboutActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar7"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="关于我们"
+            app:navigationIcon="@drawable/outline_arrow_back_24"
+            app:titleCentered="true"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:orientation="vertical">
+
+        <com.github.xiaofeidev.round.RoundImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/my_icon"
+            app:rd_radius="circle" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="靠谱教育"
+        android:textAppearance="?attr/textAppearanceHeadline5"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Version 0.1.0"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="靠谱教育是基于知识图谱技术的辅助教育App。搭载EDUKG基础教育知识图谱，我们致力于为每个基础教育学习者提供最优质便捷的学习资源和服务。"
+        android:textAppearance="?attr/textAppearanceBody1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Powered By 605AC @ Java 2021"/>
+    </LinearLayout>
+
+</LinearLayout>
