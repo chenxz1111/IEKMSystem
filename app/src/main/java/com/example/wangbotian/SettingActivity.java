@@ -18,6 +18,7 @@ public class SettingActivity extends AppCompatActivity {
     LinearLayout setting_motto;
     LinearLayout setting_password;
     LinearLayout setting_about;
+    LinearLayout quit_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,15 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, AboutActivity.class);
                 startActivity(intent);
+            }
+        });
+        quit_btn = findViewById(R.id.quit_btn);
+        quit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, LogActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

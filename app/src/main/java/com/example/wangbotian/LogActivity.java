@@ -56,12 +56,30 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    public int checkPassword(String msg){
+        if(msg.equals("2")) return 2; // 用户不存在
+        else if(msg.equals("0")) return 0; // 密码不正确
+        return 1; // 表示成功
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.log_button:
-                if (!usernameText.getText().toString().equals("admin")) {
-//                    System.out.println(OpenEducation.sendGet("http://192.168.3.192:8080/test", ""));
+                String username = usernameText.getText().toString();
+                String password = passwordText.getText().toString();
+                String param = "username=" + username + "&password=" + password;
+                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);
+                System.out.println(msg);
+                int res = checkPassword(msg);
+                if (res == 1) {
+//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", "username=testUser"));
+//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", "username=testUser&password=123456"));
+//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", "username=testUser&password=123456"));
+//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangeId", "username=testUser&newname=testUser1"));
+//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=testUser1&password=1234567"));
+                    AppApplication.getApp().setUsername(username);
+                    AppApplication.getApp().setMotto(OpenEducation.sendPost("http://192.168.3.192:8080/CatchMotto", "username="+username));
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)
@@ -73,13 +91,22 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                     intent.setClass(LogActivity.this, MainActivity.class);
                     this.startActivity(intent);
                 }
-                else {
+                else if(res == 0) {
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "登录失败")
+                            .setText(android.R.id.message, "密码不正确")
+                            .show();
+                }
+                else if(res == 2){
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "用户名不存在")
                             .show();
                 }
                 break;

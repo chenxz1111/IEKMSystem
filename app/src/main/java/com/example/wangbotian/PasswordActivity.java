@@ -40,6 +40,12 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
         confirm_btn.setOnClickListener(this);
     }
 
+    public int checkPassword(String msg){
+        if(msg.equals("2")) return 2; // 用户不存在
+        else if(msg.equals("0")) return 0; // 密码不正确
+        return 1; // 表示成功
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -52,15 +58,7 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
                 confirm_password = confirm_password_text.getEditText().getText().toString();
                 System.out.println(AppApplication.getApp().getPassword());
                 System.out.println(old_password);
-                if(! old_password.equals(AppApplication.getApp().getPassword())){
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "原密码错误")
-                            .show();
-                }else if(! confirm_password.equals(new_password)){
+                if(! confirm_password.equals(new_password)){
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
@@ -68,7 +66,24 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
                             .setText(android.R.id.message, "确认密码错误")
                             .show();
+                    break;
+                }
+
+
+                String param = "username=" + AppApplication.getApp().getUsername() + "&password=" + old_password;
+                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);
+                System.out.println(msg);
+
+                if(checkPassword(msg) != 1){
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "原密码错误")
+                            .show();
                 }else{
+                    OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=" + AppApplication.getApp().getUsername() + "&password=" + new_password);
                     AppApplication.getApp().setPassword(new_password);
                     Intent intent = new Intent();
                     new XToast<>(this)

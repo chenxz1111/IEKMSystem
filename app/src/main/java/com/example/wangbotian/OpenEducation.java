@@ -59,7 +59,7 @@ public class OpenEducation {
         }
         return result;
     }
-    private static String sendPost(String url, String param) {
+    public static String sendPost(String url, String param) {
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";

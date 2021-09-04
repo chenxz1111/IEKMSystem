@@ -222,22 +222,23 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/quit_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="488dp"
-        android:gravity="center"
+        android:background="#f7f7f7"
         android:clickable="true"
         android:focusable="true"
-        android:background="#f7f7f7"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="退出登录"
             android:padding="10dp"
+            android:text="退出登录"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="#ff0000"/>
+            android:textColor="#ff0000" />
 
     </LinearLayout>
 

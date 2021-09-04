@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.hjq.xtoast.XToast;
 
 import org.w3c.dom.Text;
 
@@ -30,7 +31,10 @@ public class MottoActivity extends AppCompatActivity implements View.OnClickList
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch(menuItem.getItemId()){
                     case R.id.done_on_topbar:
-                        AppApplication.getApp().setMotto(user_motto.getText().toString());
+                        String new_motto = user_motto.getText().toString();
+                        OpenEducation.sendPost("http://192.168.3.192:8080/ChangeMotto", "username=" + AppApplication.getApp().getUsername() + "&motto=" + new_motto);
+                        success_hint();
+                        AppApplication.getApp().setMotto(new_motto);
                         Intent intent = new Intent(MottoActivity.this, SettingActivity.class);
                         startActivity(intent);
                 }
@@ -45,5 +49,15 @@ public class MottoActivity extends AppCompatActivity implements View.OnClickList
         Intent intent;
         intent = new Intent(MottoActivity.this, SettingActivity.class);
         startActivity(intent);
+    }
+
+    public void success_hint() {
+        new XToast<>(this)
+                .setDuration(1000)
+                .setView(R.layout.toast_hint)
+                .setAnimStyle(android.R.style.Animation_Activity)
+                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
+                .setText(android.R.id.message, "更改个性签名成功")
+                .show();
     }
 }

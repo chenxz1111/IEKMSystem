@@ -28,11 +28,35 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
         checkText = findViewById(R.id.check_text);
     }
 
+    public Boolean checkUser(String msg){
+        if(msg.equals("1")) return false;
+        return true;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.reg_button:
-                if (!usernameText.getText().toString().equals("") && passwordText.getText().toString().equals(checkText.getText().toString())) {
+                String username = usernameText.getText().toString();
+                String password = passwordText.getText().toString();
+                String check = checkText.getText().toString();
+                if(! password.equals(check)){
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "密码不一致")
+                            .show();
+                    break;
+                }
+                String param = "username=" + username;
+                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", param);
+                System.out.println(msg);
+                Boolean status = checkUser(msg);
+                if (status) {
+                    param = "username=" + username + "&password=" + password;
+                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", param));
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)
@@ -44,22 +68,13 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
                     intent.setClass(RegActivity.this, LogActivity.class);
                     this.startActivity(intent);
                 }
-                else if (usernameText.getText().toString().equals("")){
+                else{
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
                             .setText(android.R.id.message, "用户名不合法")
-                            .show();
-                }
-                else {
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "密码不一致")
                             .show();
                 }
                 break;
