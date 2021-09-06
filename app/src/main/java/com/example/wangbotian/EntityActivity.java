@@ -123,7 +123,6 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
         if(listHistory == null) {
             listHistory = new HashSet<String>();
         }
-
         if(listHistory.contains(name + ";" + category)) {
             Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
             for(String d: detailHistory) {
@@ -157,10 +156,30 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
             }
             listHistory.add(name + ";" + category);
             detailHistory.add(name + ";" + category + saveInPhone.toString());
-            editor.putStringSet("entity_list_history", listHistory);
+            //editor.putStringSet("entity_list_history", listHistory);
             editor.putStringSet("entity_detail_history", detailHistory);
             Log.i("detail", saveInPhone.toString());
             editor.commit();
+        }
+
+        String userName = AppApplication.getApp().getUsername();
+        String param = "username=" + userName;
+        String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CatchHistory", param);
+        JSONArray userHistory = JSONArray.parseArray(msg);
+        Log.i("history", msg);
+        Boolean hasExist = false;
+        for(int i = 0; i < userHistory.size(); i++) {
+            JSONObject dataJson = userHistory.getJSONObject(i);
+            String label = dataJson.getString("label");
+            String cate = dataJson.getString("category");
+            if(label.equals(name) && cate.equals(category)) {
+                hasExist = true;
+                break;
+            }
+        }
+        if(!hasExist) {
+            param = "username=" + userName + "&label=" + name + "&category=" + category;
+            msg = OpenEducation.sendPost("http://192.168.3.192:8080/AddHistory", param);
         }
     }
 

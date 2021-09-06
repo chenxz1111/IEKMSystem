@@ -86,7 +86,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
-                            .setText(android.R.id.message, "登录成功")
+                            .setText(android.R.id.message, "登陆成功")
                             .show();
                     intent.setClass(LogActivity.this, MainActivity.class);
                     this.startActivity(intent);
