@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.*;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.openapi.IWBAPI;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 
-public class EntityActivity extends AppCompatActivity implements View.OnClickListener{
+public class EntityActivity extends AppCompatActivity{
 
     final String[] courses = new String[] {"chinese", "english", "math", "physics", "chemistry", "biology", "geo", "politics"};
     JSONObject entityData;
@@ -37,19 +39,46 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
     private TabLayout tabLayout;
     private ViewPager viewPager;
     TextView entityName;
-    ImageView entityBack, entityShare;
+    //ImageView entityBack, entityShare;
     private final String PREFS_NAME = "MyPrefsFile";
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entity);
+        toolbar = findViewById(R.id.AppBar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent = new Intent(EntityActivity.this, MainActivity.class);
+                intent.putExtra("id",1);
+                startActivity(intent);
+            }
+        });
+        toolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent intent = new Intent();
+                switch (menuItem.getItemId()) {
+                    case R.id.favourite_on_topbar:
 
+                        break;
+                    case R.id.share_on_topbar:
+                        intent = new Intent(EntityActivity.this, ShareActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
         entityName = findViewById(R.id.entity_name);
-        entityBack = findViewById(R.id.entity_detail_back);
-        entityBack.setOnClickListener(this);
-        entityShare = findViewById(R.id.entity_share);
-        entityShare.setOnClickListener(this);
+//        entityBack = findViewById(R.id.entity_detail_back);
+//        entityBack.setOnClickListener(this);
+//        entityShare = findViewById(R.id.entity_share);
+//        entityShare.setOnClickListener(this);
+        toolbar = findViewById(R.id.topAppBar);
         tabLayout = findViewById(R.id.entity_tab);
         viewPager = findViewById(R.id.entity_viewpager);
         viewPagerAdapter = new EntityViewAdapter(getSupportFragmentManager(), EntityViewAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -185,21 +214,21 @@ public class EntityActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.entity_detail_back:
-                intent = new Intent(EntityActivity.this, MainActivity.class);
-                intent.putExtra("id",1);
-                startActivity(intent);
-                break;
-            case R.id.entity_share:
-                intent = new Intent(EntityActivity.this, ShareActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View view) {
+//        Intent intent = new Intent();
+//        switch (view.getId()) {
+//            case R.id.entity_detail_back:
+//                intent = new Intent(EntityActivity.this, MainActivity.class);
+//                intent.putExtra("id",1);
+//                startActivity(intent);
+//                break;
+//            case R.id.entity_share:
+//                intent = new Intent(EntityActivity.this, ShareActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
