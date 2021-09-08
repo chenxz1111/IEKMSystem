@@ -5,7 +5,9 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.284375" />
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.22239583333333332" />
-        <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_entity.xml" value="0.4" />
+        <entry key="..\:/Android/IEKMSystem/app/src/main/res/drawable/favor.xml" value="0.26979166666666665" />
+        <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_entity.xml" value="0.264" />
+        <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_favorite.xml" value="0.264" />
         <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_history.xml" value="0.264" />
         <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/activity_search.xml" value="0.4" />
         <entry key="..\:/Android/IEKMSystem/app/src/main/res/layout/fragment_account.xml" value="0.1484375" />
