@@ -60,7 +60,8 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     public int checkPassword(String msg){
         if(msg.equals("2")) return 2; // 用户不存在
         else if(msg.equals("0")) return 0; // 密码不正确
-        return 1; // 表示成功
+        else if(msg.equals("1")) return 1;
+        return -1;// 表示成功
     }
 
     @Override
@@ -74,7 +75,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 try {
                     msg = OpenEducation.sendPost("http://47.93.219.219:8080/CheckPassword", param);
 
-                    System.out.println(msg);
+                    Log.i("msg", msg);
                     int res = checkPassword(msg);
                     if (res == 1) {
                         //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", "username=testUser"));
@@ -110,6 +111,14 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                                 .setAnimStyle(android.R.style.Animation_Activity)
                                 .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
                                 .setText(android.R.id.message, "用户名不存在")
+                                .show();
+                    } else{
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "无网络")
                                 .show();
                     }
                 }catch (Exception e) {
