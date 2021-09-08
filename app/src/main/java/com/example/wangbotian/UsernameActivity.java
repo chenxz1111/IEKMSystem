@@ -35,7 +35,7 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
                 switch(menuItem.getItemId()){
                     case R.id.done_on_topbar:
                         new_name = userText.getText().toString();
-                        String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", "username=" + new_name);
+                        String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CheckUser", "username=" + new_name);
                         handleMsg(msg);
                 }
                 return true;

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -52,48 +53,40 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 String param = "username=" + username;
                 String msg = "1";
-                try {msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", param);} catch (Exception e) {
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "网络不给力")
-                            .show();
-                    break;
-                }
-                System.out.println(msg);
-                Boolean status = checkUser(msg);
-                if (status) {
-                    param = "username=" + username + "&password=" + password;
-                    try{System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", param));} catch (Exception e) {
+                try {
+                    msg = OpenEducation.sendPost("http://47.93.219.219:8080/CheckUser", param);
+                    System.out.println(msg);
+                    Boolean status = checkUser(msg);
+                    if (status) {
+                        param = "username=" + username + "&password=" + password;
+                        System.out.println(OpenEducation.sendPost("http://47.93.219.219:8080/AddUser", param));
+                        Intent intent = new Intent();
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
+                                .setText(android.R.id.message, "注册成功")
+                                .show();
+                        intent.setClass(RegActivity.this, LogActivity.class);
+                        this.startActivity(intent);
+                    } else {
                         new XToast<>(this)
                                 .setDuration(1000)
                                 .setView(R.layout.toast_hint)
                                 .setAnimStyle(android.R.style.Animation_Activity)
                                 .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                                .setText(android.R.id.message, "网络不给力")
+                                .setText(android.R.id.message, "用户名不合法")
                                 .show();
-                        break;
                     }
-                    Intent intent = new Intent();
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
-                            .setText(android.R.id.message, "注册成功")
-                            .show();
-                    intent.setClass(RegActivity.this, LogActivity.class);
-                    this.startActivity(intent);
-                }
-                else{
+                }catch (Exception e) {
+                    Log.d("debug", e.toString());
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "用户名不合法")
+                            .setText(android.R.id.message, "无网络")
                             .show();
                 }
                 break;

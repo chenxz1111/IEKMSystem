@@ -32,7 +32,7 @@ public class MottoActivity extends AppCompatActivity implements View.OnClickList
                 switch(menuItem.getItemId()){
                     case R.id.done_on_topbar:
                         String new_motto = user_motto.getText().toString();
-                        OpenEducation.sendPost("http://192.168.3.192:8080/ChangeMotto", "username=" + AppApplication.getApp().getUsername() + "&motto=" + new_motto);
+                        OpenEducation.sendPost("http://47.93.219.219:8080/ChangeMotto", "username=" + AppApplication.getApp().getUsername() + "&motto=" + new_motto);
                         success_hint();
                         AppApplication.getApp().setMotto(new_motto);
                         Intent intent = new Intent(MottoActivity.this, SettingActivity.class);
