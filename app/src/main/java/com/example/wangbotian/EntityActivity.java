@@ -154,9 +154,9 @@ public class EntityActivity extends AppCompatActivity{
                 }
             }
             if(hasFavor) {
-                button.setImageDrawable(getDrawable(R.drawable.baseline_favorite_white_24));
+                button.setImageDrawable(getDrawable(R.drawable.outline_star_white_18));
             } else {
-                button.setImageDrawable(getDrawable(R.drawable.outline_favorite_border_white_24));
+                button.setImageDrawable(getDrawable(R.drawable.outline_star_border_white_18));
             }
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -166,10 +166,10 @@ public class EntityActivity extends AppCompatActivity{
                     String msg = OpenEducation.sendPost("http://47.93.219.219:8080/ChangeFavor", param);
                     Log.i("msg", msg);
                     if(msg.equals("1")) {
-                        button.setImageDrawable(getDrawable(R.drawable.baseline_favorite_white_24));
+                        button.setImageDrawable(getDrawable(R.drawable.outline_star_white_18));
 
                     } else {
-                        button.setImageDrawable(getDrawable(R.drawable.outline_favorite_border_white_24));
+                        button.setImageDrawable(getDrawable(R.drawable.outline_star_border_white_18));
                     }
                 }
             });

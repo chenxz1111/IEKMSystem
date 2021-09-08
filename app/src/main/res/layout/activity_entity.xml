@@ -35,7 +35,8 @@
         android:backgroundTint="@color/white"
         android:outlineAmbientShadowColor="@color/white"
         app:iconTint="@color/sky_blue"
-        app:icon="@drawable/outline_favorite_border_white_24" />
+        app:rippleColor="@color/sky_blue"
+        app:icon="@drawable/outline_edit_black_18" />
 
     <TextView
         android:id="@+id/entity_name"
