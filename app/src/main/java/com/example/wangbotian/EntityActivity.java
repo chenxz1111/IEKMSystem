@@ -69,6 +69,7 @@ public class EntityActivity extends AppCompatActivity{
                 switch (menuItem.getItemId()) {
                     case R.id.share_on_topbar:
                         intent = new Intent(EntityActivity.this, ShareActivity.class);
+                        intent.putExtra("share_text", entityData.toString());
                         startActivity(intent);
                         break;
                 }
@@ -167,6 +168,7 @@ public class EntityActivity extends AppCompatActivity{
                     Log.i("msg", msg);
                     if(msg.equals("1")) {
                         button.setImageDrawable(getDrawable(R.drawable.baseline_favorite_white_24));
+
                     } else {
                         button.setImageDrawable(getDrawable(R.drawable.outline_favorite_border_white_24));
                     }

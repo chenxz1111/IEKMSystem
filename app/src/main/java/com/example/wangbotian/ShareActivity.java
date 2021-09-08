@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -36,15 +37,8 @@ import java.util.UUID;
 
 public class ShareActivity extends Activity implements View.OnClickListener, WbShareCallback {
 
-    private CheckBox mShareText;
-
-    private CheckBox mShareImage;
-
-    private CheckBox mShareUrl;
-
-    private CheckBox mShareMultiImage;
-
-    private CheckBox mShareVideo;
+    String shareText;
+    EditText editText;
 
     private RadioButton mShareClientOnly;
 
@@ -65,11 +59,6 @@ public class ShareActivity extends Activity implements View.OnClickListener, WbS
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
-        mShareText = findViewById(R.id.share_text_cb);
-        mShareImage = findViewById(R.id.share_image_cb);
-        mShareUrl = findViewById(R.id.share_url_cb);
-        mShareMultiImage = findViewById(R.id.share_multi_image_cb);
-        mShareVideo = findViewById(R.id.share_video_cb);
         mShareClientOnly = findViewById(R.id.share_client_only);
         mShareClientH5 = findViewById(R.id.share_client_h5);
         mCommitBtn = findViewById(R.id.commit);
@@ -78,6 +67,10 @@ public class ShareActivity extends Activity implements View.OnClickListener, WbS
         mWBAPI = WBAPIFactory.createWBAPI(this);
         mWBAPI.registerApp(this, authInfo);
         mWBAPI.setLoggerEnable(true);
+        Intent intent = getIntent();
+        shareText = intent.getStringExtra("share_text");
+        editText = findViewById(R.id.share_edit);
+        editText.setText(shareText);
     }
 
     @Override
@@ -100,93 +93,10 @@ public class ShareActivity extends Activity implements View.OnClickListener, WbS
         String text = "我正在使用微博客户端发博器分享文字。";
 
         // 分享文字
-        if (mShareText.isChecked()) {
-            text = "这里设置您要分享的内容！";
-            textObject.text = text;
-            message.textObject = textObject;
-        }
+        text = shareText;
+        textObject.text = editText.getText().toString();
+        message.textObject = textObject;
 
-        // 分享图片
-        if (mShareImage.isChecked()) {
-//            ImageObject imageObject = new ImageObject();
-//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_image);
-//            imageObject.setImageData(bitmap);
-//            message.imageObject = imageObject;
-        }
-
-        // 分享网页
-//        if (mShareUrl.isChecked()) {
-//            WebpageObject webObject = new WebpageObject();
-//            webObject.identify = UUID.randomUUID().toString();
-//            webObject.title = "标题";
-//            webObject.description = "描述";
-//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo);
-//            ByteArrayOutputStream os = null;
-//            try {
-//                os = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 85, os);
-//                webObject.thumbData = os.toByteArray();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                try {
-//                    if (os != null) {
-//                        os.close();
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            webObject.actionUrl = "https://weibo.com";
-//            webObject.defaultText = "分享网页";
-//            message.mediaObject = webObject;
-//        }
-
-        if (mShareMultiImage.isChecked()) {
-//            // 分享多图
-//            MultiImageObject multiImageObject = new MultiImageObject();
-//            ArrayList<Uri> list = new ArrayList<>();
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                String authority = this.getPackageName() + ".fileprovider";
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/aaa.png")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/ccc.JPG")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/ddd.jpg")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/fff.jpg")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/ggg.JPG")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/eee.jpg")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/hhhh.jpg")));
-//                list.add(FileProvider.getUriForFile(this, authority, new File(getExternalFilesDir(null) + "/kkk.JPG")));
-//            } else {
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/aaa.png")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/ccc.JPG")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/ddd.jpg")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/fff.jpg")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/ggg.JPG")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/eee.jpg")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/hhhh.jpg")));
-//                list.add(Uri.fromFile(new File(getExternalFilesDir(null) + "/kkk.JPG")));
-//            }
-//            multiImageObject.imageList = list;
-//            message.multiImageObject = multiImageObject;
-        }
-
-        if (mShareVideo.isChecked()) {
-            // 分享视频
-//            VideoSourceObject videoObject = new VideoSourceObject();
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                String filePath = getExternalFilesDir(null) + "/eeee.mp4";
-//                File videoFile = new File(filePath);
-//                if (!videoFile.getParentFile().exists()) {
-//                    videoFile.getParentFile().mkdir();
-//                }
-//                videoObject.videoPath = FileProvider.getUriForFile(this, this.getPackageName() + ".fileprovider", videoFile);
-//            } else {
-//                videoObject.videoPath = Uri.fromFile(new File(getExternalFilesDir(null) + "/eeee.mp4"));
-//            }
-//
-//            message.videoSourceObject = videoObject;
-        }
-//
         mWBAPI.shareMessage(message, mShareClientOnly.isChecked());
     }
 
