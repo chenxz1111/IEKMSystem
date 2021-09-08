@@ -61,7 +61,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         if(msg.equals("2")) return 2; // 用户不存在
         else if(msg.equals("0")) return 0; // 密码不正确
         else if(msg.equals("1")) return 1;
-        return 1;// 表示成功
+        return -1;// 表示成功
     }
 
     @Override
