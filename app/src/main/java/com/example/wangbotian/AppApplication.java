@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.wangbotian.db.SQLHelper;
 
 public class AppApplication extends Application {
@@ -14,6 +15,7 @@ public class AppApplication extends Application {
     private String motto = "你的格言";
     private String password = "123456";
     private String avatarId = "1";
+    public JSONArray chinese_list, math_list, english_list, physics_list, chemistry_list, biology_list, history_list, geo_list, politics_list;
 
     public String getUsername(){
         return username;

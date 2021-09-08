@@ -57,26 +57,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         button_more_columns = (ImageView) view.findViewById(R.id.button_more_columns);
         button_more_columns.setOnClickListener(this);
         try {
-            main_result = JSON.parseObject(OpenEducation.sendPost("http://47.93.219.219:8080/getAllEntity", ""));
-            chinese = main_result.getJSONArray("chinese");
-            math = main_result.getJSONArray("math");
-            english = main_result.getJSONArray("english");
-            physics = main_result.getJSONArray("physics");
-            chemistry = main_result.getJSONArray("chemistry");
-            biology = main_result.getJSONArray("biology");
-            history = main_result.getJSONArray("history");
-            geo = main_result.getJSONArray("geo");
-            politics = main_result.getJSONArray("politics");
-            Collections.shuffle(chinese);
-            Collections.shuffle(math);
-            Collections.shuffle(english);
-            Collections.shuffle(physics);
-            Collections.shuffle(chemistry);
-            Collections.shuffle(biology);
-            Collections.shuffle(history);
-            Collections.shuffle(geo);
-            Collections.shuffle(politics);
-            System.out.println(history);
+//            main_result = JSON.parseObject(OpenEducation.sendPost("http://47.93.219.219:8080/getAllEntity", ""));
+//            chinese = main_result.getJSONArray("chinese");
+//            math = main_result.getJSONArray("math");
+//            english = main_result.getJSONArray("english");
+//            physics = main_result.getJSONArray("physics");
+//            chemistry = main_result.getJSONArray("chemistry");
+//            biology = main_result.getJSONArray("biology");
+//            history = main_result.getJSONArray("history");
+//            geo = main_result.getJSONArray("geo");
+//            politics = main_result.getJSONArray("politics");
+//            Collections.shuffle(chinese);
+//            Collections.shuffle(math);
+//            Collections.shuffle(english);
+//            Collections.shuffle(physics);
+//            Collections.shuffle(chemistry);
+//            Collections.shuffle(biology);
+//            Collections.shuffle(history);
+//            Collections.shuffle(geo);
+//            Collections.shuffle(politics);
+//            System.out.println(history);
             for (int i = 0; i < 9; i++) {
                 entityList.add(new ArrayList<EntityItem>());
             }
@@ -89,23 +89,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 //                entityList.get(0).add(new EntityItem(tmpList[i], categoryList[i]));
 //            }
             for(int i = 0; i < 20; i++){
-                JSONObject obj = chinese.getJSONObject(i);
+                JSONObject obj = AppApplication.getApp().chinese_list.getJSONObject(i);
                 entityList.get(0).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = math.getJSONObject(i);
+                obj = AppApplication.getApp().math_list.getJSONObject(i);
                 entityList.get(1).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = english.getJSONObject(i);
+                obj = AppApplication.getApp().english_list.getJSONObject(i);
                 entityList.get(2).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = physics.getJSONObject(i);
+                obj = AppApplication.getApp().physics_list.getJSONObject(i);
                 entityList.get(3).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = chemistry.getJSONObject(i);
+                obj = AppApplication.getApp().chemistry_list.getJSONObject(i);
                 entityList.get(4).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = biology.getJSONObject(i);
+                obj = AppApplication.getApp().biology_list.getJSONObject(i);
                 entityList.get(5).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = history.getJSONObject(i);
+                obj = AppApplication.getApp().history_list.getJSONObject(i);
                 entityList.get(6).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = geo.getJSONObject(i);
+                obj = AppApplication.getApp().geo_list.getJSONObject(i);
                 entityList.get(7).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
-                obj = politics.getJSONObject(i);
+                obj = AppApplication.getApp().politics_list.getJSONObject(i);
                 entityList.get(8).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
             }
         } catch (Exception e){
