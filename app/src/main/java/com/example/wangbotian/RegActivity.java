@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.hjq.xtoast.XToast;
+import java.util.Random;
 
 public class RegActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,9 +58,14 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
                     msg = OpenEducation.sendPost("http://47.93.219.219:8080/CheckUser", param);
                     System.out.println(msg);
                     Boolean status = checkUser(msg);
-                    if (status) {
+                    if (status && !username.equals("")) {
                         param = "username=" + username + "&password=" + password;
                         System.out.println(OpenEducation.sendPost("http://47.93.219.219:8080/AddUser", param));
+                        int avatarId = randInt(1, 5);
+                        param = "username=" + username + "&avatar=" + avatarId;
+                        System.out.println("avatar = " + param);
+                        System.out.println(OpenEducation.sendPost("http://47.93.219.219:8080/ChangeAvatar", param));
+                        OpenEducation.sendPost("http://47.93.219.219:8080/ChangeMotto", "username=" + username + "&motto=请设置您的格言");
                         Intent intent = new Intent();
                         new XToast<>(this)
                                 .setDuration(1000)
@@ -92,5 +98,12 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
                 break;
         }
 
+    }
+
+    // 生成1-5的随机整数
+    public static int randInt(int min, int max){
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
     }
 }
