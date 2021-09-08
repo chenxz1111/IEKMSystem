@@ -18,7 +18,7 @@ import com.google.android.material.card.MaterialCardView;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener{
 
-    MaterialCardView card_question, card_more, card_recommend;
+    MaterialCardView card_question, card_more, card_recommend, card_radar;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -35,6 +35,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
         card_more.setOnClickListener(this);
         card_recommend = v.findViewById(R.id.card_4);
         card_recommend.setOnClickListener(this);
+        card_radar = v.findViewById(R.id.card_2);
+        card_radar.setOnClickListener(this);
+
         return v;
     }
 
@@ -44,6 +47,10 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()) {
             case R.id.card_question:
                 intent.setClass(this.getActivity(), QuestionActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.card_2:
+                intent.setClass(this.getActivity(), RadarActivity.class);
                 startActivity(intent);
                 break;
             case R.id.card_4:

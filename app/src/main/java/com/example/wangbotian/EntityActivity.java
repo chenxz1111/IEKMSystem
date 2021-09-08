@@ -5,9 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.*;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.hjq.xtoast.XToast;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.openapi.IWBAPI;
 import com.sina.weibo.sdk.openapi.WBAPIFactory;
@@ -20,7 +18,6 @@ import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,16 +39,14 @@ public class EntityActivity extends AppCompatActivity{
     private TabLayout tabLayout;
     private ViewPager viewPager;
     TextView entityName;
+    //ImageView entityBack, entityShare;
     private final String PREFS_NAME = "MyPrefsFile";
     private MaterialToolbar toolbar;
-    FloatingActionButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entity);
-        String name = getIntent().getStringExtra("label");
-        String category = getIntent().getStringExtra("category");
         toolbar = findViewById(R.id.AppBar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +62,11 @@ public class EntityActivity extends AppCompatActivity{
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent = new Intent();
                 switch (menuItem.getItemId()) {
+//                    case R.id.favourite_on_topbar:
+//
+//                        break;
                     case R.id.share_on_topbar:
                         intent = new Intent(EntityActivity.this, ShareActivity.class);
-                        intent.putExtra("share_text", entityData.toString());
                         startActivity(intent);
                         break;
                 }
@@ -77,6 +74,10 @@ public class EntityActivity extends AppCompatActivity{
             }
         });
         entityName = findViewById(R.id.entity_name);
+//        entityBack = findViewById(R.id.entity_detail_back);
+//        entityBack.setOnClickListener(this);
+//        entityShare = findViewById(R.id.entity_share);
+//        entityShare.setOnClickListener(this);
         toolbar = findViewById(R.id.topAppBar);
         tabLayout = findViewById(R.id.entity_tab);
         viewPager = findViewById(R.id.entity_viewpager);
@@ -136,131 +137,98 @@ public class EntityActivity extends AppCompatActivity{
 
             }
         });
-        button = findViewById(R.id.floating_action_button);
+
+        String name = getIntent().getStringExtra("label");
+        String category = getIntent().getStringExtra("category");
+        String course = "chinese";
+        for (String cs : courses){
+            if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
+                course = cs;
+                break;
+            }
+        }
+        SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Set<String> listHistory = history.getStringSet("entity_list_history", null);
+        if(listHistory == null) {
+            listHistory = new HashSet<String>();
+        }
+        if(listHistory.contains(name + ";" + category)) {
+            Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+            for(String d: detailHistory) {
+                if(d.indexOf(name + ";" + category) == 0) {
+                    String s = d.substring(name.length() + category.length() + 1);
+                    entityData = JSONObject.parseObject(s);
+                    Log.i("detailInfo", entityData.toString());
+                    break;
+                }
+            }
+
+            entityRelation = entityData.getJSONArray("content");
+            entityProperty = entityData.getJSONArray("property");
+            entityName.setText(entityData.getString("label"));
+            entityExam = entityData.getJSONObject("exam");
+        } else {
+            JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
+            entityData = result.getJSONObject("data");
+            entityRelation = entityData.getJSONArray("content");
+            entityProperty = entityData.getJSONArray("property");
+            entityName.setText(entityData.getString("label"));
+            entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
+
+            JSONObject saveInPhone = entityData;
+            saveInPhone.put("exam", entityExam);
+            SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = entityHistory.edit();
+            Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+            if(detailHistory == null) {
+                detailHistory = new HashSet<>();
+            }
+            listHistory.add(name + ";" + category);
+            detailHistory.add(name + ";" + category + saveInPhone.toString());
+            //editor.putStringSet("entity_list_history", listHistory);
+            editor.putStringSet("entity_detail_history", detailHistory);
+            Log.i("detail", saveInPhone.toString());
+            editor.commit();
+        }
 
         String userName = AppApplication.getApp().getUsername();
         String param = "username=" + userName;
-        try {
-            String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchFavor", param);
-            JSONArray userFavor = JSONArray.parseArray(msg);
-            Log.i("history", msg);
-            Boolean hasFavor = false;
-            for(int i = 0; i < userFavor.size(); i++) {
-                JSONObject dataJson = userFavor.getJSONObject(i);
-                String label = dataJson.getString("label");
-                String cate = dataJson.getString("category");
-                if(label.equals(name) && cate.equals(category)) {
-                    hasFavor = true;
-                    break;
-                }
+        String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchHistory", param);
+        JSONArray userHistory = JSONArray.parseArray(msg);
+        Log.i("history", msg);
+        Boolean hasExist = false;
+        for(int i = 0; i < userHistory.size(); i++) {
+            JSONObject dataJson = userHistory.getJSONObject(i);
+            String label = dataJson.getString("label");
+            String cate = dataJson.getString("category");
+            if(label.equals(name) && cate.equals(category)) {
+                hasExist = true;
+                break;
             }
-            if(hasFavor) {
-                button.setImageDrawable(getDrawable(R.drawable.baseline_favorite_white_24));
-            } else {
-                button.setImageDrawable(getDrawable(R.drawable.outline_favorite_border_white_24));
-            }
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String userName = AppApplication.getApp().getUsername();
-                    String param = "username=" + userName + "&label=" + name + "&category=" + category;
-                    String msg = OpenEducation.sendPost("http://47.93.219.219:8080/ChangeFavor", param);
-                    Log.i("msg", msg);
-                    if(msg.equals("1")) {
-                        button.setImageDrawable(getDrawable(R.drawable.baseline_favorite_white_24));
-
-                    } else {
-                        button.setImageDrawable(getDrawable(R.drawable.outline_favorite_border_white_24));
-                    }
-                }
-            });
-
-
-
-            String course = "chinese";
-            for (String cs : courses){
-                if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
-                    course = cs;
-                    break;
-                }
-            }
-            SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            Set<String> listHistory = history.getStringSet("entity_list_history", null);
-            if(listHistory == null) {
-                listHistory = new HashSet<String>();
-            }
-            if(listHistory.contains(name + ";" + category)) {
-                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
-                for(String d: detailHistory) {
-                    if(d.indexOf(name + ";" + category) == 0) {
-                        String s = d.substring(name.length() + category.length() + 1);
-                        entityData = JSONObject.parseObject(s);
-                        Log.i("detailInfo", entityData.toString());
-                        break;
-                    }
-                }
-
-                entityRelation = entityData.getJSONArray("content");
-                entityProperty = entityData.getJSONArray("property");
-                entityName.setText(entityData.getString("label"));
-                entityExam = entityData.getJSONObject("exam");
-            } else {
-                JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
-                entityData = result.getJSONObject("data");
-                entityRelation = entityData.getJSONArray("content");
-                entityProperty = entityData.getJSONArray("property");
-                entityName.setText(entityData.getString("label"));
-                entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
-                Log.i("history", "");
-                JSONObject saveInPhone = entityData;
-                saveInPhone.put("exam", entityExam);
-                SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                SharedPreferences.Editor editor = entityHistory.edit();
-                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
-                if(detailHistory == null) {
-                    detailHistory = new HashSet<>();
-                }
-                listHistory.add(name + ";" + category);
-                detailHistory.add(name + ";" + category + saveInPhone.toString());
-                editor.putStringSet("entity_list_history", listHistory);
-                editor.putStringSet("entity_detail_history", detailHistory);
-                Log.i("detail", saveInPhone.toString());
-                editor.commit();
-            }
-
-            userName = AppApplication.getApp().getUsername();
-            param = "username=" + userName;
-            msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchHistory", param);
-            JSONArray userHistory = JSONArray.parseArray(msg);
-            Log.i("history", msg);
-            Boolean hasExist = false;
-            for(int i = 0; i < userHistory.size(); i++) {
-                JSONObject dataJson = userHistory.getJSONObject(i);
-                String label = dataJson.getString("label");
-                String cate = dataJson.getString("category");
-                if(label.equals(name) && cate.equals(category)) {
-                    hasExist = true;
-                    break;
-                }
-            }
-            if(!hasExist) {
-                param = "username=" + userName + "&label=" + name + "&category=" + category;
-                msg = OpenEducation.sendPost("http://47.93.219.219:8080/AddHistory", param);
-            }
-        }catch (Exception e) {
-            Log.d("debug", e.toString());
-            new XToast<>(this)
-                    .setDuration(1000)
-                    .setView(R.layout.toast_hint)
-                    .setAnimStyle(android.R.style.Animation_Activity)
-                    .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                    .setText(android.R.id.message, "无网络")
-                    .show();
         }
-
+        if(!hasExist) {
+            param = "username=" + userName + "&label=" + name + "&category=" + category;
+            msg = OpenEducation.sendPost("http://47.93.219.219:8080/AddHistory", param);
+        }
     }
 
 
+
+//    @Override
+//    public void onClick(View view) {
+//        Intent intent = new Intent();
+//        switch (view.getId()) {
+//            case R.id.entity_detail_back:
+//                intent = new Intent(EntityActivity.this, MainActivity.class);
+//                intent.putExtra("id",1);
+//                startActivity(intent);
+//                break;
+//            case R.id.entity_share:
+//                intent = new Intent(EntityActivity.this, ShareActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

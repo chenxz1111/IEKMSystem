@@ -22,6 +22,9 @@
         android:theme="@style/Theme.IEKMSystem"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RadarActivity"
+            android:exported="true" />
+        <activity
             android:name=".RecommendActivity"
             android:exported="true" />
         <activity

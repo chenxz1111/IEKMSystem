@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.hjq.xtoast.XToast;
 import com.wenchao.cardstack.CardStack;
 
 public class RecommendActivity extends AppCompatActivity {
@@ -31,18 +33,29 @@ public class RecommendActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        cardStack = findViewById(R.id.recommend_card_stake);
-        cardStack.setContentResource(R.layout.exam_card);
-        cardStack.setStackMargin(20);
-        JSONObject entityExam = JSON.parseObject(OpenEducation.entityExam("李白"));
-        JSONArray dataArray = getRecommend();
-        cardAdapter = new CardsDataAdapter(this.getApplicationContext(),0, 2);
-        for (int i = 0; i < dataArray.size(); i++){
-            if (dataArray.getString(i).indexOf("A.") > 0)
-                cardAdapter.add(dataArray.getString(i));
+        try {
+            cardStack = findViewById(R.id.recommend_card_stake);
+            cardStack.setContentResource(R.layout.exam_card);
+            cardStack.setStackMargin(20);
+            JSONObject entityExam = JSON.parseObject(OpenEducation.entityExam("李白"));
+            JSONArray dataArray = getRecommend();
+            cardAdapter = new CardsDataAdapter(this.getApplicationContext(), 0, 2);
+            for (int i = 0; i < dataArray.size(); i++) {
+                if (dataArray.getString(i).indexOf("A.") > 0)
+                    cardAdapter.add(dataArray.getString(i));
+            }
+            cardStack.setAdapter(cardAdapter);
         }
-        cardStack.setAdapter(cardAdapter);
+        catch (Exception e) {
+            Log.d("debug", e.toString());
+            new XToast<>(this)
+                    .setDuration(1000)
+                    .setView(R.layout.toast_hint)
+                    .setAnimStyle(android.R.style.Animation_Activity)
+                    .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                    .setText(android.R.id.message, "无网络或接口失效")
+                    .show();
+        }
     }
 
     @Override
