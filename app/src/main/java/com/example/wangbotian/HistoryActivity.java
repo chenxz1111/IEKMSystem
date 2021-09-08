@@ -41,10 +41,11 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             Set<String> listHistory = history.getStringSet("entity_list_history", null);
             if(listHistory == null) {
                 listHistory = new HashSet<String>();
+                Log.i("history", "!!!!!!!!!!!!!!");
             }
             String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchHistory", param);
             JSONArray userHistory = JSONArray.parseArray(msg);
-            Log.i("history", msg);
+
             if(userHistory != null) {
                 items = new EntityItem[userHistory.size()];
                 for (int i = 0; i < userHistory.size(); i++) {
