@@ -16,10 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.content.Intent;
 
+import com.alibaba.fastjson.JSON;
 import com.example.wangbotian.dao.ChannelManage;
 import com.example.wangbotian.edit.ChannelActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.example.wangbotian.dao.ChannelItem;
+
+import com.alibaba.fastjson.*;
 
 import java.util.*;
 
@@ -30,7 +33,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private List<TabFragment> fragmentList;
     private LinearLayout ll_more_columns;
     private ImageView button_more_columns;
-
+    private JSONObject main_result;
+    private JSONArray chinese, math, english, physics, chemistry, biology, history, geo, politics;
 
     private TabLayout tabLayout;
     private List<String> mTitles;
@@ -52,16 +56,60 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         tabLayout=view.findViewById(R.id.tab_layout);
         button_more_columns = (ImageView) view.findViewById(R.id.button_more_columns);
         button_more_columns.setOnClickListener(this);
-        for(int i = 0; i < 9; i++){
-            entityList.add(new ArrayList<EntityItem>());
-        }
-        for(int i = 0; i < 3; i++){
-            entityList.get(0).add(new EntityItem(labelList[i], categoryList[i]));
-            entityList.get(2).add(new EntityItem(labelList[i+3], categoryList[i+3]));
-            entityList.get(5).add(new EntityItem(labelList[i+6], categoryList[i+6]));
-        }
-        for(int i = 0; i < tmpCate.length; i++) {
-            entityList.get(0).add(new EntityItem(tmpList[i], categoryList[i]));
+        try {
+            main_result = JSON.parseObject(OpenEducation.sendPost("http://47.93.219.219:8080/getAllEntity", ""));
+            chinese = main_result.getJSONArray("chinese");
+            math = main_result.getJSONArray("math");
+            english = main_result.getJSONArray("english");
+            physics = main_result.getJSONArray("physics");
+            chemistry = main_result.getJSONArray("chemistry");
+            biology = main_result.getJSONArray("biology");
+            history = main_result.getJSONArray("history");
+            geo = main_result.getJSONArray("geo");
+            politics = main_result.getJSONArray("politics");
+            Collections.shuffle(chinese);
+            Collections.shuffle(math);
+            Collections.shuffle(english);
+            Collections.shuffle(physics);
+            Collections.shuffle(chemistry);
+            Collections.shuffle(biology);
+            Collections.shuffle(history);
+            Collections.shuffle(geo);
+            Collections.shuffle(politics);
+            System.out.println(history);
+            for (int i = 0; i < 9; i++) {
+                entityList.add(new ArrayList<EntityItem>());
+            }
+//            for (int i = 0; i < 3; i++) {
+//                entityList.get(0).add(new EntityItem(labelList[i], categoryList[i]));
+//                entityList.get(2).add(new EntityItem(labelList[i + 3], categoryList[i + 3]));
+//                entityList.get(5).add(new EntityItem(labelList[i + 6], categoryList[i + 6]));
+//            }
+//            for (int i = 0; i < tmpCate.length; i++) {
+//                entityList.get(0).add(new EntityItem(tmpList[i], categoryList[i]));
+//            }
+            for(int i = 0; i < 20; i++){
+                JSONObject obj = chinese.getJSONObject(i);
+                entityList.get(0).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = math.getJSONObject(i);
+                entityList.get(1).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = english.getJSONObject(i);
+                entityList.get(2).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = physics.getJSONObject(i);
+                entityList.get(3).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = chemistry.getJSONObject(i);
+                entityList.get(4).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = biology.getJSONObject(i);
+                entityList.get(5).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = history.getJSONObject(i);
+                entityList.get(6).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = geo.getJSONObject(i);
+                entityList.get(7).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                obj = politics.getJSONObject(i);
+                entityList.get(8).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+            }
+        } catch (Exception e){
+
         }
         return view;
     }
