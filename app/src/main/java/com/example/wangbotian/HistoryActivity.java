@@ -16,12 +16,14 @@ import com.hjq.xtoast.XToast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialToolbar top_bar;
     ListView listView;
     EntityItem[] items;
+    private final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,12 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         String userName = AppApplication.getApp().getUsername();
         String param = "username=" + userName;
         try {
-            String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CatchHistory", param);
+            SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            Set<String> listHistory = history.getStringSet("entity_list_history", null);
+            if(listHistory == null) {
+                listHistory = new HashSet<String>();
+            }
+            String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchHistory", param);
             JSONArray userHistory = JSONArray.parseArray(msg);
             Log.i("history", msg);
             if(userHistory != null) {
@@ -45,7 +52,10 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
                     String label = dataJson.getString("label");
                     String cate = dataJson.getString("category");
                     items[i] = new EntityItem(label,cate);
-                    items[i].access();
+                    // items[i].access();
+                    if(listHistory.contains(label + ";" + cate)) {
+                        items[i].access();
+                    }
                 }
                 ArrayList<EntityItem> items_list = new ArrayList<EntityItem>(Arrays.asList(items));
                 EntityListAdapter adapter = new EntityListAdapter(this, items_list);

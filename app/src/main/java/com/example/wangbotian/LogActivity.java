@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -70,51 +71,57 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 String password = passwordText.getText().toString();
                 String param = "username=" + username + "&password=" + password;
                 String msg = "1";
-                try{
-                    msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);}
-                catch (Exception e) {
+                try {
+                    msg = OpenEducation.sendPost("http://47.93.219.219:8080/CheckPassword", param);
+
                     System.out.println(msg);
-                } //暂且不break 调试用
-                System.out.println(msg);
-                int res = checkPassword(msg);
-                if (res == 1) {
-//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", "username=testUser"));
-//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", "username=testUser&password=123456"));
-//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", "username=testUser&password=123456"));
-//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangeId", "username=testUser&newname=testUser1"));
-//                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=testUser1&password=1234567"));
-                    AppApplication.getApp().setUsername(username);
-                    AppApplication.getApp().setMotto(OpenEducation.sendPost("http://192.168.3.192:8080/CatchMotto", "username="+username));
-                    Intent intent = new Intent();
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
-                            .setText(android.R.id.message, "登陆成功")
-                            .show();
-                    intent.setClass(LogActivity.this, MainActivity.class);
-                    this.startActivity(intent);
-                }
-                else if(res == 0) {
+                    int res = checkPassword(msg);
+                    if (res == 1) {
+                        //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", "username=testUser"));
+                        //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", "username=testUser&password=123456"));
+                        //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", "username=testUser&password=123456"));
+                        //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangeId", "username=testUser&newname=testUser1"));
+                        //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=testUser1&password=1234567"));
+                        AppApplication.getApp().setUsername(username);
+                        AppApplication.getApp().setMotto(OpenEducation.sendPost("http://47.93.219.219:8080/CatchMotto", "username=" + username));
+                        Intent intent = new Intent();
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_finish)
+                                .setText(android.R.id.message, "登陆成功")
+                                .show();
+                        intent.setClass(LogActivity.this, MainActivity.class);
+                        this.startActivity(intent);
+                    } else if (res == 0) {
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "密码不正确")
+                                .show();
+                    } else if (res == 2) {
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "用户名不存在")
+                                .show();
+                    }
+                }catch (Exception e) {
+                    Log.d("debug", e.toString());
                     new XToast<>(this)
                             .setDuration(1000)
                             .setView(R.layout.toast_hint)
                             .setAnimStyle(android.R.style.Animation_Activity)
                             .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "密码不正确")
+                            .setText(android.R.id.message, "无网络")
                             .show();
                 }
-                else if(res == 2){
-                    new XToast<>(this)
-                            .setDuration(1000)
-                            .setView(R.layout.toast_hint)
-                            .setAnimStyle(android.R.style.Animation_Activity)
-                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
-                            .setText(android.R.id.message, "用户名不存在")
-                            .show();
-                }
-                break;
+                    break;
             case R.id.reg_button:
                 Intent intent = new Intent();
                 intent.setClass(LogActivity.this, RegActivity.class);

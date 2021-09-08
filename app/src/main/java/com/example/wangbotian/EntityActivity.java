@@ -193,7 +193,7 @@ public class EntityActivity extends AppCompatActivity{
 
         String userName = AppApplication.getApp().getUsername();
         String param = "username=" + userName;
-        String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CatchHistory", param);
+        String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchHistory", param);
         JSONArray userHistory = JSONArray.parseArray(msg);
         Log.i("history", msg);
         Boolean hasExist = false;
@@ -208,7 +208,7 @@ public class EntityActivity extends AppCompatActivity{
         }
         if(!hasExist) {
             param = "username=" + userName + "&label=" + name + "&category=" + category;
-            msg = OpenEducation.sendPost("http://192.168.3.192:8080/AddHistory", param);
+            msg = OpenEducation.sendPost("http://47.93.219.219:8080/AddHistory", param);
         }
     }
 
