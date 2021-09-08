@@ -15,7 +15,7 @@
             android:id="@+id/topAppBar_ra"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="学科雷达"
+            app:title="能力雷达"
             app:navigationIcon="@drawable/outline_arrow_back_24"
             app:titleCentered="true"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
