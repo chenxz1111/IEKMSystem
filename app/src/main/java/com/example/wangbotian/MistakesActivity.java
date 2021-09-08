@@ -50,7 +50,7 @@ public class MistakesActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //JSONArray dataArray = JSON.parseArray("[{\"qAnswer\":\"D\",\"id\":184710, \"qBody\":\"错题(1/1)\n您的答案:A\n正确答案:D\n\n写下君不见黄河之水天上来,奔流到海不复回诗句的是()A.杜牧B.李商隐C.杜甫D.李白\" }]");
-        cardAdapter = new CardsDataAdapter(this.getApplicationContext(),0, true);
+        cardAdapter = new CardsDataAdapter(this.getApplicationContext(),0, 1);
         for (int i = 0; i < dataArray.size(); i++){
             if (dataArray.getString(i).indexOf("A.") > 0)
                 cardAdapter.add(dataArray.getString(i));

@@ -12,9 +12,9 @@ import com.alibaba.fastjson.JSONObject;
 
 public class CardsDataAdapter extends ArrayAdapter<String> {
 
-    boolean mistake;
+    int mistake;
 
-    public CardsDataAdapter(Context context, int textViewResourceId, boolean mis) {
+    public CardsDataAdapter(Context context, int textViewResourceId, int mis) {
         super(context, textViewResourceId);
         mistake = mis;
     }
@@ -64,7 +64,7 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
         answerB.setText(examBody.substring(idB, idC));
         answerC.setText(examBody.substring(idC, idD));
         answerD.setText(examBody.substring(idD));
-        if (mistake) {
+        if (mistake == 1) {
 
             ansCardA.setCardBackgroundColor(0xFFDFA3A3);//---------DELETE
             ansCardD.setCardBackgroundColor(0xFF92D398); //-----------DELETE
@@ -80,7 +80,7 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
                     if (!checked[0]) {
                         ansCardA.setCardBackgroundColor(0xFFDFA3A3);
                         finalRightCard.setCardBackgroundColor(0xFF92D398);
-                        if (!finalRight.equals("A"))
+                        if (!finalRight.equals("A") && mistake == 0)
                             OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
                             + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
                             + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=A&right=" + finalRight);
@@ -94,7 +94,7 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
                     if (!checked[0]) {
                         ansCardB.setCardBackgroundColor(0xFFDFA3A3);
                         finalRightCard.setCardBackgroundColor(0xFF92D398);
-                        if (!finalRight.equals("B"))
+                        if (!finalRight.equals("B") && mistake == 0)
                             OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
                                     + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
                                     + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=B&right=" + finalRight);
@@ -109,7 +109,7 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
                     if (!checked[0]) {
                         ansCardC.setCardBackgroundColor(0xFFDFA3A3);
                         finalRightCard.setCardBackgroundColor(0xFF92D398);
-                        if (!finalRight.equals("C"))
+                        if (!finalRight.equals("C") && mistake == 0)
                             OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
                                     + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
                                     + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=C&right=" + finalRight);
@@ -123,7 +123,7 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
                     if (!checked[0]) {
                         ansCardD.setCardBackgroundColor(0xFFDFA3A3);
                         finalRightCard.setCardBackgroundColor(0xFF92D398);
-                        if (!finalRight.equals("D"))
+                        if (!finalRight.equals("D") && mistake == 0)
                             OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
                                     + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
                                     + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=D&right=" + finalRight);
