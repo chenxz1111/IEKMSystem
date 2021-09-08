@@ -52,8 +52,7 @@ public class EntityActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent = new Intent(EntityActivity.this, MainActivity.class);
-                intent.putExtra("id",0);
+                intent.setClass(EntityActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -232,8 +231,8 @@ public class EntityActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(EntityActivity.this, MainActivity.class);
-        intent.putExtra("id",0);
+        Intent intent = new Intent();
+        intent.setClass(EntityActivity.this, MainActivity.class);
         startActivity(intent);
         super.onBackPressed();
     }
