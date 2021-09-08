@@ -12,13 +12,17 @@ import com.alibaba.fastjson.JSONObject;
 
 public class CardsDataAdapter extends ArrayAdapter<String> {
 
-    public CardsDataAdapter(Context context, int textViewResourceId) {
+    boolean mistake;
+
+    public CardsDataAdapter(Context context, int textViewResourceId, boolean mis) {
         super(context, textViewResourceId);
+        mistake = mis;
     }
 
     @Override
     public View getView(int position, final View contentView, ViewGroup parent){
         final boolean[] checked = {false};
+        String right = null;
         TextView v = contentView.findViewById(R.id.exam_txv);
         TextView answerA = contentView.findViewById(R.id.answer_A_text);
         TextView answerB = contentView.findViewById(R.id.answer_B_text);
@@ -40,15 +44,19 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
         switch (exam.getString("qAnswer")){
             case "A":
                 rightCard = ansCardA;
+                right = "A";
                 break;
             case "B":
                 rightCard = ansCardB;
+                right = "B";
                 break;
             case "C":
                 rightCard = ansCardC;
+                right = "C";
                 break;
             case "D":
                 rightCard = ansCardD;
+                right = "D";
                 break;
         }
         v.setText(examBody.substring(0, idA));
@@ -56,52 +64,74 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
         answerB.setText(examBody.substring(idB, idC));
         answerC.setText(examBody.substring(idC, idD));
         answerD.setText(examBody.substring(idD));
+        if (mistake) {
 
-        ansCardA.setCardBackgroundColor(0xFFDFA3A3);//---------DELETE
-        ansCardD.setCardBackgroundColor(0xFF92D398); //-----------DELETE
-        CardView finalRightCard = rightCard;
-        ansCardA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checked[0]) {
-                    ansCardA.setCardBackgroundColor(0xFFDFA3A3);
-                    finalRightCard.setCardBackgroundColor(0xFF92D398);
-                    checked[0] = true;
-                }
-            }
-        });
-        ansCardB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checked[0]) {
-                    ansCardB.setCardBackgroundColor(0xFFDFA3A3);
-                    finalRightCard.setCardBackgroundColor(0xFF92D398);
-                    checked[0] = true;
-                }
-            }
-        });
+            ansCardA.setCardBackgroundColor(0xFFDFA3A3);//---------DELETE
+            ansCardD.setCardBackgroundColor(0xFF92D398); //-----------DELETE
 
-        ansCardC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checked[0]) {
-                    ansCardC.setCardBackgroundColor(0xFFDFA3A3);
-                    finalRightCard.setCardBackgroundColor(0xFF92D398);
-                    checked[0] = true;
-                }
-            }
-        });
-        ansCardD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!checked[0]) {
-                    ansCardD.setCardBackgroundColor(0xFFDFA3A3);
-                    finalRightCard.setCardBackgroundColor(0xFF92D398);
-                    checked[0] = true;
-                }
-            }
-        });
+        }
 
+        else {
+            CardView finalRightCard = rightCard;
+            String finalRight = right;
+            ansCardA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!checked[0]) {
+                        ansCardA.setCardBackgroundColor(0xFFDFA3A3);
+                        finalRightCard.setCardBackgroundColor(0xFF92D398);
+                        if (!finalRight.equals("A"))
+                            OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
+                            + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
+                            + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=A&right=" + finalRight);
+                        checked[0] = true;
+                    }
+                }
+            });
+            ansCardB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!checked[0]) {
+                        ansCardB.setCardBackgroundColor(0xFFDFA3A3);
+                        finalRightCard.setCardBackgroundColor(0xFF92D398);
+                        if (!finalRight.equals("B"))
+                            OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
+                                    + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
+                                    + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=B&right=" + finalRight);
+                        checked[0] = true;
+                    }
+                }
+            });
+
+            ansCardC.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!checked[0]) {
+                        ansCardC.setCardBackgroundColor(0xFFDFA3A3);
+                        finalRightCard.setCardBackgroundColor(0xFF92D398);
+                        if (!finalRight.equals("C"))
+                            OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
+                                    + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
+                                    + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=C&right=" + finalRight);
+                        checked[0] = true;
+                    }
+                }
+            });
+            ansCardD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!checked[0]) {
+                        ansCardD.setCardBackgroundColor(0xFFDFA3A3);
+                        finalRightCard.setCardBackgroundColor(0xFF92D398);
+                        if (!finalRight.equals("D"))
+                            OpenEducation.sendPost("http://47.93.219.219:8080/AddMistake", "username=" + AppApplication.getApp().getUsername()
+                                    + "&question=" + examBody.substring(0, idA) + "&a=" + examBody.substring(idA, idB) + "&b=" + examBody.substring(idB, idC)
+                                    + "&c=" + examBody.substring(idC, idD) + "&d=" + examBody.substring(idD) + "&wrong=D&right=" + finalRight);
+                        checked[0] = true;
+                    }
+                }
+            });
+        }
 
 
         return contentView;

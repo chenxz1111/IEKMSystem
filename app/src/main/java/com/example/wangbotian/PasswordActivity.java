@@ -95,7 +95,7 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
                             .show();
                 }else{
                     try {
-                        OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=" + AppApplication.getApp().getUsername() + "&password=" + new_password);
+                        OpenEducation.sendPost("http://47.93.219.219:8080/ChangePassword", "username=" + AppApplication.getApp().getUsername() + "&password=" + new_password);
                     }catch (Exception e) {
                         new XToast<>(this)
                                 .setDuration(1000)

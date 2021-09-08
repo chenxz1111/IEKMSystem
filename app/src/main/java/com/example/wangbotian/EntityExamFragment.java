@@ -32,7 +32,7 @@ public class EntityExamFragment extends Fragment {
         cardStack.setContentResource(R.layout.exam_card);
         cardStack.setStackMargin(20);
         JSONArray dataArray = JSON.parseArray(((EntityActivity) this.getActivity()).entityExam.getString("data"));
-        cardAdapter = new CardsDataAdapter(this.getActivity().getApplicationContext(),0);
+        cardAdapter = new CardsDataAdapter(this.getActivity().getApplicationContext(),0, false);
         for (int i = 0; i < dataArray.size(); i++){
             if (dataArray.getString(i).indexOf("A.") > 0)
             cardAdapter.add(dataArray.getString(i));
