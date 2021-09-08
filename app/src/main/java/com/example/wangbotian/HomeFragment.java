@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private LinearLayout ll_more_columns;
     private ImageView button_more_columns;
 
+
     private TabLayout tabLayout;
     private List<String> mTitles;
     private String [] title={"语文","数学","英语","物理","化学","生物","历史","地理","政治"};

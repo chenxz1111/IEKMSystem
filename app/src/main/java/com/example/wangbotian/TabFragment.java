@@ -34,7 +34,7 @@ public class TabFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_tab,container,false);
 //        titleTv=view.findViewById(R.id.tv_title);
 //        titleTv.setText(mTitle);
-        this.listView = view.findViewById(R.id.list_view1);
+        this.listView = view.findViewById(R.id.list_view_home);
         adapter = new EntityListAdapter(this.getActivity(), items_list);
         this.listView.setDivider(null);
         this.listView.setAdapter(adapter);

@@ -41,6 +41,7 @@
     </LinearLayout>
     </LinearLayout>
 
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/page"
         android:layout_width="match_parent"
