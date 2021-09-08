@@ -136,6 +136,7 @@ public class EntityActivity extends AppCompatActivity{
             }
         });
         button = findViewById(R.id.floating_action_button);
+
         String userName = AppApplication.getApp().getUsername();
         String param = "username=" + userName;
         try {
