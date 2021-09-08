@@ -150,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
             viewPager.setCurrentItem(id);
         }
+        else if (id == 0){
+            Fragment fragment = new HomeFragment();
+            FragmentManager manger = getSupportFragmentManager();
+            FragmentTransaction transaction = manger.beginTransaction();
+            transaction.replace(R.id.viewpager, fragment);
+            transaction.commit();
+            viewPager.setCurrentItem(id);
+        }
         super.onResume();
     }
 

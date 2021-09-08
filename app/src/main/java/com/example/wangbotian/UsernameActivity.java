@@ -63,7 +63,7 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
                     .show();
             return;
         }else{
-            System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangeId", "username=" + old_name + "&newname=" + new_name));
+            System.out.println(OpenEducation.sendPost("http://47.93.219.219:8080/ChangeId", "username=" + old_name + "&newname=" + new_name));
             new XToast<>(this)
                     .setDuration(1000)
                     .setView(R.layout.toast_hint)

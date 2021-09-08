@@ -14,10 +14,11 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.card.MaterialCardView;
+ import com.hjq.xtoast.XToast;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener{
 
-    MaterialCardView card_question, card_more;
+    MaterialCardView card_question, card_more, card_recommend;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -32,6 +33,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
         card_question.setOnClickListener(this);
         card_more = v.findViewById(R.id.card_5);
         card_more.setOnClickListener(this);
+        card_recommend = v.findViewById(R.id.card_4);
+        card_recommend.setOnClickListener(this);
         return v;
     }
 
@@ -43,13 +46,16 @@ public class QuestionFragment extends Fragment implements View.OnClickListener{
                 intent.setClass(this.getActivity(), QuestionActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.card_5: //----------- JUST FOR TEST -------------
-                intent.setClass(this.getActivity(), EntityActivity.class);
-                intent.putExtra("label", "李白");
+            case R.id.card_4:
+                intent.setClass(this.getActivity(), RecommendActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.card_5: //----------- JUST FOR TEST -------------
+                Toast.makeText(this.getActivity(),"更多功能敬请期待~",Toast.LENGTH_LONG).show();
                 break;
         }
     }
+
 
 
 }

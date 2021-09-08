@@ -5,15 +5,15 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_layout"
+        android:id="@+id/recommend_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar2"
+            android:id="@+id/topAppBar_re"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="错题本"
+            app:title="试题推荐"
             app:navigationIcon="@drawable/outline_arrow_back_24"
             app:titleCentered="true"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -23,7 +23,7 @@
 
 
     <com.wenchao.cardstack.CardStack
-        android:id="@+id/mistake_card_stake"
+        android:id="@+id/recommend_card_stake"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipChildren="false"
@@ -39,6 +39,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar_layout" />
+        app:layout_constraintTop_toBottomOf="@id/recommend_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

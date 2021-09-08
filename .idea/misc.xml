@@ -47,6 +47,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_mistakes.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/activity_question.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/activity_recommend.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/activity_reg.xml" value="0.2463768115942029" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.2418478260869565" />
@@ -57,6 +58,7 @@
         <entry key="app/src/main/res/layout/entity_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/exam_card.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19972826086956522" />
+        <entry key="app/src/main/res/layout/fragment_entity_exam.xml" value="0.1082427536231884" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19972826086956522" />
         <entry key="app/src/main/res/layout/fragment_question.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1644021739130435" />
@@ -73,6 +75,7 @@
         <entry key="app/src/main/res/menu/bottom_nav_change_icon.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/menu/bottom_nav_five_items.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2" />
+        <entry key="app/src/main/res/menu/detail_app_bar.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.37083333333333335" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.28923076923076924" />
       </map>
