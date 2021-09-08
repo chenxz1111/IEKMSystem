@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.content.*;
 import android.widget.EditText;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hjq.xtoast.XToast;
@@ -24,8 +27,6 @@ import com.javier.filterview.single.OnSingleOptionListener;
 import com.javier.filterview.single.SingleOption;
 import com.javier.filterview.single.SingleSection;
 
-import org.json.JSONArray;
-
 import java.util.*;
 
 public class LogActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +34,8 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     Button logButton, regButton;
     TextInputEditText usernameText, passwordText;
     TextInputLayout usernameLay, passwordLay;
+    private JSONObject main_result;
+    private JSONArray chinese, math, english, physics, chemistry, biology, history, geo, politics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,36 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                         //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", "username=testUser&password=123456"));
                         //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangeId", "username=testUser&newname=testUser1"));
                         //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=testUser1&password=1234567"));
+                        main_result = JSON.parseObject(OpenEducation.sendPost("http://47.93.219.219:8080/getAllEntity", ""));
+                        chinese = main_result.getJSONArray("chinese");
+                        math = main_result.getJSONArray("math");
+                        english = main_result.getJSONArray("english");
+                        physics = main_result.getJSONArray("physics");
+                        chemistry = main_result.getJSONArray("chemistry");
+                        biology = main_result.getJSONArray("biology");
+                        history = main_result.getJSONArray("history");
+                        geo = main_result.getJSONArray("geo");
+                        politics = main_result.getJSONArray("politics");
+                        Collections.shuffle(chinese);
+                        Collections.shuffle(math);
+                        Collections.shuffle(english);
+                        Collections.shuffle(physics);
+                        Collections.shuffle(chemistry);
+                        Collections.shuffle(biology);
+                        Collections.shuffle(history);
+                        Collections.shuffle(geo);
+                        Collections.shuffle(politics);
+
+                        AppApplication.getApp().chinese_list = chinese;
+                        AppApplication.getApp().math_list = math;
+                        AppApplication.getApp().english_list = english;
+                        AppApplication.getApp().physics_list = physics;
+                        AppApplication.getApp().chemistry_list = chemistry;
+                        AppApplication.getApp().biology_list = biology;
+                        AppApplication.getApp().history_list = history;
+                        AppApplication.getApp().geo_list = geo;
+                        AppApplication.getApp().politics_list = politics;
+
                         AppApplication.getApp().setUsername(username);
                         AppApplication.getApp().setMotto(OpenEducation.sendPost("http://47.93.219.219:8080/CatchMotto", "username=" + username));
                         AppApplication.getApp().setAvatarId(OpenEducation.sendPost("http://47.93.219.219:8080/CatchAvatar", "username=" + username));

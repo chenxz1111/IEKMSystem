@@ -65,9 +65,38 @@ public class CardsDataAdapter extends ArrayAdapter<String> {
         answerC.setText(examBody.substring(idC, idD));
         answerD.setText(examBody.substring(idD));
         if (mistake == 1) {
-
-            ansCardA.setCardBackgroundColor(0xFFDFA3A3);//---------DELETE
-            ansCardD.setCardBackgroundColor(0xFF92D398); //-----------DELETE
+            int wa = examBody.indexOf("您的答案:");
+            int ra = examBody.indexOf("正确答案:");
+            String w = examBody.substring(wa+5, wa+6);
+            String a = examBody.substring(ra+5, ra+6);
+            switch (w){
+                case "A":
+                    ansCardA.setCardBackgroundColor(0xFFDFA3A3);
+                    break;
+                case "B":
+                    ansCardB.setCardBackgroundColor(0xFFDFA3A3);
+                    break;
+                case "C":
+                    ansCardC.setCardBackgroundColor(0xFFDFA3A3);
+                    break;
+                case "D":
+                    ansCardD.setCardBackgroundColor(0xFFDFA3A3);
+                    break;
+            }
+            switch (a){
+                case "A":
+                    ansCardA.setCardBackgroundColor(0xFF92D398);
+                    break;
+                case "B":
+                    ansCardB.setCardBackgroundColor(0xFF92D398);
+                    break;
+                case "C":
+                    ansCardC.setCardBackgroundColor(0xFF92D398);
+                    break;
+                case "D":
+                    ansCardD.setCardBackgroundColor(0xFF92D398);
+                    break;
+            }
 
         }
 
