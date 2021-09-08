@@ -11,7 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-
+/**
+ 分类的基类
+ */
 public class TabFragment extends Fragment {
     private TextView titleTv;
 

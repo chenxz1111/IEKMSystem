@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.github.xiaofeidev.round.RoundImageView;
 import com.google.android.material.appbar.MaterialToolbar;
-
+/**
+ 用户设置类
+ */
 public class SettingActivity extends AppCompatActivity {
 
     MaterialToolbar top_bar;
@@ -82,5 +84,12 @@ public class SettingActivity extends AppCompatActivity {
         img = findViewById(R.id.setting_avatar);
         Drawable d = getDrawable(AppApplication.getApp().getAvatar());
         img.setImageDrawable(d);
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SettingActivity.this, MainActivity.class);
+        intent.putExtra("id", 2);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

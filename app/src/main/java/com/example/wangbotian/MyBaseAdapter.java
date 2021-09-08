@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.List;
-
+/**
+ 用来封装自己的Adapter的抽象类
+ */
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
     protected List<T> mList;
     protected LayoutInflater inflater;

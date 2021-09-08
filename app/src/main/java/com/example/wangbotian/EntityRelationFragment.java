@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ 关联实体类
+ */
 
 public class EntityRelationFragment extends Fragment {
 

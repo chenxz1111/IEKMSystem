@@ -21,7 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
-
+/**
+ 实体链接结构类
+ */
 public class LinkResult extends AppCompatActivity implements View.OnClickListener {
     ListView listView;
     Button backToSearch;

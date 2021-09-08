@@ -40,14 +40,17 @@
 
     <TextView
         android:id="@+id/entity_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
         android:text="实体名称"
         android:textColor="@color/pressedColor"
         android:textSize="40dp"
+
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floating_action_button"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout

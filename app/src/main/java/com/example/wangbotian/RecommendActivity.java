@@ -13,7 +13,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.hjq.xtoast.XToast;
 import com.wenchao.cardstack.CardStack;
-
+/**
+ 试题推荐功能类
+ */
 public class RecommendActivity extends AppCompatActivity {
 
     MaterialToolbar top_bar;

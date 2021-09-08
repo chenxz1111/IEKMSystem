@@ -1,7 +1,9 @@
 package com.example.wangbotian;
 
 import java.io.Serializable;
-
+/**
+ 单个实体类
+ */
 public class EntityItem implements Serializable {
     public String label;
     public String category;

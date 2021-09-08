@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import cn.jiguang.imui.commons.models.*;
-
+/**
+ 聊天对话类
+ */
 public class Message implements IMessage {
 
     private long id;

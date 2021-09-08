@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ 收藏功能类
+ */
 public class FavoriteActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialToolbar top_bar;
     ListView listView;
@@ -83,5 +85,11 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("id",2);
         startActivity(intent);
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(FavoriteActivity.this, MainActivity.class);
+        intent.putExtra("id",2);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }

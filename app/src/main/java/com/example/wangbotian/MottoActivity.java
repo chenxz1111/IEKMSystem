@@ -13,7 +13,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.hjq.xtoast.XToast;
 
 import org.w3c.dom.Text;
-
+/**
+ 格言类
+ */
 public class MottoActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar top_bar;

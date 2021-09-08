@@ -12,6 +12,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hjq.xtoast.XToast;
 
+/**
+ 密码类
+ */
 public class PasswordActivity extends AppCompatActivity implements View.OnClickListener{
 
     MaterialToolbar top_bar;

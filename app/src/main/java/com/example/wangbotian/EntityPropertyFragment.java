@@ -18,7 +18,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ 实体属性类
+ */
 public class EntityPropertyFragment extends Fragment {
 
     ListView propertyList;

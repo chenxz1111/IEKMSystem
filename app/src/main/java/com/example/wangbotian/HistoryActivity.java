@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ 浏览历史记录功能类
+ */
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialToolbar top_bar;
     ListView listView;
@@ -83,6 +85,12 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(HistoryActivity.this, MainActivity.class);
         intent.putExtra("id",2);
         startActivity(intent);
-        this.finish();
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HistoryActivity.this, MainActivity.class);
+        intent.putExtra("id",2);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

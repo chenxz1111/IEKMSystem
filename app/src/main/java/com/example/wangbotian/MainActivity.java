@@ -21,7 +21,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import io.github.vejei.bottomnavigationbar.BottomNavigationBar;
-
+/**
+ MainActivity
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;

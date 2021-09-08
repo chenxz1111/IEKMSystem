@@ -13,7 +13,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.hjq.xtoast.XToast;
 import com.wenchao.cardstack.CardStack;
-
+/**
+ 错题本类
+ */
 public class MistakesActivity extends AppCompatActivity implements View.OnClickListener {
 
     MaterialToolbar top_bar;
@@ -63,5 +65,13 @@ public class MistakesActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(MistakesActivity.this, MainActivity.class);
         intent.putExtra("id",2);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MistakesActivity.this, MainActivity.class);
+        intent.putExtra("id",2);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

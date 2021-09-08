@@ -13,7 +13,9 @@ import android.app.Application;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.hjq.xtoast.XToast;
-
+/**
+ 用户名类
+ */
 public class UsernameActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView userText;

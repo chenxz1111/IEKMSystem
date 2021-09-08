@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.wenchao.cardstack.CardStack;
-
+/**
+ 相关试题类
+ */
 
 public class EntityExamFragment extends Fragment {
 

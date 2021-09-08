@@ -9,7 +9,9 @@ import androidx.cardview.widget.CardView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-
+/**
+ 实体卡片类
+ */
 public class CardsDataAdapter extends ArrayAdapter<String> {
 
     int mistake;

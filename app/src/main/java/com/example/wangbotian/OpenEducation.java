@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
-
+/**
+ 调用OpenEducation平台API的接口类
+ */
 
 public class OpenEducation {
     static String id = "PoweredBy605";

@@ -22,7 +22,9 @@ import java.util.Date;
 import java.util.Random;
 
 import cn.jiguang.imui.messages.*;
-
+/**
+ 智能问答功能类
+ */
 public class QuestionActivity  extends AppCompatActivity implements View.OnClickListener{
 
     MessageList messageList;

@@ -54,7 +54,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ 实体搜素结果类
+ */
 public class SearchResult extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     ListView listView;
     Button backToSearch;

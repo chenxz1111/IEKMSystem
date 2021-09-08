@@ -6,7 +6,9 @@ import android.graphics.drawable.Drawable;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.wangbotian.db.SQLHelper;
-
+/**
+ 存放全局变量的类
+ */
 public class AppApplication extends Application {
 
     private static AppApplication mAppApplication;

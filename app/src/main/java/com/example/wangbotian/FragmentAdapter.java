@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.*;
-
+/**
+ fragment适配器类
+ */
 public class FragmentAdapter extends FragmentStatePagerAdapter {
 
 

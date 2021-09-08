@@ -29,7 +29,9 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ 实体详情页，包含实体属性，关联实体，相关试题，分享，收藏等
+ */
 
 public class EntityActivity extends AppCompatActivity{
 

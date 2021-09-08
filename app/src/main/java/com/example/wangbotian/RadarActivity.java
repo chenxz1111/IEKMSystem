@@ -14,7 +14,9 @@ import com.hjq.xtoast.XToast;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ 能力雷达图类
+ */
 public class RadarActivity extends AppCompatActivity {
 
     MaterialToolbar top_bar;

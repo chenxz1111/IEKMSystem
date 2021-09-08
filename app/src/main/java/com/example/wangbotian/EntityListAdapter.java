@@ -12,7 +12,9 @@ import androidx.cardview.widget.CardView;
 import com.google.android.material.card.MaterialCardView;
 
 import  java.util.List;
-
+/**
+ 实体列表适配器
+ */
 class ViewHolder{
     TextView tvLabel;
     TextView tvCategory;

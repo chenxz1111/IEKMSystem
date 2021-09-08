@@ -33,7 +33,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
-
+/**
+ 微博分享SDK类
+ */
 
 public class ShareActivity extends Activity implements View.OnClickListener, WbShareCallback {
 

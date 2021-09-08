@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
+/**
+ 主页底部导航栏类
+ */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
 

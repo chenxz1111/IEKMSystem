@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.card.MaterialCardView;
  import com.hjq.xtoast.XToast;
-
+/**
+ 智能问答窗口
+ */
 public class QuestionFragment extends Fragment implements View.OnClickListener{
 
     MaterialCardView card_question, card_more, card_recommend, card_radar;

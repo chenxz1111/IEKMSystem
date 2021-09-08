@@ -28,7 +28,9 @@ import com.javier.filterview.single.SingleOption;
 import com.javier.filterview.single.SingleSection;
 
 import java.util.*;
-
+/**
+ 登录类
+ */
 public class LogActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button logButton, regButton;

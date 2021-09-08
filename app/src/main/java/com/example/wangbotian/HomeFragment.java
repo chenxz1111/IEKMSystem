@@ -1,7 +1,10 @@
 package com.example.wangbotian;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,7 +29,9 @@ import com.alibaba.fastjson.*;
 
 import java.util.*;
 
-
+/**
+ 首页类
+ */
 public class HomeFragment extends Fragment implements View.OnClickListener{
     private ViewPager pager;
     private FragmentAdapter fragmentAdapter;
@@ -35,14 +40,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ImageView button_more_columns;
     private JSONObject main_result;
     private JSONArray chinese, math, english, physics, chemistry, biology, history, geo, politics;
-
+    private final String PREFS_NAME = "MyPrefsFile";
     private TabLayout tabLayout;
     private List<String> mTitles;
-    private String [] title={"语文","数学","英语","物理","化学","生物","历史","地理","政治"};
-    private String[] labelList = {"李白", "杜甫", "白居易", "动词", "形容词", "名词", "光合作用", "食物链", "突触"};
-    private String[] categoryList = {"人物", "人物", "人物", "实义动词", "形容词", "普通名词", "光反应和暗反应", "生态系统的结构", "通过神经系统的调节"};
-    String[] tmpList = {"《父与子》","《康熙字典》","《离骚》","《六国论》","《方山子传》","《锦瑟》","《屈原》"};
-    String[] tmpCate = {"课文","课文","作品","作品","作品","作品","作品"};
     private ArrayList<ArrayList<EntityItem>> entityList = new ArrayList<ArrayList<EntityItem>>();
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
     public final static int CHANNELREQUEST = 1; // 请求码
@@ -57,56 +57,69 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         button_more_columns = (ImageView) view.findViewById(R.id.button_more_columns);
         button_more_columns.setOnClickListener(this);
         try {
-//            main_result = JSON.parseObject(OpenEducation.sendPost("http://47.93.219.219:8080/getAllEntity", ""));
-//            chinese = main_result.getJSONArray("chinese");
-//            math = main_result.getJSONArray("math");
-//            english = main_result.getJSONArray("english");
-//            physics = main_result.getJSONArray("physics");
-//            chemistry = main_result.getJSONArray("chemistry");
-//            biology = main_result.getJSONArray("biology");
-//            history = main_result.getJSONArray("history");
-//            geo = main_result.getJSONArray("geo");
-//            politics = main_result.getJSONArray("politics");
-//            Collections.shuffle(chinese);
-//            Collections.shuffle(math);
-//            Collections.shuffle(english);
-//            Collections.shuffle(physics);
-//            Collections.shuffle(chemistry);
-//            Collections.shuffle(biology);
-//            Collections.shuffle(history);
-//            Collections.shuffle(geo);
-//            Collections.shuffle(politics);
-//            System.out.println(history);
             for (int i = 0; i < 9; i++) {
                 entityList.add(new ArrayList<EntityItem>());
             }
-//            for (int i = 0; i < 3; i++) {
-//                entityList.get(0).add(new EntityItem(labelList[i], categoryList[i]));
-//                entityList.get(2).add(new EntityItem(labelList[i + 3], categoryList[i + 3]));
-//                entityList.get(5).add(new EntityItem(labelList[i + 6], categoryList[i + 6]));
-//            }
-//            for (int i = 0; i < tmpCate.length; i++) {
-//                entityList.get(0).add(new EntityItem(tmpList[i], categoryList[i]));
-//            }
+            SharedPreferences history = getActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            Set<String> listHistory = history.getStringSet("entity_list_history", null);
+            if(listHistory == null) {
+                listHistory = new HashSet<String>();
+            }
             for(int i = 0; i < 20; i++){
                 JSONObject obj = AppApplication.getApp().chinese_list.getJSONObject(i);
-                entityList.get(0).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                EntityItem item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(0).add(item);
                 obj = AppApplication.getApp().math_list.getJSONObject(i);
-                entityList.get(1).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(1).add(item);
                 obj = AppApplication.getApp().english_list.getJSONObject(i);
-                entityList.get(2).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(2).add(item);
                 obj = AppApplication.getApp().physics_list.getJSONObject(i);
-                entityList.get(3).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(3).add(item);
                 obj = AppApplication.getApp().chemistry_list.getJSONObject(i);
-                entityList.get(4).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(4).add(item);
                 obj = AppApplication.getApp().biology_list.getJSONObject(i);
-                entityList.get(5).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(5).add(item);
                 obj = AppApplication.getApp().history_list.getJSONObject(i);
-                entityList.get(6).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(6).add(item);
                 obj = AppApplication.getApp().geo_list.getJSONObject(i);
-                entityList.get(7).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(7).add(item);
                 obj = AppApplication.getApp().politics_list.getJSONObject(i);
-                entityList.get(8).add(new EntityItem(obj.get("label").toString(), obj.get("category").toString()));
+                item = new EntityItem(obj.get("label").toString(), obj.get("category").toString());
+                if(listHistory.contains(obj.get("label").toString() + ";" + obj.get("category").toString())) {
+                    item.access();
+                }
+                entityList.get(8).add(item);
             }
         } catch (Exception e){
 
@@ -142,7 +155,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             String sub = userChannelList.get(i).getName();
             int id = convertC2N(sub);
             mTitles.add(userChannelList.get(i).getName());
-//            fragmentList.add(new TabFragment(mTitles.get(i)));
             fragmentList.add(new TabFragment(entityList.get(id)));
             System.out.println(mTitles.get(i));
         }

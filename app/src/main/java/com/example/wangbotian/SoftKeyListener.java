@@ -5,7 +5,9 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
-
+/**
+ 监听软键盘的上升和下降类
+ */
 class SoftKeyBoardListener {
     private View rootView;//activity的根视图
     int rootViewVisibleHeight;//纪录根视图的显示高度

@@ -11,7 +11,9 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputEditText;
 import com.hjq.xtoast.XToast;
 import java.util.Random;
-
+/**
+ 注册类
+ */
 public class RegActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button regButton;

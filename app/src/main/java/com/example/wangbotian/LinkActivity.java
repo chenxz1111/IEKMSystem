@@ -25,7 +25,9 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
+/**
+ 实体链接类
+ */
 public class LinkActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener, View.OnClickListener {
     private NiceSpinner spinner;
     MaterialSearchBar searchBar;

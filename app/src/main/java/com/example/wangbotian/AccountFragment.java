@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wangbotian.edit.ChannelActivity;
 import com.github.xiaofeidev.round.RoundImageView;
-
+/**
+ 个人账户界面，包含收藏，浏览记录，错题本，设置等功能
+ */
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
     LinearLayout favorite;

@@ -8,6 +8,10 @@ import android.view.View;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
+/**
+ 关于我们，应用开发背景及开发者信息
+ */
+
 public class AboutActivity extends AppCompatActivity implements View.OnClickListener{
 
     MaterialToolbar top_bar;

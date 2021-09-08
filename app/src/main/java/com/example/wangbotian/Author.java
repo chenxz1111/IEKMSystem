@@ -3,7 +3,9 @@ package com.example.wangbotian;
 import java.util.Date;
 
 import cn.jiguang.imui.commons.models.IUser;
-
+/**
+ 问答界面封装类
+ */
 public class Author implements IUser {
 
     private String id;
