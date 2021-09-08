@@ -36,10 +36,10 @@ import java.util.Set;
 public class EntityActivity extends AppCompatActivity{
 
     final String[] courses = new String[] {"chinese", "english", "math", "physics", "chemistry", "biology", "geo", "politics"};
-    JSONObject entityData;
-    JSONArray entityProperty;
-    JSONArray entityRelation;
-    JSONObject entityExam;
+    JSONObject entityData = new JSONObject();
+    JSONArray entityProperty = new JSONArray();
+    JSONArray entityRelation = new JSONArray();
+    JSONObject entityExam = new JSONObject();
     private EntityViewAdapter viewPagerAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -142,6 +142,57 @@ public class EntityActivity extends AppCompatActivity{
         String userName = AppApplication.getApp().getUsername();
         String param = "username=" + userName;
         try {
+            SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            Set<String> listHistory = history.getStringSet("entity_list_history", null);
+            if(listHistory == null) {
+                listHistory = new HashSet<String>();
+            }
+            if(listHistory.contains(name + ";" + category)) {
+                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+                for(String d: detailHistory) {
+                    if(d.indexOf(name + ";" + category) == 0) {
+                        String s = d.substring(name.length() + category.length() + 1);
+                        entityData = JSONObject.parseObject(s);
+                        Log.i("detailInfo", entityData.toString());
+                        break;
+                    }
+                }
+
+                entityRelation = entityData.getJSONArray("content");
+                entityProperty = entityData.getJSONArray("property");
+                entityName.setText(entityData.getString("label"));
+                entityExam = entityData.getJSONObject("exam");
+            } else {
+                String course = "chinese";
+                for (String cs : courses){
+                    if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
+                        course = cs;
+                        break;
+                    }
+                }
+                JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
+                entityData = result.getJSONObject("data");
+                entityRelation = entityData.getJSONArray("content");
+                entityProperty = entityData.getJSONArray("property");
+                entityName.setText(entityData.getString("label"));
+                entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
+                Log.i("history", "");
+                JSONObject saveInPhone = entityData;
+                saveInPhone.put("exam", entityExam);
+                SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                SharedPreferences.Editor editor = entityHistory.edit();
+                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
+                if(detailHistory == null) {
+                    detailHistory = new HashSet<>();
+                }
+                listHistory.add(name + ";" + category);
+                detailHistory.add(name + ";" + category + saveInPhone.toString());
+                editor.putStringSet("entity_list_history", listHistory);
+                editor.putStringSet("entity_detail_history", detailHistory);
+                Log.i("detail", saveInPhone.toString());
+                editor.commit();
+            }
+
             String msg = OpenEducation.sendPost("http://47.93.219.219:8080/CatchFavor", param);
             JSONArray userFavor = JSONArray.parseArray(msg);
             Log.i("history", msg);
@@ -175,59 +226,6 @@ public class EntityActivity extends AppCompatActivity{
                     }
                 }
             });
-
-
-
-            String course = "chinese";
-            for (String cs : courses){
-                if (OpenEducation.entityDetail(cs, name).indexOf("[]") <= 0) {
-                    course = cs;
-                    break;
-                }
-            }
-            SharedPreferences history = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            Set<String> listHistory = history.getStringSet("entity_list_history", null);
-            if(listHistory == null) {
-                listHistory = new HashSet<String>();
-            }
-            if(listHistory.contains(name + ";" + category)) {
-                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
-                for(String d: detailHistory) {
-                    if(d.indexOf(name + ";" + category) == 0) {
-                        String s = d.substring(name.length() + category.length() + 1);
-                        entityData = JSONObject.parseObject(s);
-                        Log.i("detailInfo", entityData.toString());
-                        break;
-                    }
-                }
-
-                entityRelation = entityData.getJSONArray("content");
-                entityProperty = entityData.getJSONArray("property");
-                entityName.setText(entityData.getString("label"));
-                entityExam = entityData.getJSONObject("exam");
-            } else {
-                JSONObject result = JSON.parseObject(OpenEducation.entityDetail(course, name));
-                entityData = result.getJSONObject("data");
-                entityRelation = entityData.getJSONArray("content");
-                entityProperty = entityData.getJSONArray("property");
-                entityName.setText(entityData.getString("label"));
-                entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
-                Log.i("history", "");
-                JSONObject saveInPhone = entityData;
-                saveInPhone.put("exam", entityExam);
-                SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                SharedPreferences.Editor editor = entityHistory.edit();
-                Set<String> detailHistory = history.getStringSet("entity_detail_history", null);
-                if(detailHistory == null) {
-                    detailHistory = new HashSet<>();
-                }
-                listHistory.add(name + ";" + category);
-                detailHistory.add(name + ";" + category + saveInPhone.toString());
-                editor.putStringSet("entity_list_history", listHistory);
-                editor.putStringSet("entity_detail_history", detailHistory);
-                Log.i("detail", saveInPhone.toString());
-                editor.commit();
-            }
 
             userName = AppApplication.getApp().getUsername();
             param = "username=" + userName;
