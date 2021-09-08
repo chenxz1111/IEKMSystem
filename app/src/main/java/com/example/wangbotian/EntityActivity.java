@@ -209,7 +209,7 @@ public class EntityActivity extends AppCompatActivity{
                 entityProperty = entityData.getJSONArray("property");
                 entityName.setText(entityData.getString("label"));
                 entityExam = JSON.parseObject(OpenEducation.entityExam(entityData.getString("label")));
-
+                Log.i("history", "");
                 JSONObject saveInPhone = entityData;
                 saveInPhone.put("exam", entityExam);
                 SharedPreferences entityHistory = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -220,7 +220,7 @@ public class EntityActivity extends AppCompatActivity{
                 }
                 listHistory.add(name + ";" + category);
                 detailHistory.add(name + ";" + category + saveInPhone.toString());
-                //editor.putStringSet("entity_list_history", listHistory);
+                editor.putStringSet("entity_list_history", listHistory);
                 editor.putStringSet("entity_detail_history", detailHistory);
                 Log.i("detail", saveInPhone.toString());
                 editor.commit();
