@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        int id = getIntent().getIntExtra("id", 0);
-        if (id == 1 || id == 2) {
+        int id = getIntent().getIntExtra("id", -1);
+        if (id == 1){
             Fragment fragment = new QuestionFragment();
             FragmentManager manger = getSupportFragmentManager();
             FragmentTransaction transaction = manger.beginTransaction();
@@ -152,6 +152,13 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == 0){
             Fragment fragment = new HomeFragment();
+            FragmentManager manger = getSupportFragmentManager();
+            FragmentTransaction transaction = manger.beginTransaction();
+            transaction.replace(R.id.viewpager, fragment);
+            transaction.commit();
+            viewPager.setCurrentItem(id);
+        }else if(id == 2){
+            Fragment fragment = new AccountFragment();
             FragmentManager manger = getSupportFragmentManager();
             FragmentTransaction transaction = manger.beginTransaction();
             transaction.replace(R.id.viewpager, fragment);
