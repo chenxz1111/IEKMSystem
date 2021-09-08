@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <com.github.xiaofeidev.round.RoundImageView
+            android:id="@+id/account_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"

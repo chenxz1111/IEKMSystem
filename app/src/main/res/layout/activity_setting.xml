@@ -54,19 +54,15 @@
                 android:gravity="right">
 
                 <com.github.xiaofeidev.round.RoundImageView
+                    android:id="@+id/setting_avatar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/profile_5"
+                    android:layout_marginRight="10dp"
                     android:padding="5dp"
                     app:rd_radius="circle"
                     android:layout_gravity="center_vertical"/>
 
-                <ImageView
-                    android:layout_width="39dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="10dp"
-                    app:srcCompat="@drawable/outline_chevron_right_black_48" />
 
             </LinearLayout>
 

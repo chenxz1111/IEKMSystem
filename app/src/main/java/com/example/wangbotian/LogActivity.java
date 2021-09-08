@@ -84,6 +84,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                         //                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=testUser1&password=1234567"));
                         AppApplication.getApp().setUsername(username);
                         AppApplication.getApp().setMotto(OpenEducation.sendPost("http://47.93.219.219:8080/CatchMotto", "username=" + username));
+                        AppApplication.getApp().setAvatarId(OpenEducation.sendPost("http://47.93.219.219:8080/CatchAvatar", "username=" + username));
                         Intent intent = new Intent();
                         new XToast<>(this)
                                 .setDuration(1000)

@@ -3,11 +3,13 @@ package com.example.wangbotian;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.xiaofeidev.round.RoundImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class SettingActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class SettingActivity extends AppCompatActivity {
     LinearLayout setting_password;
     LinearLayout setting_about;
     LinearLayout quit_btn;
+    RoundImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,5 +79,8 @@ public class SettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+        img = findViewById(R.id.setting_avatar);
+        Drawable d = getDrawable(AppApplication.getApp().getAvatar());
+        img.setImageDrawable(d);
     }
 }

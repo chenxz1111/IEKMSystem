@@ -1,6 +1,7 @@
 package com.example.wangbotian;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.wangbotian.edit.ChannelActivity;
+import com.github.xiaofeidev.round.RoundImageView;
 
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
@@ -20,6 +22,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     LinearLayout setting;
     TextView name;
     TextView motto;
+    RoundImageView img;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -43,6 +46,9 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         history.setOnClickListener(this);
         mistakes.setOnClickListener(this);
         setting.setOnClickListener(this);
+        img = view.findViewById(R.id.account_avatar);
+        Drawable d = getActivity().getDrawable(AppApplication.getApp().getAvatar());
+        img.setImageDrawable(d);
         return view;
     }
 

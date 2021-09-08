@@ -2,6 +2,7 @@ package com.example.wangbotian;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import com.example.wangbotian.db.SQLHelper;
 
@@ -12,6 +13,7 @@ public class AppApplication extends Application {
     private String username = "你的名字";
     private String motto = "你的格言";
     private String password = "123456";
+    private String avatarId = "1";
 
     public String getUsername(){
         return username;
@@ -33,6 +35,10 @@ public class AppApplication extends Application {
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public void setAvatarId(String avatarId) {
+        this.avatarId = avatarId;
     }
 
     @Override
@@ -63,6 +69,21 @@ public class AppApplication extends Application {
             sqlHelper.close();
         super.onTerminate();
         //整体摧毁的时候调用这个方法
+    }
+
+    public int getAvatar(){
+        switch (avatarId){
+            case "2":
+                return R.drawable.profile_2;
+            case "3":
+                return R.drawable.profile_3;
+            case "4":
+                return R.drawable.profile_4;
+            case "5":
+                return R.drawable.profile_5;
+            default:
+                return R.drawable.profile_1;
+        }
     }
 
 }
