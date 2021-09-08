@@ -56,7 +56,7 @@
                 <com.github.xiaofeidev.round.RoundImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/profile_example"
+                    android:src="@drawable/profile_5"
                     android:padding="5dp"
                     app:rd_radius="circle"
                     android:layout_gravity="center_vertical"/>

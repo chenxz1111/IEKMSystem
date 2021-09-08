@@ -71,7 +71,18 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
 
 
                 String param = "username=" + AppApplication.getApp().getUsername() + "&password=" + old_password;
-                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);
+                String msg = "0";
+                try{msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);}
+                catch (Exception e) {
+                    new XToast<>(this)
+                        .setDuration(1000)
+                        .setView(R.layout.toast_hint)
+                        .setAnimStyle(android.R.style.Animation_Activity)
+                        .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                        .setText(android.R.id.message, "网络不给力")
+                        .show();
+                    break;
+                }
                 System.out.println(msg);
 
                 if(checkPassword(msg) != 1){
@@ -83,7 +94,18 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
                             .setText(android.R.id.message, "原密码错误")
                             .show();
                 }else{
-                    OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=" + AppApplication.getApp().getUsername() + "&password=" + new_password);
+                    try {
+                        OpenEducation.sendPost("http://192.168.3.192:8080/ChangePassword", "username=" + AppApplication.getApp().getUsername() + "&password=" + new_password);
+                    }catch (Exception e) {
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "网络不给力")
+                                .show();
+                        break;
+                    }
                     AppApplication.getApp().setPassword(new_password);
                     Intent intent = new Intent();
                     new XToast<>(this)

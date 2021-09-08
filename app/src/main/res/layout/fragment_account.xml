@@ -16,7 +16,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:src="@drawable/profile_example"
+            android:src="@drawable/profile_1"
             app:rd_radius="circle" />
 
         <com.google.android.material.card.MaterialCardView

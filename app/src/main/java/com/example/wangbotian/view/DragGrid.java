@@ -257,9 +257,9 @@ public class DragGrid extends GridView {
 
                 startPosition = position;// 第一次点击的postion
                 dragPosition = position;
-                if (startPosition <= 1) {
-                    return false;
-                }
+//                if (startPosition <= 1) {
+//                    return false;
+//                }
                 ViewGroup dragViewGroup = (ViewGroup) getChildAt(dragPosition - getFirstVisiblePosition());
                 TextView dragTextView = (TextView) dragViewGroup.findViewById(R.id.text_item);
                 dragTextView.setSelected(true);
@@ -374,7 +374,7 @@ public class DragGrid extends GridView {
         // 拖动的VIEW下方的POSTION
         int dPosition = pointToPosition(x, y);
         // 判断是从第几个索引开始可以拖拽移动
-        if (dPosition > 0) {
+        if (dPosition >= 0) {
             if ((dPosition == -1) || (dPosition == dragPosition)) {
                 return;
             }

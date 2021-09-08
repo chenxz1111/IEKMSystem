@@ -69,7 +69,12 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 String username = usernameText.getText().toString();
                 String password = passwordText.getText().toString();
                 String param = "username=" + username + "&password=" + password;
-                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);
+                String msg = "1";
+                try{
+                    msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckPassword", param);}
+                catch (Exception e) {
+                    System.out.println(msg);
+                } //暂且不break 调试用
                 System.out.println(msg);
                 int res = checkPassword(msg);
                 if (res == 1) {

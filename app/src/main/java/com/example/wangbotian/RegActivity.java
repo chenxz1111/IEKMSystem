@@ -51,12 +51,31 @@ public class RegActivity extends AppCompatActivity implements View.OnClickListen
                     break;
                 }
                 String param = "username=" + username;
-                String msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", param);
+                String msg = "1";
+                try {msg = OpenEducation.sendPost("http://192.168.3.192:8080/CheckUser", param);} catch (Exception e) {
+                    new XToast<>(this)
+                            .setDuration(1000)
+                            .setView(R.layout.toast_hint)
+                            .setAnimStyle(android.R.style.Animation_Activity)
+                            .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                            .setText(android.R.id.message, "网络不给力")
+                            .show();
+                    break;
+                }
                 System.out.println(msg);
                 Boolean status = checkUser(msg);
                 if (status) {
                     param = "username=" + username + "&password=" + password;
-                    System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", param));
+                    try{System.out.println(OpenEducation.sendPost("http://192.168.3.192:8080/AddUser", param));} catch (Exception e) {
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "网络不给力")
+                                .show();
+                        break;
+                    }
                     Intent intent = new Intent();
                     new XToast<>(this)
                             .setDuration(1000)
