@@ -112,6 +112,14 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                                 .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
                                 .setText(android.R.id.message, "用户名不存在")
                                 .show();
+                    } else{
+                        new XToast<>(this)
+                                .setDuration(1000)
+                                .setView(R.layout.toast_hint)
+                                .setAnimStyle(android.R.style.Animation_Activity)
+                                .setImageDrawable(android.R.id.icon, R.mipmap.ic_dialog_tip_error)
+                                .setText(android.R.id.message, "无网络")
+                                .show();
                     }
                 }catch (Exception e) {
                     Log.d("debug", e.toString());
