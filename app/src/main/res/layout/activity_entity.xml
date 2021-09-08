@@ -6,46 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".EntityActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/sky_blue"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/entity_detail_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/outline_arrow_back_white_48" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/detail"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/outline_west_white_24"
+            app:menu="@menu/detail_app_bar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-30dp"
-            android:layout_gravity="center"
-            android:text="实体详情"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <ImageView
-            android:id="@+id/entity_share"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="-27dp"
-            android:layout_marginEnd="10dp"
-            android:layout_gravity="end"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/baseline_share_white_48" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@color/sky_blue"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
 
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/entity_detail_back"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:srcCompat="@drawable/outline_arrow_back_white_48" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="-30dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="实体详情"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20dp" />-->
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/entity_share"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginTop="-27dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            app:srcCompat="@drawable/baseline_share_white_48" />-->
+
+<!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/entity_name"
