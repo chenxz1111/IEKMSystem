@@ -53,7 +53,7 @@ public class EntityActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent = new Intent(EntityActivity.this, MainActivity.class);
-                intent.putExtra("id",1);
+                intent.putExtra("id",0);
                 startActivity(intent);
             }
         });
@@ -233,7 +233,7 @@ public class EntityActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(EntityActivity.this, MainActivity.class);
-        intent.putExtra("id",1);
+        intent.putExtra("id",0);
         startActivity(intent);
         super.onBackPressed();
     }
